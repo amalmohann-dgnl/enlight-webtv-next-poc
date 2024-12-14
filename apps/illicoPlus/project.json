@@ -1,0 +1,9 @@
+{
+  "name": "illicoPlus",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/illicoPlus",
+  "projectType": "application",
+  "tags": ["illico"],
+  "// targets": "to see all targets run: nx show project illicoPlus --web",
+  "targets": {}
+}
