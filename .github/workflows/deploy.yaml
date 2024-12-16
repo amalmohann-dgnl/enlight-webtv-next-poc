@@ -1,0 +1,169 @@
+name: Deployment-Pipeline-TV
+on:
+  push:
+    tags:
+      - "enlightmaxkit_dev-*"
+      - "enlightmaxkit_preprod-*"
+jobs:
+  create_matrix:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Get Customer and version
+      uses: jungwinter/split@v2
+      id: split
+      with:
+        msg: ${{  github.ref }}
+        separator: "_"
+    - name: Get environment name
+      uses: jungwinter/split@v2
+      id:  env_split
+      with:
+        msg: ${{ steps.split.outputs._1 }}
+        separator: "-"    
+
+    outputs:
+      envName: ${{ steps.env_split.outputs._0 }}  
+      version: ${{ steps.env_split.outputs._1 }}
+
+  deploy:
+    needs: create_matrix
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    env:
+      Platform: ${{needs.create_matrix.outputs.envName}}  
+      Version: ${{ needs.create_matrix.outputs.version }}
+    steps:
+
+    - uses: actions/checkout@v2
+      with:
+        submodules: 'true'
+        token: ${{ secrets.PAT_TOKEN }}  
+
+    - name: Print env name
+      run: |
+        echo "${{ env.Platform }} . is ${{needs.create_matrix.outputs.envName}}" 
+        echo "Version = ${{ env.Version }}"
+    - name: Update version and build number in source code
+      run:  sed -i -e "s/1.0.0/${{ needs.create_matrix.outputs.version }}/g" ./metadata.json
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}  
+
+    - name: Install Packages
+      run: yarn install
+
+    - name: Install packages for submodules
+      run: cd src/submodules/diagnal-webplayer && npm install      
+
+    - name: Build enlight-TV  DEV
+      if: ${{ env.Platform == 'dev' }}
+      run: yarn build-vite
+
+    - name: Build enlight-TV  Preprod
+      if: ${{ env.Platform == 'preprod' }}
+      run: yarn  build-vite:preprod
+
+    - name: Deploy to dev
+      if: ${{ env.Platform == 'dev' }}
+      run: aws s3 sync ./dist s3://enlighttv-framework
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.DG_DEV_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.DG_DEV_AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: 'ap-south-1'
+
+    - name: Deploy to preprod
+      if: ${{ env.Platform == 'preprod' }}
+      run: aws s3 sync ./dist s3://preprod-enlighttv-framework
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.DG_APPS_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.DG_APPS_AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: 'us-east-2'
+
+  invalidate:
+    needs:
+      - create_matrix
+      - deploy
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    env:
+      Platform: ${{needs.create_matrix.outputs.envName}}    
+    steps:
+    - uses: actions/checkout@v1
+    - name: invalidate cloudfront distribution for enlighttv-framework dev and wait for completion
+      if: ${{ env.Platform == 'dev' }} 
+      uses: muratiger/invalidate-cloudfront-and-wait-for-completion-action@master
+      env:
+        DISTRIBUTION_ID: ${{ secrets.ENLIGHT_DEV_DISTRIBUTION_ID }}
+        PATHS: '/*'
+        AWS_REGION: 'ap-south-1'
+        AWS_ACCESS_KEY_ID: ${{ secrets.DG_DEV_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.DG_DEV_AWS_SECRET_ACCESS_KEY }}
+    - name: invalidate cloudfront distribution for enlighttv-framework preprod and wait for completion
+      if: ${{ env.Platform == 'preprod' }} 
+      uses: muratiger/invalidate-cloudfront-and-wait-for-completion-action@master
+      env:
+        DISTRIBUTION_ID: ${{ secrets.ENLIGHT_PREPROD_DISTRIBUTION_ID }}
+        PATHS: '/*'
+        AWS_REGION: 'us-east-2'
+        AWS_ACCESS_KEY_ID: ${{ secrets.DG_APPS_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.DG_APPS_AWS_SECRET_ACCESS_KEY }}   
+        
+    #Release Notes
+    - name: 📋 Get Commits since last Release
+      id: changes
+      uses: simbo/changes-since-last-release-action@v1
+      if: ${{ always() }}
+      with:
+        line-prefix: "* "
+        include-hashes: false
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      if: ${{ always() }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body: |
+          **Tag Name:** ${{ github.ref }}
+            
+          **Tagged by:** ${{ github.actor }}
+            
+          **Time of Release:** ${{ github.event.head_commit.timestamp }}
+            
+          **Release Notes:**
+          ${{ steps.changes.outputs.log }}
+
+    - uses: diagnal/chronos@main
+      if: ${{ always() }}
+      with:
+        CHRONOS_SECRET: ${{ secrets.CHRONOS_SECRET }}
+        tag: ${{  github.ref }}
+        commitId: ${{ github.sha }}
+        author: ${{ github.actor }}
+        status: ${{ job.status}}
+        project: Enlight-ltv-framework
+        repository: ${{ github.repository }}
+        component: Fabric/Enlight-ltv-framework
+        environment: ${{ env.Platform }}
+
+    # - uses: 8398a7/action-slack@v3
+    #   with:
+    #     status: ${{ job.status }}
+    #     fields: repo,message,commit,author,action,eventName,ref,workflow
+    #   env:        
+    #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    #   if: always()   

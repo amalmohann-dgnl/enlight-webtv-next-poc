@@ -5,6 +5,7 @@
   "scripts": {},
   "private": true,
   "dependencies": {
+    "axios": "^1.7.9",
     "next": "^15.1.0",
     "none": "1.0.0",
     "react": "^19.0.0",
@@ -50,6 +51,7 @@
     "prettier": "^2.6.2",
     "sass": "1.62.1",
     "ts-jest": "^29.1.0",
+    "ts-loader": "^9.5.1",
     "ts-node": "10.9.1",
     "tslib": "^2.3.0",
     "typescript": "~5.6.2",

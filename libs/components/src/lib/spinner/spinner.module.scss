@@ -1,0 +1,78 @@
+.spinner {
+  box-sizing: border-box;
+  position: absolute;
+  width: 78.52px;
+  height: 80px;
+  left: calc(50% - 78.52px / 2 - 0.74px);
+  bottom: 138px;
+  border: 3px solid #F7F72A;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spinner 1s linear infinite;
+  -webkit-animation: spinner 1s linear infinite; /* Safari and Chrome */
+  -moz-animation: spinner 1s linear infinite; /* Firefox */
+  -o-animation: spinner 1s linear infinite; /* Opera */
+}
+
+@keyframes spinner {
+from {
+transform: rotate(0deg);
+}
+to {
+transform: rotate(360deg);
+}
+}
+
+@-webkit-keyframes spinner {
+/* Safari and Chrome */
+from {
+-webkit-transform: rotate(0deg);
+}
+to {
+-webkit-transform: rotate(360deg);
+}
+}
+
+@-moz-keyframes spinner {
+/* Firefox */
+from {
+-moz-transform: rotate(0deg);
+}
+to {
+-moz-transform: rotate(360deg);
+}
+}
+
+@-o-keyframes spinner {
+/* Opera */
+from {
+-o-transform: rotate(0deg);
+}
+to {
+-o-transform: rotate(360deg);
+}
+}
+
+/* Media Query for Larger Screens */
+@media (min-width: 1280px) {
+.spinner {
+  width: 8vw; /* Increase size for larger displays */
+  height: 8vw; /* Maintain equal dimensions */
+  max-width: 60px; /* Cap size to prevent it from getting too large */
+  max-height: 60px; /* Same as max-width */
+}
+}
+
+.version-info {
+  position: absolute;
+  width: auto;
+  height: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 80px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
+  color: #FFFFFF;
+}

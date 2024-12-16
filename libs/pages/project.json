@@ -1,0 +1,20 @@
+{
+  "name": "pages",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/pages/src",
+  "projectType": "library",
+  "tags": ["pages"],
+  "// targets": "to see all targets run: nx show project pages --web",
+  "targets": {
+    "build": {
+        "executor": "@nx/webpack:webpack",
+        "options": {
+          "root": "libs/components",
+          "outputPath": "dist/libs/components",
+          "main": "libs/components/src/index.ts",
+          "tsConfig": "libs/components/tsconfig.lib.json",
+          "webpackConfig": "libs/components/webpack.config.js"
+        }
+      }
+  }
+}
