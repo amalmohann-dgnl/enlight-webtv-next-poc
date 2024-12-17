@@ -1,0 +1,882 @@
+{
+  "appId": "7kOKcw9FlPrcCzy7mkdxyc",
+  "contentLocale": "en-US",
+  "checksum": "#",
+  "items": [
+    {
+      "fields": {
+        "name": "Club illico",
+        "type": "Entertainment",
+        "features": [
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Entry",
+              "id": "6eOAZyd5qytwQaVDhIgJeF"
+            }
+          }
+        ],
+        "defaultPageTheme": [
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Entry",
+              "id": "2Zbn8TLLULy3qAcZ2T9uEZ"
+            }
+          }
+        ],
+        "defaultPopupTheme": [
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Entry",
+              "id": "18nvGEgzSEIkIFEHoLrtCE"
+            }
+          }
+        ]
+      },
+      "sys": {
+        "updatedAt": "2024-06-20T08:01:43.528Z",
+        "id": "7kOKcw9FlPrcCzy7mkdxyc",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "application"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "DefaultPopupTheme - All TV",
+        "body": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "5dR3Uxu8MpUjHJ8f8hrBnW"
+          }
+        }
+      },
+      "sys": {
+        "updatedAt": "2023-12-26T10:01:33.602Z",
+        "id": "18nvGEgzSEIkIFEHoLrtCE",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "theme"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "PopupTheme_body",
+        "background": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "1cFxxfUt2aqsD0uhhdk9UW"
+          }
+        },
+        "text": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "1x5lzeEaH9sQxCXCLL1w7Q"
+          }
+        }
+      },
+      "sys": {
+        "updatedAt": "2023-07-20T07:26:07.230Z",
+        "id": "5dR3Uxu8MpUjHJ8f8hrBnW",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "themeSection"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "palette_Popup_Body_text",
+        "primary": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "25QvbDnwIJ6dAzfuLNhZsO"
+          }
+        },
+        "secondary": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "2LpARO4GoBgFbi6d1guQ55"
+          }
+        },
+        "tertiary": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "2LpARO4GoBgFbi6d1guQ55"
+          }
+        }
+      },
+      "sys": {
+        "updatedAt": "2023-07-20T07:25:23.399Z",
+        "id": "1x5lzeEaH9sQxCXCLL1w7Q",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "colorPalette"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "Color_popup_grey",
+        "code": "#a6a6a6"
+      },
+      "sys": {
+        "updatedAt": "2023-07-20T07:10:35.215Z",
+        "id": "2LpARO4GoBgFbi6d1guQ55",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "color"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "palette_Popup_body_background",
+        "primary": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "12Y6fTHzaL7Hwiw5fPv7SS"
+          }
+        },
+        "secondary": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "12Y6fTHzaL7Hwiw5fPv7SS"
+          }
+        },
+        "tertiary": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "34Ysw2njh7pFew9xQdqRAu"
+          }
+        }
+      },
+      "sys": {
+        "updatedAt": "2023-07-20T07:39:47.276Z",
+        "id": "1cFxxfUt2aqsD0uhhdk9UW",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "colorPalette"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "Color_Black",
+        "code": "#000000"
+      },
+      "sys": {
+        "updatedAt": "2023-07-20T07:10:18.568Z",
+        "id": "34Ysw2njh7pFew9xQdqRAu",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "color"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "Color background grey",
+        "code": "#1E1E1E"
+      },
+      "sys": {
+        "updatedAt": "2023-07-20T07:26:25.764Z",
+        "id": "3WJV85hHky3ZZj2B2DHUWU",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "color"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "Feature Support - All TV",
+        "errorConfiguration": [
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Entry",
+              "id": "3KnBqYhErwBoXkLLWjLIS5"
+            }
+          }
+        ]
+      },
+      "sys": {
+        "updatedAt": "2024-06-28T08:33:15.841Z",
+        "id": "6eOAZyd5qytwQaVDhIgJeF",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "featureSupport"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "loggingLevel": "error",
+        "name": "Error - Server Error",
+        "type": "ServerError",
+        "code": "A-6001",
+        "title": "Erreur",
+        "description": "Une erreur de serveur s’est produite. Veuillez rouvrir l’application et réessayer.",
+        "uiType": "page",
+        "primaryActionType": "exit",
+        "primaryActionLabel": "QUITTER"
+      },
+      "sys": {
+        "updatedAt": "2023-08-04T07:55:39.940Z",
+        "id": "3KnBqYhErwBoXkLLWjLIS5",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "errorConfiguration"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "DefaultPageTheme - WebTV/23",
+        "header": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "Q5rVp4rkFOLpZYeK8vzoR"
+          }
+        },
+        "body": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "1G3E0DybsfdafFqF6lIkLr"
+          }
+        },
+        "compositeStyle": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "7zhp7NcCLr7LGEON5OYlmS"
+          }
+        },
+        "graphics": [
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Entry",
+              "id": "bd3cc0b201f243daac89b891f7b84356"
+            }
+          }
+        ]
+      },
+      "sys": {
+        "updatedAt": "2024-06-19T12:34:06.499Z",
+        "id": "2Zbn8TLLULy3qAcZ2T9uEZ",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "theme"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "id": "app_header_logo",
+        "images": [
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Entry",
+              "id": "b756604fca0c49ddb8933f72960cf9ef"
+            }
+          }
+        ],
+        "anchor": "center-top"
+      },
+      "sys": {
+        "id": "bd3cc0b201f243daac89b891f7b84356",
+        "contentType": {
+          "sys": {
+            "id": "graphics"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "imageUrl": "https://images.ctfassets.net/cf9rkpsdxq7p/5jAt0blVhJHopZ5mlvtTML/b1158441182a4015470a6cf242886227/app_header_logo_565x200.png",
+        "name": "Image - Header Logo"
+      },
+      "sys": {
+        "id": "b756604fca0c49ddb8933f72960cf9ef",
+        "contentType": {
+          "sys": {
+            "id": "image"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "DefaultCompositeStyle - All TV",
+        "primaryButton": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "6oziadt8PNSJecXzhjUgZh"
+          }
+        }
+      },
+      "sys": {
+        "updatedAt": "2024-06-10T06:16:49.396Z",
+        "id": "7zhp7NcCLr7LGEON5OYlmS",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "compositeStyle"
+          }
+        }
+      }
+    },
+
+    {
+      "fields": {
+        "name": "Primary Button Style - All TV",
+        "edgeRadius": 0.25,
+        "normal": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "6YwGSTX3rklpMfw0JqUMtx"
+          }
+        },
+        "focussed": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "8uhmWV8dGGyZhKlMLI0u3"
+          }
+        },
+        "selectedFocussed": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "8uhmWV8dGGyZhKlMLI0u3"
+          }
+        },
+        "selected": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "7stYh3PGHzL1iifAof2FMF"
+          }
+        }
+      },
+      "sys": {
+        "updatedAt": "2023-10-30T10:08:42.033Z",
+        "id": "6oziadt8PNSJecXzhjUgZh",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "buttonStyle"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "Color_White",
+        "code": "#fff"
+      },
+      "sys": {
+        "updatedAt": "2020-07-26T09:45:29.109Z",
+        "id": "25QvbDnwIJ6dAzfuLNhZsO",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "color"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "Meta Season Selector Selected - TV",
+        "background": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "1xL0AMW3TT3FMt7OShuZQG"
+          }
+        },
+        "text": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "25QvbDnwIJ6dAzfuLNhZsO"
+          }
+        },
+        "stroke": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "1xL0AMW3TT3FMt7OShuZQG"
+          }
+        }
+      },
+      "sys": {
+        "updatedAt": "2023-09-28T14:03:59.921Z",
+        "id": "7stYh3PGHzL1iifAof2FMF",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "buttonColor"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "Skeleton View Color",
+        "code": "#484848"
+      },
+      "sys": {
+        "updatedAt": "2023-07-20T07:26:42.694Z",
+        "id": "1pk4DJy0onoYTpjwH40iLx",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "color"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "Color_popup_grey",
+        "code": "#a6a6a6"
+      },
+      "sys": {
+        "updatedAt": "2023-07-20T07:27:30.212Z",
+        "id": "1xL0AMW3TT3FMt7OShuZQG",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "color"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "Meta Season Selector Focussed - TV",
+        "background": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "lvqGmspY7YgunJ2NI6Vmj"
+          }
+        },
+        "text": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "25QvbDnwIJ6dAzfuLNhZsO"
+          }
+        },
+        "stroke": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "lvqGmspY7YgunJ2NI6Vmj"
+          }
+        }
+      },
+      "sys": {
+        "id": "8uhmWV8dGGyZhKlMLI0u3",
+        "type": "Entry",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "buttonColor"
+          }
+        },
+        "locale": "en-US"
+      }
+    },
+    {
+      "fields": {
+        "name": "Color_illico_Yellow",
+        "code": "#f7f72a"
+      },
+      "sys": {
+        "id": "lvqGmspY7YgunJ2NI6Vmj",
+        "type": "Entry",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "color"
+          }
+        },
+        "locale": "en-US"
+      }
+    },
+    {
+      "fields": {
+        "name": "Button State Normal - TV",
+        "background": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "3sVEF19mODjUB4AEJWnHxq"
+          }
+        },
+        "text": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "lvqGmspY7YgunJ2NI6Vmj"
+          }
+        },
+        "stroke": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "lvqGmspY7YgunJ2NI6Vmj"
+          }
+        }
+      },
+      "sys": {
+        "updatedAt": "2024-01-04T06:39:12.659Z",
+        "id": "6YwGSTX3rklpMfw0JqUMtx",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "buttonColor"
+          }
+        }
+      }
+    },
+
+    {
+      "fields": {
+        "name": "AppTheme_Header - All TV",
+        "background": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "70aActPSu6S82dC4fcvpra"
+          }
+        },
+        "text": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "3X0FJM3zaET7ql31glKToB"
+          }
+        }
+      },
+      "sys": {
+        "updatedAt": "2023-10-30T09:08:41.126Z",
+        "id": "Q5rVp4rkFOLpZYeK8vzoR",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "themeSection"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "palette_AppTheme_header_text",
+        "primary": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "25QvbDnwIJ6dAzfuLNhZsO"
+          }
+        }
+      },
+      "sys": {
+        "id": "3X0FJM3zaET7ql31glKToB",
+        "type": "Entry",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "colorPalette"
+          }
+        },
+        "locale": "en-US"
+      }
+    },
+    {
+      "fields": {
+        "name": "Color_Black",
+        "code": "#000000"
+      },
+      "sys": {
+        "updatedAt": "2023-07-20T07:10:24.610Z",
+        "id": "25QvbDnwIJ6dAzfuLNhZsO",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "color"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "palette_AppTheme_header_body_background - All TV",
+        "primary": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "3sVEF19mODjUB4AEJWnHxq"
+          }
+        }
+      },
+      "sys": {
+        "updatedAt": "2023-12-19T07:53:36.114Z",
+        "id": "70aActPSu6S82dC4fcvpra",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "colorPalette"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "Color_Transparent",
+        "code": "#00000000"
+      },
+      "sys": {
+        "updatedAt": "2023-07-20T07:10:20.104Z",
+        "id": "3sVEF19mODjUB4AEJWnHxq",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "color"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "AppTheme_body - WebTV/23",
+        "background": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "4OqMFK9RBcAkIv1yaOqt35"
+          }
+        },
+        "text": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "4ll0vjXgrpd09D9EjTnJO0"
+          }
+        }
+      },
+      "sys": {
+        "updatedAt": "2024-06-19T11:33:42.411Z",
+        "id": "1G3E0DybsfdafFqF6lIkLr",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "themeSection"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "palette_AppTheme_body_text",
+        "primary": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "25QvbDnwIJ6dAzfuLNhZsO"
+          }
+        },
+        "secondary": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "lvqGmspY7YgunJ2NI6Vmj"
+          }
+        },
+        "tertiary": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "1UDDw63nc110UuCuEmobNL"
+          }
+        }
+      },
+      "sys": {
+        "updatedAt": "2023-07-20T07:26:05.311Z",
+        "id": "4ll0vjXgrpd09D9EjTnJO0",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "colorPalette"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "palette_AppTheme_body_background - All TV",
+        "primary": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "12Y6fTHzaL7Hwiw5fPv7SS"
+          }
+        },
+        "secondary": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "3gnUUexdy7op4enkQQjs9S"
+          }
+        },
+        "tertiary": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "1pk4DJy0onoYTpjwH40iLx"
+          }
+        }
+      },
+      "sys": {
+        "updatedAt": "2023-10-30T09:10:45.908Z",
+        "id": "4OqMFK9RBcAkIv1yaOqt35",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "colorPalette"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "light_grey",
+        "code": "#C8C8C8"
+      },
+      "sys": {
+        "updatedAt": "2024-07-29T10:32:53.174Z",
+        "id": "3gnUUexdy7op4enkQQjs9S",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "color"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "Color_Text_Tertiary",
+        "code": "#dedede"
+      },
+      "sys": {
+        "updatedAt": "2023-07-20T07:10:28.339Z",
+        "id": "1UDDw63nc110UuCuEmobNL",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "color"
+          }
+        }
+      }
+    },
+    {
+      "fields": {
+        "name": "Color_Primary_Background",
+        "code": "#1b1b1b"
+      },
+      "sys": {
+        "updatedAt": "2023-07-20T07:10:34.580Z",
+        "id": "12Y6fTHzaL7Hwiw5fPv7SS",
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "color"
+          }
+        }
+      }
+    }
+  ],
+  "includes": {
+    "Entry": [],
+    "Asset": []
+  }
+}

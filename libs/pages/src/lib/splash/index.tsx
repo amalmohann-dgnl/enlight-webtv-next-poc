@@ -11,6 +11,8 @@ type Props = {
 
 const Splash = ({src, isMediaSplash, showLoader, showVersion}: Props) => {
 
+  console.log('splash');
+
 
 
   return (
