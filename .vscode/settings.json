@@ -121,5 +121,8 @@
     "WIDEVINE",
     "XXXS",
     "Ypoint"
-  ]
+  ],
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

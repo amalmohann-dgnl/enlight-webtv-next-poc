@@ -1,10 +1,8 @@
 import styles from './page.module.scss';
-
+import { SplashMediaType } from '@enlight-webtv/models'
 import { Splash } from '@enlight-webtv/pages'
 
 export default function Index() {
-
-  console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
 
   /*
    * Replace the elements be
@@ -12,7 +10,7 @@ export default function Index() {
    */
   return (
     <div className={styles.page}>
-      <Splash src={''} isMediaSplash={false} mediaType={''} showLoader={false} showVersion={false}/>
+      <Splash src={'/images/splash.png'} isMediaSplash={false} mediaType={SplashMediaType.IMAGE} showLoader={true} showVersion={true} bgColor={''} />
     </div>
   );
 }
