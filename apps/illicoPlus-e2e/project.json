@@ -1,0 +1,10 @@
+{
+  "name": "illicoPlus-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/illicoPlus-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["illicoPlus"],
+  "// targets": "to see all targets run: nx show project illicoPlus-e2e --web",
+  "targets": {}
+}

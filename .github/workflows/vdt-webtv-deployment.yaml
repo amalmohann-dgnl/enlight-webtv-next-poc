@@ -1,0 +1,138 @@
+name: VDT-Webtv-Deployment
+
+on:
+  push:
+    tags:
+      - "vdt-webtv-dev-*"
+      - "vdt-webtv-qa-*"
+      - "vdt-webtv-preprod-*"
+
+jobs:
+  deploy:
+    runs-on: [ubuntu-latest]
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+    
+    - uses: actions/checkout@v1
+      with:
+        ref: ${{ github.ref_name }}
+        fetch-depth: 0 #
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    
+    # Split tag
+    - uses: winterjung/split@v2
+      id: split
+      with:
+        separator: "-" 
+        msg: ${{ github.ref_name }}
+
+    - name: Split outputs
+      run: |
+        echo "${{steps.split.outputs._0}}" # project
+        echo "${{steps.split.outputs._1}}" # repo
+        echo "${{steps.split.outputs._2}}" # env
+        echo "${{steps.split.outputs._3}}" # version
+
+    - name: Install Packages
+      run: yarn install
+
+    - name: Update  version name and env name for vdt
+      run: |
+       sed -i '/version/c\   \"version\" : \"${{steps.split.outputs._3}}\"' ./apps/videotron/metadata.json
+   
+    - name: Build Package
+      run: yarn build-${{steps.split.outputs._0}}-${{steps.split.outputs._2}}
+
+    #Code Push to S3
+    - name: Deploy to s3 Dev
+      if: steps.split.outputs._2 == 'dev'||steps.split.outputs._2 == 'qa'
+      run: aws s3 sync ./dist/apps/videotron s3://webtv-${{steps.split.outputs._2}}.clubillico.com
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.VDT_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.VDT_AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: 'ap-southeast-1'
+
+    - name: Deploy to s3 Preprod
+      if: steps.split.outputs._2 == 'preprod'
+      run: aws s3 sync ./dist/apps/videotron s3://webtv-${{steps.split.outputs._2}}.clubillico.com
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.VDT_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.VDT_AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: 'ca-central-1'
+
+    #Cloudfront Invalidation
+    - name: Invalidate dev cloudfront distribution 
+      if: steps.split.outputs._2 == 'dev'
+      uses: muratiger/invalidate-cloudfront-and-wait-for-completion-action@master
+      env:
+        DISTRIBUTION_ID: ${{ secrets.VDT_DEV_WEBTV_DISTRIBUTION_ID }}
+        PATHS: '/*'
+        AWS_REGION: 'us-east-1'
+        AWS_ACCESS_KEY_ID: ${{ secrets.VDT_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.VDT_AWS_SECRET_ACCESS_KEY }}   
+    
+    - name: Invalidate qa cloudfront distribution 
+      if: steps.split.outputs._2 == 'qa'
+      uses: muratiger/invalidate-cloudfront-and-wait-for-completion-action@master
+      env:
+        DISTRIBUTION_ID: ${{ secrets.VDT_QA_WEBTV_DISTRIBUTION_ID }}
+        PATHS: '/*'
+        AWS_REGION: 'us-east-1'
+        AWS_ACCESS_KEY_ID: ${{ secrets.VDT_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.VDT_AWS_SECRET_ACCESS_KEY }}  
+  
+    - name: Invalidate preprod cloudfront distribution 
+      if: steps.split.outputs._2 == 'preprod'
+      uses: muratiger/invalidate-cloudfront-and-wait-for-completion-action@master
+      env:
+        DISTRIBUTION_ID: ${{ secrets.VDT_PREPROD_WEBTV_DISTRIBUTION_ID }}
+        PATHS: '/*'
+        AWS_REGION: 'us-east-1'
+        AWS_ACCESS_KEY_ID: ${{ secrets.VDT_AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.VDT_AWS_SECRET_ACCESS_KEY }} 
+      
+    #Release Notes
+    - name: 📋 Get Commits since last Release
+      id: changes
+      uses: simbo/changes-since-last-release-action@v1
+      with:
+        line-prefix: "* "
+        include-hashes: false
+
+    - name: Create Release
+      if: ${{ always() }}
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body: |
+          **Tag Name:** ${{ github.ref }}
+            
+          **Tagged by:** ${{ github.actor }}
+            
+          **Time of Release:** ${{ github.event.head_commit.timestamp }}
+            
+          **Release Notes:**
+          ${{ steps.changes.outputs.log }}
+          
+    - uses: diagnal/chronos@main
+      if: ${{ always() }}
+      with:
+        CHRONOS_SECRET: ${{ secrets.CHRONOS_SECRET }}
+        tag: ${{  github.ref }}
+        commitId: ${{ github.sha }}
+        author: ${{ github.actor }}
+        status: ${{ job.status}}
+        project: ${{steps.split.outputs._0}}
+        repository: ${{ github.repository }}
+        component: Chromecast
+        environment: ${{steps.split.outputs._2}}

@@ -1,0 +1,17 @@
+#!/bin/sh
+# Husky commit-msg hook
+
+. "$(dirname "$0")/_/husky.sh"
+
+# Run commitlint with npx
+npx --no-install commitlint --edit "$1"
+COMMIT_MSG_FILE="$1"
+
+# Regular expression pattern to match commit message format
+PATTERN='([a-zA-Z0-9,\.\_\-]+-[0-9]+|merge)'
+commit_msg=$(cat "$COMMIT_MSG_FILE")
+
+if ! echo "$commit_msg" | grep -iqE "$PATTERN"; then
+  echo >&2 "Aborting commit. \nMissing Ticket ID : Commit message does not have Jira ticket ID."
+  exit 1
+fi

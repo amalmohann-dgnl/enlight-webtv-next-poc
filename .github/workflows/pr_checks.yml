@@ -1,0 +1,46 @@
+name: PR Sonarqube Analysis
+
+on: [ pull_request ]
+
+jobs:
+  pr-analysis:
+    runs-on: [self-hosted, Linux]
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - uses: sonarsource/sonarqube-scan-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_NEW }}
+        SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL_NEW }}
+
+    - uses: sonarsource/sonarqube-quality-gate-action@master
+      id: sonarqube-quality-gate-check
+      timeout-minutes: 5
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_NEW }}  
+        
+    - name: Slack notification
+      if: ${{ failure() && steps.sonarqube-quality-gate-check.conclusion == 'failure' }}
+      env:
+        SLACK_WEBHOOK: ${{ secrets.ACTION_MONITORING_SLACK}}
+      uses: Ilshidur/action-slack@2.0.2
+      with:
+        args: "*:alert-1: Sourcecode Quality Gate has FAILED For a PR* \nProject: `ENLIGHT-TV` \nRepo: `{{GITHUB_REPOSITORY}}` \nPR: `https://github.com/diagnal/enlight-ltv-framwork/pulls/${{ github.event.number }}` \nOpened By: `{{GITHUB_ACTOR}}`\nOwner: <@U03R5S9KUSV> \nLink to SonarQube failure:`http://sonarqube.know.diagnal.com/dashboard?id=diagnal_enlight-ltv-wrc_AYsD47Jz9sC6TYrdqDTU`"
+    
+
+    # - uses: 8398a7/action-slack@v3
+    #   with:
+    #     status: ${{ job.status }}
+    #     fields: repo,message,commit,author,action,eventName,ref,workflow
+    #   env:        
+    #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    #   if: always()
