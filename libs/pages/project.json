@@ -9,11 +9,11 @@
     "build": {
         "executor": "@nx/webpack:webpack",
         "options": {
-          "root": "libs/components",
-          "outputPath": "dist/libs/components",
-          "main": "libs/components/src/index.ts",
-          "tsConfig": "libs/components/tsconfig.lib.json",
-          "webpackConfig": "libs/components/webpack.config.js"
+          "root": "libs/pages",
+          "outputPath": "dist/libs/pages",
+          "main": "libs/pages/src/index.ts",
+          "tsConfig": "libs/pages/tsconfig.lib.json",
+          "webpackConfig": "libs/pages/webpack.config.js"
         }
       }
   }

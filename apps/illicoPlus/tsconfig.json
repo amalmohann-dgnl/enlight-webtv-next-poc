@@ -29,14 +29,17 @@
     ]
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx",
     "**/*.js",
     "**/*.jsx",
+    "**/*.ts",
+    "**/*.tsx",
     "../../apps/illicoPlus/.next/types/**/*.ts",
     "../../dist/apps/illicoPlus/.next/types/**/*.ts",
+    ".next/types/**/*.ts",
+    "/dist/apps//types/**/*.ts",
+    "/dist/apps/illicoPlus/types/**/*.ts",
     "next-env.d.ts",
-    ".next/types/**/*.ts"
+    "./../../dist/apps/illicoPlus/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
