@@ -1,0 +1,20 @@
+{
+  "name": "controllers",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/controllers/src",
+  "projectType": "library",
+  "tags": ["controllers"],
+  "// targets": "to see all targets run: nx show project controllers --web",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "options": {
+        "root": "libs/controllers",
+        "outputPath": "dist/libs/controllers",
+        "main": "libs/controllers/src/index.ts",
+        "tsConfig": "libs/controllers/tsconfig.lib.json",
+        "webpackConfig": "libs/controllers/webpack.config.js"
+      }
+    }
+  }
+}
