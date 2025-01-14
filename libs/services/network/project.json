@@ -1,0 +1,20 @@
+{
+  "name": "network-services",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/services/network/src",
+  "projectType": "library",
+  "tags": ["services"],
+  "// targets": "to see all targets run: nx show project network-services --web",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "options": {
+        "root": "libs/services/network",
+        "outputPath": "dist/libs/services/network",
+        "main": "libs/services/network/src/index.ts",
+        "tsConfig": "libs/services/network/tsconfig.lib.json",
+        "webpackConfig": "libs/services/network/webpack.config.js"
+      }
+    }
+  }
+}

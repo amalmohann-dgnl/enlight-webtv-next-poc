@@ -25,6 +25,9 @@ module.exports = (config, context) => {
       ],
     },
     resolve: {
+      alias: {
+        '@enlight-webtv/models': path.resolve(__dirname, '../../libs/models/src/index.ts'),
+      },
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
     externals: {

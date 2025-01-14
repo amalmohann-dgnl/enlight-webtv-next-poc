@@ -23,3 +23,4 @@ export * from './project-configuration';
 export * from './generic-configurations';
 export * from './recommendation-configurations';
 export * from './network-configurations';
+export * from './html-configurations';

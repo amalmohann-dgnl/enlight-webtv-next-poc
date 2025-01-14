@@ -28,6 +28,8 @@ export enum EventCategory {
 export enum DefaultRBDimensions {
     BRAND = 'non-red-bull-branded-sites',
     LOCALE = 'en',
+    // eslint-disable-next-line @typescript-eslint/no-duplicate-enum-values
+    LANGUAGE = 'en',
     PROPERTY_NAME = 'rally-tv',
     SITE_TYPE = 'tv',
     ENVIRONMENT = 'on-site',

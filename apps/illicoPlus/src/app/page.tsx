@@ -1,13 +1,13 @@
 import styles from './page.module.scss';
 import { SplashMediaType } from '@enlight-webtv/models'
-// import {  } from '@enlight-webtv/services'
+// import { initializeBooting  } from '@enlight-webtv/controllers'
 import { Splash } from '@enlight-webtv/pages'
 import { redirect } from 'next/navigation'
 import { Suspense, use } from 'react';
 
 export default function Index() {
   const RenderApplication = () => {
-    const isBootComplete = use(fetchBootFn());
+    use(initializeBooting());
     const isAuthenticated = true;
     if (isAuthenticated) {
       redirect('/home')
@@ -32,7 +32,7 @@ export default function Index() {
   );
 }
 
-function fetchBootFn(): import("react").Usable<unknown> {
+function initializeBooting(): import("react").Usable<unknown> {
   return new Promise((resolve)=> setTimeout(() => {
     return resolve(true);
   }, 5000))

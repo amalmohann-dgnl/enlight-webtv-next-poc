@@ -28,6 +28,11 @@ export interface ParsedSMIL {
     defaultAudioLang: string;
 }
 
+export interface LicenseServerUrl {
+  [DRMProvider.PLAYREADY]: string;
+  [DRMProvider.WIDEVINE]: string;
+}
+
 export interface TextStreamInfo {
     src: string;
     lang: string;
@@ -51,7 +56,7 @@ export interface PlaybackData {
     smil?: string;
     smilData: ParsedSMIL;
     authorization: string;
-    licenseServerUrl: string;
+    licenseServerUrl: LicenseServerUrl;
     drmProvider: DRMProvider;
     mpxAccount: string;
 }
