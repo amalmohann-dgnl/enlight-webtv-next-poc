@@ -1,4 +1,3 @@
-import { Registry } from '@lightningjs/sdk';
 import {
     AssetTypeIcon,
     ComponentStyleType,
@@ -1005,7 +1004,7 @@ const railTranslationOutAnimation = (
     previewId: string,
     sameItem: boolean,
 ) => {
-    const timeout = Registry.setTimeout(async () => {
+    const timeout = setTimeout(async () => {
         /**
          * checking if the user is still scrolling by comparing the previewID in data and the stored
          * previewID (more details can be found at the setter of data inside the preview component).
@@ -1079,7 +1078,7 @@ const railTranslationOutAnimation = (
         } else {
             res(false);
         }
-        Registry.clearTimeout(timeout);
+        clearTimeout(timeout);
     }, 200);
 };
 

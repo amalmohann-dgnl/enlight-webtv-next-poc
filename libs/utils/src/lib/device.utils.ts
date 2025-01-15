@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Registry } from '@lightningjs/sdk';
 import { v4 as uuidv4 } from 'uuid';
 import {
     Brand,
@@ -614,8 +613,6 @@ const getDeviceInfo = () => {
  */
 const exitApp = () => {
     const deviceType = getDeviceType();
-    // clears all event listeners, intervals and timeouts
-    Registry.clear();
     switch (deviceType) {
         case DeviceType.Tizen:
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment

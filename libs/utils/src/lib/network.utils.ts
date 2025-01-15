@@ -1,4 +1,3 @@
-import { Router } from '@lightningjs/sdk';
 import * as commonUtilities from './common.utils';
 import { AxiosErrCode, Routes } from '@enlight-webtv/models';
 
@@ -92,11 +91,11 @@ const fetchImage = (url: string) => {
  */
 const addNetworkStateChangeListener = (webapis: any) => {
     webapis?.network?.addNetworkStateChangeListener(function (value: string) {
-        const activeHash = Router.getActiveHash();
-        if (value == webapis.network.NetworkState.GATEWAY_DISCONNECTED && activeHash !== Routes.NETWORK_ERROR) {
-            const storeRoute = true;
-            Router.navigate(Routes.NETWORK_ERROR, { error: AxiosErrCode.ERR_NETWORK, route: activeHash, keepAlive: true }, storeRoute);
-        }
+        // const activeHash = Router.getActiveHash();
+        // if (value == webapis.network.NetworkState.GATEWAY_DISCONNECTED && activeHash !== Routes.NETWORK_ERROR) {
+        //     const storeRoute = true;
+        //     // Router.navigate(Routes.NETWORK_ERROR, { error: AxiosErrCode.ERR_NETWORK, route: activeHash, keepAlive: true }, storeRoute);
+        // }
     });
 };
 

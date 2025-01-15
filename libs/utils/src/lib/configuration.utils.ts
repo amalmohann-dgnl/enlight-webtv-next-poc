@@ -154,7 +154,7 @@ const getLabel = (key: string) => {
  * @author tonyaugustine
  */
 const shouldUpdateConfiguration = async (currentConfig: any = {}) => {
-    const previousConfigurationDependencies = STORAGE.getState(StorageKeys.CONFIGURATION_DEPENDENCIES) ?? {};
+    const previousConfigurationDependencies = getState(StorageKeys.CONFIGURATION_DEPENDENCIES) ?? {};
     let currentConfigurationDependencies: any = (await getCurrentComputedConfigurationDependencies()) ?? {};
     currentConfigurationDependencies = { ...currentConfigurationDependencies, ...currentConfig };
     let shouldUpdateConfiguration = false;

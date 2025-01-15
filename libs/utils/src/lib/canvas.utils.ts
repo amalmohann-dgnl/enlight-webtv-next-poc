@@ -1,4 +1,4 @@
-import { stylesUtilities } from '@enlight-webtv/utilities';
+import { stylesUtilities } from '.';
 
 const { convertColorToHexString } = stylesUtilities;
 

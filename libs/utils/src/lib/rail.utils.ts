@@ -19,7 +19,7 @@ import {
     Color,
     Project,
 } from '@enlight-webtv/models';
-import { commonUtilities, configurationUtilities, dateUtilities, progressUtilities, projectUtilities } from '@enlight-webtv/utilities';
+import { commonUtilities, configurationUtilities, dateUtilities, progressUtilities, projectUtilities } from '.';
 
 // utilities
 const { isDateBetween } = dateUtilities;

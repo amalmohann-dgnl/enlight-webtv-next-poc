@@ -12,7 +12,7 @@ import {
     Image,
     Typography,
 } from '@enlight-webtv/models';
-import { commonUtilities, configurationUtilities } from '@enlight-webtv/utilities';
+import { commonUtilities, configurationUtilities } from '.';
 import { theme } from '@enlight-webtv/themes';
 
 const { isValidValue } = commonUtilities;

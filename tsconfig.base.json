@@ -15,14 +15,21 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@enlight-webtv/analytics-services": ["libs/services/analytics/src/index.ts"],
-      "@enlight-webtv/analytics-services/server": [ "libs/services/analytics/src/server.ts"],
+      "@enlight-webtv/analytics-services": [
+        "libs/services/analytics/src/index.ts"
+      ],
+      "@enlight-webtv/analytics-services/server": [
+        "libs/services/analytics/src/server.ts"
+      ],
       "@enlight-webtv/controllers": ["libs/controllers/src/index.ts"],
       "@enlight-webtv/controllers/server": ["libs/controllers/src/server.ts"],
       "@enlight-webtv/models": ["libs/models/src/index.ts"],
       "@enlight-webtv/models/server": ["libs/models/src/server.ts"],
+      "@enlight-webtv/network-requestor": ["libs/network/src/index.ts"],
       "@enlight-webtv/network-services": ["libs/services/network/src/index.ts"],
-      "@enlight-webtv/network-services/server": ["libs/services/network/src/server.ts"],
+      "@enlight-webtv/network-services/server": [
+        "libs/services/network/src/server.ts"
+      ],
       "@enlight-webtv/pages": ["libs/pages/src/index.ts"],
       "@enlight-webtv/pages/server": ["libs/pages/src/server.ts"],
       "@enlight-webtv/themes": ["libs/themes/src/index.ts"],

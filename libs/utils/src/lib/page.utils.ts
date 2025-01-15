@@ -1,4 +1,3 @@
-import { Router } from '@lightningjs/sdk';
 import { ComponentData, CuratedDataEntry, FeatureRevenue, FeatureUserManagement, MenuItemID, Navigation, PageComponent } from '@enlight-webtv/models';
 import { getImageUrl } from './configuration.utils';
 
@@ -107,19 +106,19 @@ const getSubscriptionPageData = (featureRevenue: FeatureRevenue) => {
  */
 const getScreenName = () => {
     let screenName;
-    switch (Router.getActiveRoute()) {
-        case '$':
-            screenName = 'splash';
-            break;
-        case '!':
-            screenName = 'error';
-            break;
-        case 'details/:assetUID':
-            screenName = 'details';
-            break;
-        default:
-            screenName = Router.getActiveRoute()?.toLocaleLowerCase();
-    }
+    // switch (Router.getActiveRoute()) {
+    //     case '$':
+    //         screenName = 'splash';
+    //         break;
+    //     case '!':
+    //         screenName = 'error';
+    //         break;
+    //     case 'details/:assetUID':
+    //         screenName = 'details';
+    //         break;
+    //     default:
+    //         screenName = Router.getActiveRoute()?.toLocaleLowerCase();
+    // }
     return screenName;
 };
 

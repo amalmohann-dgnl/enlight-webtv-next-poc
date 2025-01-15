@@ -52,19 +52,19 @@ const defaultRBDimensions: RBDimensions = {
  */
 const getScreenName = () => {
     let screenName;
-    switch (Router.getActiveRoute()) {
-        case '$':
-            screenName = 'splash';
-            break;
-        case '!':
-            screenName = 'error';
-            break;
-        case 'details/:assetUID':
-            screenName = 'details';
-            break;
-        default:
-            screenName = Router.getActiveRoute()?.toLocaleLowerCase();
-    }
+    // switch (Router.getActiveRoute()) {
+    //     case '$':
+    //         screenName = 'splash';
+    //         break;
+    //     case '!':
+    //         screenName = 'error';
+    //         break;
+    //     case 'details/:assetUID':
+    //         screenName = 'details';
+    //         break;
+    //     default:
+    //         screenName = Router.getActiveRoute()?.toLocaleLowerCase();
+    // }
     return screenName;
 };
 

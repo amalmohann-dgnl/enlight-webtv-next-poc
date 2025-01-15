@@ -12,7 +12,7 @@ module.exports = (config, context) => {
     entry: path.resolve(__dirname, 'src/index.ts'),
     output: {
       libraryTarget: 'module',
-      filename: 'libs/themes.mjs',
+      filename: 'libs/network.mjs',
       chunkFormat: 'module',
     },
     experiments: {
@@ -29,7 +29,7 @@ module.exports = (config, context) => {
     },
     resolve: {
       alias: {
-        '@enlight-webtv/themes': path.resolve(__dirname, '../../libs/themes/src/index.ts'),
+        '@enlight-webtv/network': path.resolve(__dirname, '../../libs/network/src/index.ts'),
       },
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
 

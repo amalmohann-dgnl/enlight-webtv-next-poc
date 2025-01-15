@@ -1,5 +1,4 @@
-import { Router } from '@lightningjs/sdk';
-import { configurationUtilities } from '@enlight-webtv/utilities';
+import { configurationUtilities } from '.';
 import { ActionType, ErrorConfigurationType, ErrorPopupData, LabelKey, Routes } from '@enlight-webtv/models';
 
 import * as deviceUtilities from './device.utils';
@@ -83,20 +82,20 @@ const getErrorPopActionHandling = (actionType: ActionType, errorType?: ErrorConf
             return undefined;
         case ActionType.BACK:
             return () => {
-                Router.getHistory().length > 0 && Router.back();
-                Router.focusPage();
+                // Router.getHistory().length > 0 && Router.back();
+                // Router.focusPage();
             };
         case ActionType.CUSTOM:
             switch (errorType) {
                 case ErrorConfigurationType.PURCHASE_REQUIRED:
                     return () => {
-                        Router.navigate(Routes.SUBSCRIPTION);
-                        Router.focusPage();
+                        // Router.navigate(Routes.SUBSCRIPTION);
+                        // Router.focusPage();
                     };
                 case ErrorConfigurationType.PLAYBACK_CONCURRENCY:
                     return () => {
-                        Router.getHistory().length > 0 && Router.back();
-                        Router.focusPage();
+                        // Router.getHistory().length > 0 && Router.back();
+                        // Router.focusPage();
                     };
                 case ErrorConfigurationType.APP_FORCE_UPDATE:
                     return exitApp;

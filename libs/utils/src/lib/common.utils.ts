@@ -1,4 +1,4 @@
-import QRCode, { QRCodeSegment, QRCodeToDataURLOptions } from 'qrcode';
+import { toDataURL, QRCodeSegment, QRCodeToDataURLOptions } from 'qrcode';
 import { areApproximatelyEqual, generateRandomNumber } from './math.utils';
 import { AssetTypeIcon, AssetTypeIconType, Dimensions, Image, KeyCodeEnum, KeyboardEventType, StorageKeys } from '@enlight-webtv/models';
 import { isValidDate } from './time.utils';
@@ -44,7 +44,7 @@ const isValidValue = (value: any): boolean => {
  */
 const generateQR = async (text: string | QRCodeSegment[], options: QRCodeToDataURLOptions | undefined = {}) => {
     try {
-        const qrCodeUrl = await QRCode.toDataURL(text, options);
+        const qrCodeUrl = await toDataURL(text, options);
         return qrCodeUrl;
     } catch (err) {
         console.error(err);

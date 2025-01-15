@@ -12,8 +12,7 @@ import {
     RailContentModel,
     RailHandlingType,
 } from '@enlight-webtv/models';
-import { configurationUtilities, timeUtilities, commonUtilities } from '@enlight-webtv/utilities';
-import { Registry } from '@lightningjs/sdk';
+import { configurationUtilities, timeUtilities, commonUtilities } from '.';
 
 //import.meta having type config issue.
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -80,7 +79,7 @@ const getButtonGroupProperties = (tabItems: MenuItem[]): object => {
  *
  * @author alwin-baby
  */
-const getTabItems = (data: PreviewComponentDataNew): any => {
+const getTabItems = (data: PreviewComponentDataNew) => {
     if (project === Project.RALLY_TV) return getTabItemsForRallyTv(data);
 
     const tabs = getTabsFromCatalogConfig();
@@ -144,7 +143,7 @@ const getTabItemsForRallyTv = (data: PreviewComponentDataNew) => {
  */
 const getComponentAndRailHandlingType = (tabItem: string | undefined) => {
     let railHandlingType: RailHandlingType | null = null;
-    let addToQueue: boolean = false;
+    let addToQueue = false;
 
     if (project === Project.RALLY_TV) return getComponentAndRailHandlingTypeForRallyTv(tabItem);
 
@@ -177,7 +176,7 @@ const getComponentAndRailHandlingType = (tabItem: string | undefined) => {
 const getComponentAndRailHandlingTypeForRallyTv = (tabItem: string | undefined) => {
     let component: PageComponent = {} as PageComponent;
     let railHandlingType: RailHandlingType | null = null;
-    let addToQueue: boolean = false;
+    let addToQueue = false;
 
     const relatedComponent = getTabComponentById(MenuItemID.RELATED_DETAILS_MENU);
     const highlightsComponent = getTabComponentById(MenuItemID.HIGHLIGHTS_DETAILS_MENU);
@@ -226,7 +225,7 @@ const getComponentAndRailHandlingTypeForRallyTv = (tabItem: string | undefined) 
  *
  * @author alwin-baby
  */
-const replaceRelatedParams = (str: string = '', data: any = {}): string => {
+const replaceRelatedParams = (str = '', data: any = {}): string => {
     const {
         availableOn = null,
         availableTill = null,
@@ -318,7 +317,7 @@ const clearThumbnailPlaybackTimer = () => {
     if (window.thumbnailPlaybackTimer) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        Registry.clearTimeout(window.thumbnailPlaybackTimer);
+        clearTimeout(window.thumbnailPlaybackTimer);
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         window.thumbnailPlaybackTimer = null;
@@ -328,7 +327,7 @@ const clearThumbnailPlaybackTimer = () => {
 /**
  * @name getCurrentDetailsState
  * @type function/method
- * @description This function will return the current data of detaiils page and remove that from stack
+ * @description This function will return the current data of details page and remove that from stack
  *
  * @author anandpatel
  */
