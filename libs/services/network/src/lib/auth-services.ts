@@ -21,6 +21,7 @@ import {
     FeatureProfileManagement,
     EventType,
     Project,
+    Token,
 } from '@enlight-webtv/models';
 import {
     authUtilities,
@@ -394,6 +395,20 @@ class AuthServices {
                 clearInterval(this.refreshTokenTimer);
             }
         }
+    };
+
+      /**
+     * @name isAuthenticated
+     * @type function/method
+     * @description this function checks if the user is authenticated.
+     *
+     * @author amalmohann
+     */
+      getIsAuthenticated = (): Promise<boolean> => {
+        return new Promise(resolve => {
+            const isAuthenticated = isValidValue(getState(Token.USER_CONSUMER_TOKEN)) && isValidValue(getState(Token.USER_PROFILE_TOKEN));
+            resolve(isAuthenticated);
+        });
     };
 }
 

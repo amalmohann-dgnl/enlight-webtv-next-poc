@@ -1,6 +1,5 @@
 import styles from './page.module.scss';
 import { SplashMediaType } from '@enlight-webtv/models'
-// import { initializeBooting  } from '@enlight-webtv/controllers'
 import { Splash } from '@enlight-webtv/pages'
 import { redirect } from 'next/navigation'
 import { Suspense, use } from 'react';

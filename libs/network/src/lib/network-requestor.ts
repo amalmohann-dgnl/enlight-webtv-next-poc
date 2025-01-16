@@ -78,7 +78,7 @@ class NetworkRequestor {
     private projectName: Project;
     private abortControllers: Map<string, AbortController>;
 
-    private constructor() {
+    constructor() {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         this.baseURL = import.meta.env.VITE_CONFIG_BASE_URL;
