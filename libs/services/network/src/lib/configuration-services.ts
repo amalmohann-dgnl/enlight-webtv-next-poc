@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { NetworkRequestor } from '@enlight-webtv/network';
+import { NetworkRequestor } from '@enlight-webtv/network-requestor';
 import {
     Platform,
     BaseConfiguration,
@@ -70,7 +70,6 @@ class ConfigurationService {
     destroy() {
         if (ConfigurationService.instance === this) {
             ConfigurationService.instance = null;
-            destroyStorageService();
         }
     }
 

@@ -14,6 +14,9 @@ importers:
       '@babel/preset-typescript':
         specifier: ^7.26.0
         version: 7.26.0(@babel/core@7.26.0)
+      '@mux/mux-data-shakaplayer':
+        specifier: ^5.14.0
+        version: 5.14.0
       axios:
         specifier: ^1.7.9
         version: 1.7.9
@@ -23,6 +26,9 @@ importers:
       babel-loader:
         specifier: ^9.2.1
         version: 9.2.1(@babel/core@7.26.0)(webpack@5.97.1(@swc/core@1.5.29(@swc/helpers@0.5.15)))
+      diagnal-web-player:
+        specifier: ^1.1.4
+        version: 1.1.4
       jssha:
         specifier: ^3.3.1
         version: 3.3.1
@@ -1471,6 +1477,9 @@ packages:
   '@module-federation/webpack-bundler-runtime@0.7.6':
     resolution: {integrity: sha512-kB9hQ0BfwNAcQWGskDEOxYP2z2bB/1ABXKr8MDomCFl2mbW3vvfYMQrb8UhJmJvE3rbGI/iXhJUdgBLNREnjUg==}
 
+  '@mux/mux-data-shakaplayer@5.14.0':
+    resolution: {integrity: sha512-Dmga12z1bzCSumg4rNy4IXs91Yya0C8mUCwEV229Cl/PPtzglXnHERYwemRlxZ0qbokfmJK2158rGj3P8SKNdw==}
+
   '@napi-rs/wasm-runtime@0.2.4':
     resolution: {integrity: sha512-9zESzOO5aDByvhIAsOy9TbpZ0Ur2AJbUI7UT73kcUTS2mxAMHOBaa1st/jAymNoCtvrit99kkzT1FZuXVcgfIQ==}
 
@@ -2829,6 +2838,9 @@ packages:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
     engines: {node: '>=8'}
 
+  bitmovin-player@8.195.0:
+    resolution: {integrity: sha512-E0lJHENkS7PSUeBsoepoj5dQhbw41Ix5fQDuNaMi2Ib9WrGXcxXl4sik2G4ttQxN0CkxxvMvQciZUW/ydjKUuA==}
+
   bl@4.1.0:
     resolution: {integrity: sha512-1W07cM9gS6DcLperZfFSj+bWLtaPGSOHWhPiGzXmvVJbRLdG82sH/Kn8EtW1VqWVA54AKf2h5k5BbnIbwF3h6w==}
 
@@ -3382,6 +3394,9 @@ packages:
     resolution: {integrity: sha512-CmnVc+Hek2egPx1PeTFVta2W78xy2K/9Rkf6cC4T59S50tVnzKj+tnx5mmx5lwvCkujZ4uRrpRSuV+IVs3f90Q==}
     engines: {node: '>= 4.0.0'}
     hasBin: true
+
+  diagnal-web-player@1.1.4:
+    resolution: {integrity: sha512-+l0HZi979FZ1nAcYFOiaFQclS6qi4KL09XReKSwhpHS9soObzmSRG8B+gsNa0y9LM8EQOelHfDcPUOzuW0YZmw==}
 
   diff-sequences@29.6.3:
     resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
@@ -4970,6 +4985,9 @@ packages:
   multicast-dns@7.2.5:
     resolution: {integrity: sha512-2eznPJP8z2BFLX50tf0LuODrpINqP1RVIm/CObbTcBRITQgmC/TjcREF1NeTBzIcR5XO/ukWo+YHOjBbFwIupg==}
     hasBin: true
+
+  mux-embed@5.5.0:
+    resolution: {integrity: sha512-81XjttB/8aDXMbK6zVD5DSsxbNWlKVrf/ZngxTV7oI8FldD1Ky3q6TTM1GYgZxQIw5txUK8ba30R2zWXpvnmrQ==}
 
   nanoid@3.3.8:
     resolution: {integrity: sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==}
@@ -8399,6 +8417,10 @@ snapshots:
       '@module-federation/runtime': 0.7.6
       '@module-federation/sdk': 0.7.6
 
+  '@mux/mux-data-shakaplayer@5.14.0':
+    dependencies:
+      mux-embed: 5.5.0
+
   '@napi-rs/wasm-runtime@0.2.4':
     dependencies:
       '@emnapi/core': 1.3.1
@@ -10541,6 +10563,8 @@ snapshots:
 
   binary-extensions@2.3.0: {}
 
+  bitmovin-player@8.195.0: {}
+
   bl@4.1.0:
     dependencies:
       buffer: 5.7.1
@@ -11111,6 +11135,11 @@ snapshots:
       debug: 4.4.0
     transitivePeerDependencies:
       - supports-color
+
+  diagnal-web-player@1.1.4:
+    dependencies:
+      bitmovin-player: 8.195.0
+      lodash: 4.17.21
 
   diff-sequences@29.6.3: {}
 
@@ -13131,6 +13160,8 @@ snapshots:
     dependencies:
       dns-packet: 5.6.1
       thunky: 1.1.0
+
+  mux-embed@5.5.0: {}
 
   nanoid@3.3.8: {}
 

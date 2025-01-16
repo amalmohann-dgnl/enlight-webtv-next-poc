@@ -4,19 +4,16 @@ const path = require('path');
 
 module.exports = (config, context) => {
   const isProduction = context.configurationName === 'production';
-
-  const nxConfig = withNx(config);
-
-  return merge(nxConfig, {
+  return merge(withNx(config), {
     mode: isProduction ? 'production' : 'development',
-    entry: path.resolve(__dirname, 'src/index.ts'),
+    entry: path.resolve(__dirname, 'src/index.ts'), // Explicitly define the entry point
     output: {
-      libraryTarget: 'module',
-      filename: 'libs/network.mjs',
-      chunkFormat: 'module',
+      libraryTarget: 'module', // Use ES6 module format
+      filename: 'libs/services/recombee.mjs', // Output filename with .mjs extension
+      chunkFormat: 'module', // Ensure chunks are in ES module format
     },
     experiments: {
-      outputModule: true,
+      outputModule: true, // Enable output as ES modules
     },
     module: {
       rules: [
@@ -28,16 +25,11 @@ module.exports = (config, context) => {
       ],
     },
     resolve: {
-      alias: {
-        '@enlight-webtv/network-requestor': path.resolve(__dirname, '../../libs/network/src/index.ts'),
-      },
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
-
     },
     externals: {
       react: 'react',
       'react-dom': 'react-dom',
     },
-    target: 'web'
   });
 };

@@ -1,6 +1,5 @@
-import { Registry, Router } from '@lightningjs/sdk';
 import { AxiosResponse } from 'axios';
-import { NetworkRequestor } from '@enlight-webtv/network';
+import { NetworkRequestor } from '@enlight-webtv/network-requestor';
 import {
     Features,
     Platform,
@@ -34,7 +33,8 @@ import {
     projectUtilities,
 } from '@enlight-webtv/utilities';
 import { LogglyServices, AnalyticsServices } from '@enlight-webtv/analytics-services';
-import { PaymentServices } from '@enlight-webtv/network-services';
+import { PaymentServices } from '.';
+import { redirect } from 'next/navigation';
 
 //services
 const logglyServices = new LogglyServices();
@@ -63,7 +63,7 @@ const { getState, setState } = storageUtilities;
 class AuthServices {
     static instance: AuthServices | null;
     private networkRequestor;
-    private refreshTokenTimer = null;
+    private refreshTokenTimer: any;
 
     constructor(create = false) {
         if (create) this.destroy();
@@ -334,14 +334,14 @@ class AuthServices {
 
             // Set up a timer to automatically refresh the token at the calculated refresh interval
             if (!this.refreshTokenTimer) {
-                this.refreshTokenTimer = Registry.setInterval(() => {
+                this.refreshTokenTimer = setInterval(() => {
                     // Recursively refresh the token periodically
                     this.refreshToken(tokenRefreshResponse.data ?? tokenRefreshResponseData, authConfigurations, false);
                 }, tokenRefreshInterval * 1000);
             }
 
             // Navigate to the profile or homepage based on the feature flag
-            pageRefresh && Router.navigate(isValidProfileFeature ? Routes.PROFILES : Routes.HOMEPAGE);
+            pageRefresh && redirect(isValidProfileFeature ? Routes.PROFILES : Routes.HOMEPAGE);
             return;
         } else {
             // If token refresh failed, check if the logout extend period has expired
@@ -349,7 +349,7 @@ class AuthServices {
                 // If the user can still be kept logged in, retry the token refresh or navigate to the profile/homepage
                 if (pageRefresh) {
                     if (!this.refreshTokenTimer) {
-                        this.refreshTokenTimer = Registry.setInterval(() => {
+                        this.refreshTokenTimer = setInterval(() => {
                             const loginInfo = getState(StorageKeys.LOGIN_INFO);
                             this.refreshToken(loginInfo, authConfigurations, false);
                         }, tokenRefreshInterval * 1000);
@@ -358,12 +358,12 @@ class AuthServices {
                     // Check if profile management is valid and navigate accordingly
                     const profileManagement = getFeatureByKey(Features.featureProfileManagement) as FeatureProfileManagement;
                     const isValidProfileFeature = isValidValue(profileManagement);
-                    Router.navigate(isValidProfileFeature ? Routes.PROFILES : Routes.HOMEPAGE);
+                    redirect(isValidProfileFeature ? Routes.PROFILES : Routes.HOMEPAGE);
                 }
             } else if (pageRefresh) {
                 // If the user should be logged out, clear their data and navigate to the login page
                 clearUserDataInStorage();
-                Router.navigate(Routes.LOGIN, false);
+                redirect(Routes.LOGIN);
             } else {
                 // If the refresh failed, show an error popup with options to logout or exit
                 const data = {
@@ -375,10 +375,9 @@ class AuthServices {
                             label: getLabel(LabelKey.LABEL_LOGOUT_BUTTON),
                             handleEnterPress: async () => {
                                 // Handle logout and redirect to login screen
-                                Router.focusWidget('Loader');
                                 this.logout();
                                 clearUserDataInStorage();
-                                Router.navigate(Routes.LOGIN, false);
+                                redirect(Routes.LOGIN);
                             },
                             handleBackPress: () => null,
                         },
@@ -392,8 +391,7 @@ class AuthServices {
 
                 // Show the error popup and stop the refresh token interval
                 setupErrorPopup(data);
-                Registry.clearInterval(this.refreshTokenTimer);
-                Router.focusWidget('ErrorPopup');
+                clearInterval(this.refreshTokenTimer);
             }
         }
     };

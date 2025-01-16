@@ -18,7 +18,7 @@ import {
     Platform,
     SeekPreviewFormat,
 } from '@enlight-webtv/models';
-import { NetworkRequestor } from '@enlight-webtv/network';
+import { NetworkRequestor } from '@enlight-webtv/network-requestor';
 import { commonUtilities, networkUtilities, playerUtilities, projectUtilities, storageUtilities } from '@enlight-webtv/utilities';
 
 //utilities

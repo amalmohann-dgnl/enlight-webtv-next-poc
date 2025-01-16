@@ -1,0 +1,14 @@
+export { default as PlayerStateServices } from './player-state-services';
+export { default as ConcurrencyServices } from './concurrency-services';
+export { default as PlayerEBVSServices } from './player-ebvs-services';
+export { default as SMILServices } from './smil-services';
+export { default as DRMServices } from './drm-services';
+export { default as PlaybackDataServices } from './playback-data-services';
+export { default as PlayerControlsUIServices } from './player-controls-ui-services';
+export { default as PlayerErrorServices } from './player-error-services';
+export { default as PlayerControlsActionServices } from './player-controls-action-services';
+export { default as PlayerContinueWatchingServices } from './player-continue-watching-services';
+export { default as PlayerAnalyticsService } from './player-analytics-services';
+export { default as PlayerEventsServices } from './player-events-services';
+export { default as DVPlayerServices } from './dvplayer-services';
+export { default as PlayerServices } from './player-services';

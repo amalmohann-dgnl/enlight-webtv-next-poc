@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
+import { redirect } from 'next/navigation'
 import {
     AnalyticsEventQueueType,
     AxiosErrCode,
@@ -24,7 +25,6 @@ import {
     Project,
     AnalyticEvent,
 } from '@enlight-webtv/models';
-import { Router } from '@lightningjs/sdk';
 import {
     analyticsUtilities,
     deviceUtilities,
@@ -368,16 +368,9 @@ class AnalyticsServices {
                         AnalyticsServices.#eventQueue.push({ ...eventData });
                         AnalyticsServices.#isProcessingQueue = false;
 
-                        const activeHash = Router.getActiveHash();
-                        Router.navigate(
+                        redirect(
                             Routes.NETWORK_ERROR,
-                            {
-                                error: AxiosErrCode.ERR_NETWORK,
-                                keepAlive: true,
-                            },
-                            activeHash === Routes.PLAYER,
                         );
-                        return;
                     }
 
                     // Handle retries

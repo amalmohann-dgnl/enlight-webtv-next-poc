@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { NetworkRequestor } from '@enlight-webtv/network';
+import { NetworkRequestor } from '@enlight-webtv/network-requestor';
 import {
     Content,
     ContentRequestModel,

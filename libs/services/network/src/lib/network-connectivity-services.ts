@@ -1,5 +1,5 @@
 import { AxiosErrCode } from '@enlight-webtv/models';
-import { NetworkRequestor } from '@enlight-webtv/network';
+import { NetworkRequestor } from '@enlight-webtv/network-requestor';
 import { AxiosError } from 'axios';
 
 /**

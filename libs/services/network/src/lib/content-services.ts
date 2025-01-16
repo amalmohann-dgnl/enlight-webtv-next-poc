@@ -1,4 +1,4 @@
-import { NetworkRequestor } from '@enlight-webtv/network';
+import { NetworkRequestor } from '@enlight-webtv/network-requestor';
 import {
     ArchiveListResponse,
     CacheValue,
