@@ -81,10 +81,10 @@ class NetworkRequestor {
     constructor() {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        this.baseURL = import.meta.env.VITE_CONFIG_BASE_URL;
+        this.baseURL = 'https://preprod-api.illicoplus.ca/v1b1/';
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        this.projectName = import.meta.env.VITE_PROJECT_NAME as Project;
+        this.projectName = Project.VIDEOTRON;
         this.axiosInstance = axios.create({ baseURL: this.baseURL });
         this.abortControllers = new Map<string, AbortController>();
         this.configureInterceptors();

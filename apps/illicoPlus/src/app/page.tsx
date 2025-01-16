@@ -1,3 +1,4 @@
+import { initializeBooting } from '@enlight-webtv/controllers';
 import styles from './page.module.scss';
 import { SplashMediaType } from '@enlight-webtv/models'
 import { Splash } from '@enlight-webtv/pages'
@@ -31,9 +32,4 @@ export default function Index() {
   );
 }
 
-function initializeBooting(): import("react").Usable<unknown> {
-  return new Promise((resolve)=> setTimeout(() => {
-    return resolve(true);
-  }, 5000))
-}
 

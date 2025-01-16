@@ -3,7 +3,7 @@ import { theme } from '@enlight-webtv/themes';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
-const projectName: Project = import.meta.env.VITE_PROJECT_NAME as Project;
+const projectName: Project = Project.VIDEOTRON;
 
 const cardBaseConfig = {
     edgeRadius: 7,

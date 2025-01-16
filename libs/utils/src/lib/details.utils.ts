@@ -17,7 +17,7 @@ import { configurationUtilities, timeUtilities, commonUtilities } from '.';
 //import.meta having type config issue.
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
-const project = import.meta.env.VITE_PROJECT_NAME;
+const project = Project.VIDEOTRON;
 
 //utilities
 const { getCatalogConfig, getLabel } = configurationUtilities;

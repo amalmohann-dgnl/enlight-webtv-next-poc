@@ -58,7 +58,7 @@ const getSubscriptionType = async (): Promise<SubscriptionType> => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const project = import.meta.env.VITE_PROJECT_NAME;
+    const project = Project.VIDEOTRON;
     if (project === Project.VIDEOTRON) {
         return getState(StorageKeys.LOGIN_INFO)?.subscription?.subscriptionType?.toLowerCase() ?? SubscriptionType.Anonymous;
     }

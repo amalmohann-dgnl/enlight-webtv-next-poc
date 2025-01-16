@@ -66,13 +66,12 @@ class FavouritesController {
     addFavourite = async (item: any): Promise<boolean> => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        const project = import.meta.env.VITE_PROJECT_NAME;
+        const project = Project.VIDEOTRON;
         const favoritesObj = await retrieveFavourites();
         // Add the new seriesUid to the content array
         favoritesObj.content.unshift(item);
         //call add favourites api
         let id = item.type === ContentType.CALENDAR ? item.seriesUid : item.uid;
-        project !== Project.RALLY_TV && item.type === ContentType.EPISODE && (id = item.seriesUid);
         addFavourites(id, item.type);
         // Store the updated favorites object back in storage
         return storeFavouritesObject(favoritesObj);

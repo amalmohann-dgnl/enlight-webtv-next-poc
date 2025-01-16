@@ -14,7 +14,7 @@ const getTypographySettings = (typography: Typography | undefined) => {
     //import.meta having type config issue.
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
-    const project = import.meta.env.VITE_PROJECT_NAME as Project;
+    const project = Project.VIDEOTRON;
     let config: any = {};
     switch (typography) {
         case Typography.headerXL:

@@ -17,7 +17,7 @@ import { playerUtilities, commonUtilities } from '@enlight-webtv/utilities';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-const projectName: Project = import.meta.env.VITE_PROJECT_NAME;
+const projectName: Project = Project.VIDEOTRON;
 
 //services
 const { getPlaybackVideoData, getPlayerStatusData, setPlayerStatusData } = new PlaybackDataServices();

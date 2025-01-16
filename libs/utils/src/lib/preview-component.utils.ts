@@ -61,7 +61,7 @@ const subscriptionBaseConfig = {
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-const project: Project = import.meta.env.VITE_PROJECT_NAME;
+const project: Project = Project.VIDEOTRON;
 
 /**
  * @name getActionButtonProperties
@@ -502,7 +502,7 @@ const getDataForPreview = (cardData: RailContentModel | Content): PreviewCompone
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const project: Project = import.meta.env.VITE_PROJECT_NAME;
+    const project: Project = Project.VIDEOTRON;
     const catalogConfig = getCatalogConfig();
     const featureCatalog = getFeatureByKey(Features.FeatureCatalog) as FeatureCatalog;
     const movieMetadata = catalogConfig?.movieMetadata || [];

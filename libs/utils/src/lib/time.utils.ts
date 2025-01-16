@@ -83,7 +83,7 @@ const getCurrentStatus = (startTime: number | null, endTime: number | null): Cur
 const convertEpochToDaysHrsMinsSecs = (epoch: number, specifications: EpochToDaysHrsMinsSecsSpecifications = { upto: '' }) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const project: Project = import.meta.env.VITE_PROJECT_NAME;
+    const project: Project = Project.VIDEOTRON;
     const { upto } = specifications;
     let timeString = '';
     const seconds = Math.floor(epoch / 1000);

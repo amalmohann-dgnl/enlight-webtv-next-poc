@@ -84,7 +84,7 @@ class AnalyticsServices {
     maxRequestRetrys = Infinity;
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    static project: Project = import.meta.env.VITE_PROJECT_NAME as Project;
+    static project: Project = Project.VIDEOTRON;
 
     /**
      * @name sendMixPanelEvent

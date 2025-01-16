@@ -16,7 +16,7 @@ import { commonUtilities, configurationUtilities, networkUtilities, storageUtili
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-const projectName: Project = import.meta.env.VITE_PROJECT_NAME;
+const projectName: Project = Project.VIDEOTRON;
 
 //import utilities
 const { isValidValue } = commonUtilities;
