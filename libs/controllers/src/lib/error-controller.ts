@@ -42,8 +42,8 @@ const { logout } = new AuthServices();
 // controllers
 const { getIsAuthenticated } = new LoginController();
 
-const IS_ANDROID = isAndroid();
-const ANDROID = getAndroidObject();
+const IS_ANDROID = false;
+const ANDROID = {};
 
 /**
  * @name errorPageDataProvider
@@ -181,6 +181,7 @@ export const getLogoutPopupConfig = async () => {
  * @author tonyaugustine
  */
 export const handleAppConfigFailure = async (response?: BaseConfiguration) => {
+  console.trace('handleAppConfigFailure')
   try {
     const fallbackConfig = await projectUtilities.getProjectFallbackConfig();
     await setup(fallbackConfig as BaseConfiguration);

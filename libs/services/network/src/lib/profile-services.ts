@@ -1,3 +1,4 @@
+'use client'
 import { AxiosResponse } from 'axios';
 import { NetworkRequestor } from '@enlight-webtv/network-requestor';
 import {
@@ -23,7 +24,7 @@ const { getState, setState } = storageUtilities;
 const logglyServices = new LogglyServices();
 
 //getting the profile token if exists
-const token = getState(Token.USER_PROFILE_TOKEN);
+let token = '';
 
 // utilities
 const { getFavouritesPageConfig } = configurationUtilities;
@@ -40,7 +41,8 @@ class ProfileServices {
     static instance: ProfileServices | null;
     private networkRequestor;
 
-    constructor(create = false) {
+  constructor(create = false) {
+        token =  getState(Token.USER_PROFILE_TOKEN);
         if (create) this.destroy();
         if (ProfileServices.instance) {
             return ProfileServices.instance;

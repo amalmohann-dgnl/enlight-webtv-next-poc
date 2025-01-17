@@ -11,11 +11,11 @@ import {
     ShakaNetworkRequest,
 } from '@enlight-webtv/models';
 import { projectUtilities, playerUtilities, commonUtilities, deviceUtilities } from '@enlight-webtv/utilities';
-import { PlaybackDataServices } from '.';
+import  PlaybackDataServices  from './playback-data-services';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
-const { VITE_BUILD_TYPE: BUILD_TYPE } = import.meta.env;
+const BUILD_TYPE = BuildType.Dev;
 
 // Services
 const logglyServices = new LogglyServices();
@@ -24,7 +24,6 @@ const { getPlaybackVideoData, getPlayerStatusData } = new PlaybackDataServices()
 // Utilities
 const { getCurrentTimeFromPlayer, getPlayerInstance } = playerUtilities;
 const { isValidValue } = commonUtilities;
-const { isAndroid } = deviceUtilities;
 
 class DRMServices {
     static instance: DRMServices | null;
@@ -131,7 +130,7 @@ class DRMServices {
                                             source_url: playerPlaybackVideoData?.smilURL,
                                             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                                             // @ts-ignore
-                                            ...(!isAndroid() && { shaka_version: window.shakaInstance?.Player?.version ?? '' }),
+                                            ...({ shaka_version: window.shakaInstance?.Player?.version ?? '' }),
                                             quality: playerPlaybackVideoData?.selectedQuality || 'auto',
                                             stream_id: playerPlaybackVideoData?.guid,
                                             player_event: playerStatusData?.playerState,

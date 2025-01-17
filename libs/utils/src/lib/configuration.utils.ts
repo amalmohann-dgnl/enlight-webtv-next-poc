@@ -33,6 +33,7 @@ import {
     UserAgentDetails,
     SubscriptionType,
     CountryInfo,
+    BuildType,
 } from '@enlight-webtv/models';
 import { mathUtilities, userAgentUtilities, appUtilities, storageUtilities } from '.';
 import { isValidValue } from './common.utils';
@@ -209,7 +210,7 @@ const getCurrentComputedConfigurationDependencies = async () => {
     //import.meta having type config issue.
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
-    const buildType = import.meta.env.VITE_BUILD_TYPE;
+    const buildType = BuildType.Dev;
     return { checksum, /*date, */ appVersion, osName, browserName, subscriptionType, countryCode, buildType };
 };
 /**

@@ -20,7 +20,7 @@ import {
     PlayerAnalyticsService,
     PlayerControlsActionServices,
 } from '.';
-import { configurationUtilities, deviceUtilities, errorUtilities, playerUtilities } from '@enlight-webtv/utilities';
+import { configurationUtilities, errorUtilities, playerUtilities } from '@enlight-webtv/utilities';
 
 //services
 const logglyServices = new LogglyServices();
@@ -30,12 +30,11 @@ const { checkInternetConnection } = new NetworkConnectivityServices();
 
 //utilities
 const { getErrorByCode } = configurationUtilities;
-const { isAndroid, getAndroidObject } = deviceUtilities;
 const { getActionType, getErrorPopActionHandling, getErrorPopupInstance } = errorUtilities;
 const { getCurrentTimeFromPlayer, getPlayerInstance } = playerUtilities;
 
-const IS_ANDROID: boolean = isAndroid();
-const ANDROID: any = getAndroidObject();
+const IS_ANDROID = false;
+const ANDROID = {}
 
 class PlayerErrorServices {
     static instance: PlayerErrorServices | null;
@@ -140,7 +139,7 @@ class PlayerErrorServices {
                     source_url: playbackVideoData?.smilURL,
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
-                    ...(!isAndroid() && { shaka_version: window.shakaInstance?.Player?.version ?? '' }),
+                    ...({ shaka_version: window.shakaInstance?.Player?.version ?? '' }),
                     quality: playbackVideoData?.selectedQuality || 'auto',
                     stream_id: playbackVideoData?.guid,
                     player_event: playerStatusData?.playerState,

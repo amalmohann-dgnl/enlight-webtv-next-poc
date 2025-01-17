@@ -1,3 +1,4 @@
+'use client'
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import {
     AudioData,
@@ -62,7 +63,7 @@ const {
 const { getState } = storageUtilities;
 const { isValidValue, throttle } = commonUtilities;
 const { getPlayerConfig } = configurationUtilities;
-const { isAndroid, getDeviceType } = deviceUtilities;
+const { getDeviceType } = deviceUtilities;
 const {
     getPlayerInstance,
     getDurationFromPlayer,
@@ -79,7 +80,7 @@ const {
 } = playerUtilities;
 const { setAnimationFrameTimeout, clearAnimationFrameTimeout } = commonUtilities;
 //const
-const IS_ANDROID: boolean = isAndroid();
+const IS_ANDROID = false;
 const sendThrottledbufferEvent = throttle(sendBufferEvent, 2000);
 
 class PlayerEventsServices {

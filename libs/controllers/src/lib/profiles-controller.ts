@@ -1,3 +1,4 @@
+'use client'
 import { Color, FeatureProfileManagement, LabelKey, LoaderId, StorageKeys, Typography } from '@enlight-webtv/models';
 import { ProfileServices } from '@enlight-webtv/network-services';
 import { configurationUtilities, splashUtilities, deviceUtilities, storageUtilities } from '@enlight-webtv/utilities';
@@ -12,8 +13,8 @@ const { getLabel, getProfileManagementConfig } = configurationUtilities;
 const { checkIsVideoSplash } = splashUtilities;
 const { isAndroid, getAndroidObject } = deviceUtilities;
 
-const IS_ANDROID = isAndroid();
-const ANDROID = getAndroidObject();
+const IS_ANDROID = false;
+const ANDROID = {};
 
 class ProfilesController {
     static instance: ProfilesController | null;

@@ -1,3 +1,4 @@
+'use client'
 import { StorageKeys } from '@enlight-webtv/models';
 
 /**
@@ -61,7 +62,7 @@ const clearLanguageDependentCacheDataInStorage = () => {
 * @author amalmohann
 */
 const setState = (key: string, value: any) => {
-  localStorage.setItem(key, value);
+  localStorage.setItem(key, JSON.stringify(value));
 }
 
 /**
@@ -74,7 +75,8 @@ const setState = (key: string, value: any) => {
 * @author amalmohann
 */
 const getState = (key: string): any => {
-  return localStorage.getItem(key);
+  const stateData = JSON.parse(localStorage.getItem(key) || "{}");
+  return stateData;
 }
 
 /**

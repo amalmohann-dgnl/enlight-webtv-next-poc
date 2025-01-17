@@ -1,3 +1,4 @@
+'use client'
 import { AxiosResponse } from 'axios';
 import { NetworkRequestor } from '@enlight-webtv/network-requestor';
 import {
@@ -10,6 +11,7 @@ import {
     ChangeResponse,
     DeviceCategory,
     TimeResponse,
+    BuildType,
 } from '@enlight-webtv/models';
 import {
     commonUtilities,
@@ -45,7 +47,7 @@ class ConfigurationService {
     //import.meta having type config issue.
     //eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
-    private buildType = import.meta.env.VITE_BUILD_TYPE;
+    private buildType = BuildType.Dev;
     private userAgent: UserAgentDetails = getUserAgentDetails();
     private param: EntriesRequestModel = {
         minimumBuildNumber: 1,

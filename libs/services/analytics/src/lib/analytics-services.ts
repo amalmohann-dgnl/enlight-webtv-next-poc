@@ -110,7 +110,7 @@ class AnalyticsServices {
         // Get bas attributes to be sent for each event
         if (!isValidValue(AnalyticsServices.#baseMixPanelAttributes)) {
             try {
-                this.initializeBaseMixPanelAttributes();
+                // this.initializeBaseMixPanelAttributes();
             } catch (error) {
                 console.error(error);
                 return;
@@ -119,14 +119,14 @@ class AnalyticsServices {
 
         if (AnalyticsServices.#mixPanelConfiguration) {
             // Get user related attributes to be sent for event
-            const authAttributes = this.getUserAttributes();
+            // const authAttributes = this.getUserAttributes();
             const locale = getState(StorageKeys.LOCALE);
             const utcOffset = -new Date().getTimezoneOffset() * 60 * 1000;
 
             // Data to be sent for the event log
             const attributes = {
                 ...AnalyticsServices.#baseMixPanelAttributes,
-                ...authAttributes,
+                // ...authAttributes,
                 language: locale,
                 utc_offset: utcOffset,
                 timestamp: Date.now(),
@@ -244,7 +244,7 @@ class AnalyticsServices {
         //import.meta having type config issue.
         //eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
-        const appEnv = import.meta.env['VITE_BUILD_TYPE'] as BuildType;
+        const appEnv = BuildType.Dev;
         if (!appEnv) throw new Error('Invalid app environment');
 
         const baseAttributes = {

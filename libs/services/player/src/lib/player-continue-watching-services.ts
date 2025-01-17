@@ -1,3 +1,4 @@
+'use client'
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { PlaybackServices, ProfileServices } from '@enlight-webtv/network-services';
 import { PlaybackDataServices } from '.';

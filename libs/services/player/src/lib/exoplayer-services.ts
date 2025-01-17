@@ -7,10 +7,9 @@ import { PlayerState } from '@enlight-webtv/models';
 const { toggleThumbnailAndTitle, toggleControlsUI } = new PlayerControlsUIServices();
 const { setPlayerState } = new PlayerStateServices();
 //utils
-const { getAndroidObject, isAndroid } = deviceUtilities;
 //variables
-const ANDROID: any = getAndroidObject();
-const IS_ANDROID: any = isAndroid();
+const ANDROID = {}
+const IS_ANDROID = {};
 
 class ExoPlayerServices {
     static instance: ExoPlayerServices | null;
@@ -68,7 +67,7 @@ s     *
      */
     androidExoPlayerReady = () => {
         // this._handleLoadedMetaDataEvent(null);
-        ANDROID.handlePlayPause();
+        ANDROID.handlePlayPause?.();
         toggleThumbnailAndTitle(true);
         toggleControlsUI(true);
         // this._handleLoadedDataEvent(null);

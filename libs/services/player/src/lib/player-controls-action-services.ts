@@ -36,8 +36,8 @@ const { isAndroid, getAndroidObject } = deviceUtilities;
 const { isValidValue, getOptimizedImage, cloneObject } = commonUtilities;
 
 //const
-const IS_ANDROID: boolean = isAndroid();
-const ANDROID: any = getAndroidObject();
+const IS_ANDROID = false;
+const ANDROID = {}
 
 class PlayerControlsActionServices {
     static instance: PlayerControlsActionServices | null;

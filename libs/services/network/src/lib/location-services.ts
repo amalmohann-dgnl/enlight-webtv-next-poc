@@ -1,6 +1,7 @@
+'use client'
 import { CountryInfo, Project, StorageKeys } from '@enlight-webtv/models';
 import { NetworkRequestor } from '@enlight-webtv/network-requestor';
-import { ConfigurationService } from '.';
+import ConfigurationService from './configuration-services';
 import { storageUtilities } from '@enlight-webtv/utilities';
 import { AxiosResponse } from 'axios';
 

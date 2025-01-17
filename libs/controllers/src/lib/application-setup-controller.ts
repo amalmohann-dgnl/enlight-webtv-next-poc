@@ -1,3 +1,5 @@
+'use client'
+
 import {
   BaseConfiguration,
   Color,
@@ -32,7 +34,6 @@ const {
 const { convertColorToHexString } = stylesUtilities;
 const { setState } = storageUtilities;
 
-const networkRequestor = new NetworkRequestor();
 
 /**
  * @name setupBasicApplication
@@ -44,12 +45,13 @@ const networkRequestor = new NetworkRequestor();
 export const setupBasicApplication = (
   configMap: MappedAppBaseConfiguration
 ) => {
+  const networkRequestor = new NetworkRequestor();
   //setting the web page title
   document.title = configMap.application.name;
   //setting the base network url for the application
-  if (configMap.application.baseConfiguration?.baseApiUrl)
-    (networkRequestor as any)!.defaults.baseURL =
-      configMap.application.baseConfiguration.baseApiUrl;
+  // if (configMap.application.baseConfiguration?.baseApiUrl)
+  //   (networkRequestor as any)!.defaults.baseURL =
+  //     configMap.application.baseConfiguration.baseApiUrl;
 };
 
 /**

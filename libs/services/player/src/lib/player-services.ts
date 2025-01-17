@@ -1,3 +1,4 @@
+'use client'
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import {
     Players,
@@ -63,8 +64,8 @@ const {
 } = playerUtilities;
 const { getProjectName } = projectUtilities;
 //const
-const IS_ANDROID: boolean = isAndroid();
-const ANDROID: any = getAndroidObject();
+const IS_ANDROID = false;
+const ANDROID = {}
 
 class PlayerServices {
     load: Promise<any> | null = null;

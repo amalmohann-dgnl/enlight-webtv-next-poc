@@ -1,10 +1,11 @@
+'use client';
 import { UAParser } from 'ua-parser-js';
 import { UserAgentDetails } from '@enlight-webtv/models';
 /**
  * @name getUserAgentDetails
  * @type function/method
  * @description This function will get all the user agent details
- * @return {userAgentDetils} user agent details
+ * @return {userAgentDetails} user agent details
  *
  * @author amalmohann
  */

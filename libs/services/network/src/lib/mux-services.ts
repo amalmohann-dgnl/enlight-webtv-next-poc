@@ -3,6 +3,7 @@
 // @ts-ignore
 import initShakaPlayerMux from '@mux/mux-data-shakaplayer';
 import {
+  BuildType,
     ContentType,
     MUXEvents,
     MUXVideoMetaData,
@@ -35,7 +36,7 @@ let MUX_SERVICE_INSTANCE: any = null;
 class MuxService {
     // get the Mux environment key
     // @ts-ignore
-    envMode = import.meta.env.MODE;
+  envMode = BuildType.Dev;
     muxData = {} as MuxData;
 
     // Check if the application is running on localhost

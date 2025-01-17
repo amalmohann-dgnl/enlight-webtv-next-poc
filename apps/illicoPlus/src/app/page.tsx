@@ -1,35 +1,44 @@
+'use client';
 import { initializeBooting } from '@enlight-webtv/controllers';
 import styles from './page.module.scss';
-import { SplashMediaType } from '@enlight-webtv/models'
-import { Splash } from '@enlight-webtv/pages'
-import { redirect } from 'next/navigation'
-import { Suspense, use } from 'react';
+import { SplashMediaType } from '@enlight-webtv/models';
+import { Splash } from '@enlight-webtv/pages';
+import { redirect } from 'next/navigation';
+import { Suspense, useEffect, useState } from 'react';
 
 export default function Index() {
-  const RenderApplication = () => {
-    use(initializeBooting());
-    const isAuthenticated = true;
-    if (isAuthenticated) {
-      redirect('/home')
-    } else {
-      redirect('/login')
-    }
-  }
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
-  /*
-   * Replace the elements be
-   * Note: The corresponding styles are in the ./index.scss file.
-   */
-  return (
-    <div className={styles.page}>
-      <Suspense
-        fallback={
-        <Splash src={'/images/splash.png'} isMediaSplash={false} mediaType={SplashMediaType.IMAGE} showLoader={true} showVersion={true} bgColor={''} />
-        }>
-        <RenderApplication />
-      </Suspense>
-        </div>
-  );
+  useEffect(() => {
+    const bootApplication = async () => {
+      try {
+        await initializeBooting();
+        // Simulate authentication logic
+        const authStatus = true; // Replace with real authentication logic
+        setIsAuthenticated(authStatus);
+
+
+      } catch (error) {
+        console.error('Error during booting:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    bootApplication();
+  }, []);
+
+  // if (isLoading) {
+    return (
+      <Splash
+        src={'/images/splash.png'}
+        isMediaSplash={false}
+        mediaType={SplashMediaType.IMAGE}
+        showLoader={true}
+        showVersion={true}
+        bgColor={''}
+      />
+    );
+
 }
-
-

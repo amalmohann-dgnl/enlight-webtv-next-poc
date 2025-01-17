@@ -1,3 +1,4 @@
+'use client'
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-ignore
 import { DPlayer, Shaka } from 'diagnal-web-player';

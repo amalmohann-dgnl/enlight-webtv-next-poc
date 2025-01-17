@@ -1,3 +1,5 @@
+'use client'
+
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import {
   AnalyticsServices,
@@ -72,7 +74,7 @@ const {
   getRequiredAnalyticsServices,
 } = configurationUtilities;
 const { getErrorPopActionHandling } = errorUtilities;
-const { checkIsVideoSplash } = splashUtilities;
+// const { checkIsVideoSplash } = splashUtilities;
 
 //import services
 const { sendLog } = new LogglyServices();
@@ -296,7 +298,7 @@ export const _proceedNavigation = () => {
   // @ts-ignore
   if (window._canNavigate) {
     //route to home page
-    redirect(Routes.HOMEPAGE);
+    redirect('/home');
     return;
   }
   //set the navigable if the api call is slow.

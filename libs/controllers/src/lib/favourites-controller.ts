@@ -1,3 +1,4 @@
+'use client'
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { ContentType, Project } from '@enlight-webtv/models';
 import { ProfileServices } from '@enlight-webtv/network-services';

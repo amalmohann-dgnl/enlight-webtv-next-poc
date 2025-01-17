@@ -1,7 +1,7 @@
 import { LogglyServices } from '@enlight-webtv/analytics-services';
 import { LogLevel, LogType, ModuleType, PlaybackType } from '@enlight-webtv/models';
-import { commonUtilities, deviceUtilities, playerUtilities } from '@enlight-webtv/utilities';
-import { PlaybackDataServices } from '.';
+import { commonUtilities, playerUtilities } from '@enlight-webtv/utilities';
+import PlaybackDataServices from './playback-data-services';
 
 //services
 const logglyServices = new LogglyServices();
@@ -10,7 +10,6 @@ const { getPlaybackVideoData, getPlayerStatusData } = new PlaybackDataServices()
 //Utilities
 const { isValidValue } = commonUtilities;
 const { getCurrentTimeFromPlayer, getPlayerInstance } = playerUtilities;
-const { isAndroid } = deviceUtilities;
 
 //global variables
 let EBVS_CHECKER_START_TIME: number;
@@ -116,7 +115,7 @@ class PlayerEBVSServices {
                             source_url: playerPlaybackVideoData?.smilURL,
                             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                             // @ts-ignore
-                            ...(!isAndroid() && { shaka_version: window.shakaInstance?.Player?.version ?? '' }),
+                            ...( { shaka_version: window.shakaInstance?.Player?.version ?? '' }),
                             quality: playerPlaybackVideoData?.selectedQuality || 'auto',
                             stream_id: playerPlaybackVideoData?.guid,
                             player_event: playerStatusData?.playerState,

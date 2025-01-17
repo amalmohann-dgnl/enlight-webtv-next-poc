@@ -68,12 +68,11 @@ class RecombeeService {
         // Sets the public token and fallback base url properties from env variables
         if (!this.#publicToken || !this.#baseURL) {
             //import.meta having type config issue.
-            const {
-                VITE_RECOMBEE_PUBLIC_TOKEN: publicToken,
-                VITE_RECOMBEE_FALLBACK_BASE_URL: baseURL,
+
+                const publicToken = '';
+                const baseURL = '';
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 //@ts-ignore
-            } = import.meta.env;
 
             // Throw error if recombee public token not found
             if (typeof publicToken !== 'string' || !publicToken) {

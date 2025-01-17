@@ -7,7 +7,7 @@
 export enum Routes {
     FAVOURITES = 'favourites',
     LIVE_TV = 'live-tv',
-    HOMEPAGE = 'homepage',
+    HOMEPAGE = 'home',
     CATALOG = 'catalog',
     ON_DEMAND = 'on-demand',
     ARCHIVE = 'archive',

@@ -1,3 +1,4 @@
+'use client'
 /* eslint-disable no-case-declarations */
 import { CacheValue, ComponentData, ComponentStyleType, ContentType, Page, PageComponent, PageComponentType, Routes } from '@enlight-webtv/models';
 import { commonUtilities, configurationUtilities, favouriteUtilities, sideMenuUtilities } from '@enlight-webtv/utilities';

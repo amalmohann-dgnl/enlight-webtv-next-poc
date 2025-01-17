@@ -1,3 +1,4 @@
+'use client'
 import {
     MappedAppBaseConfiguration,
     MappedApplicationConfiguration,
@@ -147,7 +148,7 @@ class ConfigurationController {
         //import.meta having type config issue.
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
-        ConfigurationController.buildType = import.meta.env.VITE_BUILD_TYPE;
+        ConfigurationController.buildType = BuildType.Dev;
         const configurationDependencies = getState(StorageKeys.CONFIGURATION_DEPENDENCIES);
         setState(StorageKeys.CONFIGURATION_DEPENDENCIES, {
             ...(configurationDependencies || {}),

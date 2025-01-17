@@ -32,14 +32,14 @@ const {
 } = configurationUtilities;
 const { generateQR, isValidValue } = commonUtilities;
 const { getLoginPageData } = pageUtilities;
-const { getAndroidObject, isAndroid } = deviceUtilities;
+const { getAndroidObject,  } = deviceUtilities;
 const { getState } =storageUtilities;
 
 //import services
 const { getActivationCode, destroy: destroyAuthServices } = new AuthServices();
 
-const IS_ANDROID = isAndroid();
-const ANDROID = getAndroidObject();
+const IS_ANDROID = false;
+const ANDROID = {};
 
 class LoginController {
     static instance: LoginController | null;

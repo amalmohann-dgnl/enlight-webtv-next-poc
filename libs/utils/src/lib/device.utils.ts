@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 'use client'
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { v4 as uuidv4 } from 'uuid';
 import {
     Brand,
@@ -25,7 +25,7 @@ import { addNetworkStateChangeListener } from './network.utils';
 import { UAParser } from 'ua-parser-js';
 import { setState, getState  } from './storage.utils';
 
-const parser = new UAParser(window.navigator.userAgent);
+const parser = new UAParser('Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36');
 const TVs: Devices = {
     webOS: {
         deviceMake: Device.LGTV,

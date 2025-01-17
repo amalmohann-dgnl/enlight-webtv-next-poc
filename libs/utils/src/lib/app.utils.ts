@@ -1,4 +1,4 @@
-import { AppMetaData, DeviceType, StorageKeys } from '@enlight-webtv/models';
+import { AppMetaData, BuildType, DeviceType, StorageKeys } from '@enlight-webtv/models';
 import { storageUtilities } from '.';
 
 const navigationKeyCodes: Record<number, string> = {
@@ -115,7 +115,7 @@ export const getAppVersionWithPrefix = (version: string) => {
     const deviceInfo = storageUtilities.getState(StorageKeys.DEVICEINFO) ?? {};
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const envMode = import.meta.env.MODE;
+    const envMode = BuildType.Dev;
     let platformName;
     switch (deviceInfo.deviceType) {
         case DeviceType.Android:
@@ -142,6 +142,8 @@ export const getAppVersionWithPrefix = (version: string) => {
  */
 let APP_META_DATA: AppMetaData = {} as AppMetaData;
 const getAppMetaData = () => {
+
+  return {appVersion: '1.0.0'}
     if (APP_META_DATA && Object.keys(APP_META_DATA)?.length > 0) {
         return APP_META_DATA;
     }
