@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { v4 as uuidv4 } from 'uuid';
+import { getState } from './storage.utils';
 import {
     authUtilities,
     canvasUtilities,
@@ -7,7 +8,6 @@ import {
     configurationUtilities,
     mathUtilities,
     projectUtilities,
-    storageUtilities,
     timeUtilities,
 } from '.';
 import {
@@ -49,15 +49,12 @@ const { encodeToBase64Token } = authUtilities;
 const { generateRandomNumber } = mathUtilities;
 const { getCurrentEpochTimeInSeconds } = timeUtilities;
 const { setCanvasTransparent, getCanvasInstance, setCanvasBackgroundColor } = canvasUtilities;
-const { getState } = storageUtilities;
 
-const {
-    VITE_WIDEVINE_BASE_URL: WIDEVINE_BASE_URL,
-    VITE_PLAYREADY_BASE_URL: PLAYREADY_BASE_URL,
-    VITE_MPX_ACCOUNT_ID: MPX_ACCOUNT_ID,
-    VITE_PLAYBACK_AUTH_URL: PLAYBACK_AUTH_URL,
+     const WIDEVINE_BASE_URL = '';
+     const PLAYREADY_BASE_URL = '';
+     const MPX_ACCOUNT_ID = '';
+     const PLAYBACK_AUTH_URL = '';
     //@ts-ignore
-} = import.meta.env;
 
 //set the height Mapping quality suffix
 const heightMappingQualitySuffix = 'p';

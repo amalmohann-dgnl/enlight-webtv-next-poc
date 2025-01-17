@@ -1,8 +1,5 @@
 import { RecentSearch, StorageKeys } from '@enlight-webtv/models';
-import { storageUtilities } from '.';
-
-//utilities
-const { getState } = storageUtilities;
+import { getState } from './storage.utils';
 
 /**
  * @name retrieveRecentSearch

@@ -1,9 +1,6 @@
 import { AppMetaData, DeviceType, StorageKeys } from '@enlight-webtv/models';
 import { storageUtilities } from '.';
 
-
-const { getState } = storageUtilities;
-
 const navigationKeyCodes: Record<number, string> = {
     37: 'left',
     38: 'up',
@@ -101,7 +98,10 @@ const getAllowAnimations = () => allowAnimations;
  * @author alwin-baby
  */
 const setAllowAnimations = (permitAnimations: boolean) => {
-    allowAnimations = permitAnimations;
+  allowAnimations = permitAnimations;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  window.setAllowAnimations = setAllowAnimations;
 };
 
 /**
@@ -112,7 +112,7 @@ const setAllowAnimations = (permitAnimations: boolean) => {
  */
 export const getAppVersionWithPrefix = (version: string) => {
     // retrieve device related data
-    const deviceInfo = getState(StorageKeys.DEVICEINFO) ?? {};
+    const deviceInfo = storageUtilities.getState(StorageKeys.DEVICEINFO) ?? {};
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const envMode = import.meta.env.MODE;
@@ -145,12 +145,8 @@ const getAppMetaData = () => {
     if (APP_META_DATA && Object.keys(APP_META_DATA)?.length > 0) {
         return APP_META_DATA;
     }
-    APP_META_DATA = getState(StorageKeys.APP_METADATA) as AppMetaData;
+    APP_META_DATA = storageUtilities.getState(StorageKeys.APP_METADATA) as AppMetaData;
     return APP_META_DATA;
 };
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-window.setAllowAnimations = setAllowAnimations;
 
 export { throttleNavigation, getAllowAnimations, setAllowAnimations, getAppMetaData, eventPassThroughHandler };

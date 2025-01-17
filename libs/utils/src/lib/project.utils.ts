@@ -91,7 +91,7 @@ const getProjectFallbackConfig = async () => {
  * @author amalmohann
  */
 const getProjectSMILUrl = (streamURL: string, smilConstructionData: SMILConstructionData = {} as SMILConstructionData): string => {
-    const { format, formats, userId, tracking, maxParentalRatings, clientId, locale, language, region } = smilConstructionData;
+    const { format, formats, userId, tracking } = smilConstructionData;
 
     let updatedSMILUrl = streamURL;
     updatedSMILUrl = updatedSMILUrl + (projectName === Project.VIDEOTRON ? '&' : '?');
@@ -100,19 +100,19 @@ const getProjectSMILUrl = (streamURL: string, smilConstructionData: SMILConstruc
     updatedSMILUrl = updatedSMILUrl + (userId ? `&userId=${encodeURIComponent(userId)}` : '');
     updatedSMILUrl = updatedSMILUrl + (tracking ? `&tracking=${tracking}` : '');
 
-    switch (projectName) {
-        case Project.CMGO:
-            updatedSMILUrl = updatedSMILUrl + (maxParentalRatings ? `&maxParentalRatings=${encodeURIComponent(maxParentalRatings)}` : '');
-            updatedSMILUrl = updatedSMILUrl + `&platform=${Platform.WebTv}`;
-            updatedSMILUrl = updatedSMILUrl + (clientId ? `&clientId=${encodeURIComponent(clientId)}` : '');
-            updatedSMILUrl = updatedSMILUrl + (locale ? `&locale=${encodeURIComponent(locale)}` : '');
-            updatedSMILUrl = updatedSMILUrl + (language ? `&language=${encodeURIComponent(language)}` : '');
-            updatedSMILUrl = updatedSMILUrl + (region ? `&region=${encodeURIComponent(region)}` : '');
-            break;
-        case Project.VIDEOTRON:
-        case Project.RALLY_TV:
-        default:
-    }
+    // switch (projectName) {
+    //     case Project.CMGO:
+    //         updatedSMILUrl = updatedSMILUrl + (maxParentalRatings ? `&maxParentalRatings=${encodeURIComponent(maxParentalRatings)}` : '');
+    //         updatedSMILUrl = updatedSMILUrl + `&platform=${Platform.WebTv}`;
+    //         updatedSMILUrl = updatedSMILUrl + (clientId ? `&clientId=${encodeURIComponent(clientId)}` : '');
+    //         updatedSMILUrl = updatedSMILUrl + (locale ? `&locale=${encodeURIComponent(locale)}` : '');
+    //         updatedSMILUrl = updatedSMILUrl + (language ? `&language=${encodeURIComponent(language)}` : '');
+    //         updatedSMILUrl = updatedSMILUrl + (region ? `&region=${encodeURIComponent(region)}` : '');
+    //         break;
+    //     case Project.VIDEOTRON:
+    //     case Project.RALLY_TV:
+    //     default:
+    // }
 
     return updatedSMILUrl;
 };

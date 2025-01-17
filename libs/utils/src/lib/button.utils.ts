@@ -12,10 +12,10 @@ import {
     Image,
     Typography,
 } from '@enlight-webtv/models';
-import { commonUtilities, configurationUtilities } from '.';
+import { configurationUtilities } from '.';
+import { isValidValue } from './common.utils';
 import { theme } from '@enlight-webtv/themes';
 
-const { isValidValue } = commonUtilities;
 
 //button base config
 export const buttonBaseConfig = {

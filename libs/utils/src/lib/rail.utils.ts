@@ -21,12 +21,6 @@ import {
 } from '@enlight-webtv/models';
 import { commonUtilities, configurationUtilities, dateUtilities, progressUtilities, projectUtilities } from '.';
 
-// utilities
-const { isDateBetween } = dateUtilities;
-const { getLabel, getDefaultPageHeaderTheme } = configurationUtilities;
-const { isValidValue, getOptimizedImage } = commonUtilities;
-const { getProgressByTime, getProgressByProgress } = progressUtilities;
-
 /**
  * @name getCardIdFromData
  * @type function
@@ -45,8 +39,8 @@ const getCardIdFromData = (data: RailContentModel): string => {
 
 const parseCardTitle = (data: Content, railHandlingType: RailHandlingType | null): string => {
     if (railHandlingType === RailHandlingType.EPISODES_RAIL) {
-        const seasonPrefix = getLabel(LabelKey.LABEL_DETAILS_SEASON_PREFIX);
-        const episodePrefix = getLabel(LabelKey.LABEL_DETAILS_EPISODE_PREFIX);
+        const seasonPrefix = configurationUtilities.getLabel(LabelKey.LABEL_DETAILS_SEASON_PREFIX);
+        const episodePrefix = configurationUtilities.getLabel(LabelKey.LABEL_DETAILS_EPISODE_PREFIX);
         const title = `${seasonPrefix}${data.seasonNumber} ${episodePrefix}${data.episodeNumber} ${data.title}`;
         return title;
     }
@@ -72,9 +66,9 @@ const getSkeltonCards = (
     itemSize: ItemSize,
     dimensions: CardDimensions = {} as CardDimensions,
     skeltonElement: any,
-    itemOrientation: number = 1.67,
-    setPositioning: boolean = true,
-    useCache: boolean = true,
+    itemOrientation = 1.67,
+    setPositioning = true,
+    useCache = true,
     count?: number,
     showTitleSkeleteon = false,
 ) => {
@@ -124,25 +118,25 @@ const getTimeDependantProperties = (data: RailContentModel, dimensions: Dimensio
     //check the status of the event
     const isLive =
         getProjectName() === Project.RALLY_TV
-            ? checkForLive && isDateBetween(new Date(), new Date(eventStartTime), new Date(eventEndTime))
+            ? checkForLive && dateUtilities.isDateBetween(new Date(), new Date(eventStartTime), new Date(eventEndTime))
             : type === ContentType.LIVE;
     const isOnNext = !!data?.onNextItem;
     const isOver = !!data?.isOver;
 
     let topLabelType = TopLabelType.normal;
-    let topLabel: string = '';
+    let topLabel = '';
     let showItemTopLabel = false;
     let topLabelStyle: ThemeSection = {} as ThemeSection;
-    let showSlantingEdgeTopLabel: boolean = false;
+    let showSlantingEdgeTopLabel = false;
 
     //update top label if live or onNext
     if (isLive) {
-        const liveLabel = getLabel(LabelKey.LABEL_COMPONENT_LIVE);
+        const liveLabel = configurationUtilities.getLabel(LabelKey.LABEL_COMPONENT_LIVE);
         topLabelType = TopLabelType.important;
         typeof liveLabel === 'string' && (topLabel = liveLabel);
     }
     if (isOnNext) {
-        const onNextLabel = getLabel(LabelKey.LABEL_COMPONENT_ON_NEXT);
+        const onNextLabel = configurationUtilities.getLabel(LabelKey.LABEL_COMPONENT_ON_NEXT);
         topLabelType = TopLabelType.normal;
         typeof onNextLabel === 'string' && (topLabel = onNextLabel);
     }
@@ -152,7 +146,7 @@ const getTimeDependantProperties = (data: RailContentModel, dimensions: Dimensio
     }
 
     //add card tags as labels if any
-    if (isValidValue(context._tagConfiguration)) {
+    if (commonUtilities.isValidValue(context._tagConfiguration)) {
         const tagData: TagData = context._getAppropriateTagConfiguration(data);
         const { getTopLabelProjectConfig } = projectUtilities;
 
@@ -183,12 +177,12 @@ const getTimeDependantProperties = (data: RailContentModel, dimensions: Dimensio
     let playbackThumbnailUrl = data.previewImageUrl;
     if (!playbackThumbnailUrl) {
         const graphicsImage = data.graphics && data.graphics.length > 0 ? data.graphics[0]!.images : ([] as Image[]);
-        const playbackThumbnail = getOptimizedImage(data.images ?? graphicsImage, dimensions ?? { width: 1280, height: 720 });
+        const playbackThumbnail = commonUtilities.getOptimizedImage(data.images ?? graphicsImage, dimensions ?? { width: 1280, height: 720 });
         playbackThumbnailUrl = (playbackThumbnail as AssetTypeIcon).url ?? (playbackThumbnail as Image).imageUrl;
     }
 
     let progressAvailableFromApi = {} as PlaybackProgressContents;
-    if (isValidValue(context._progressData)) {
+    if (commonUtilities.isValidValue(context._progressData)) {
         const progressDetails = context._progressData.find((item: any) => item?.uid === uid);
         progressDetails && (progressAvailableFromApi = progressDetails);
     }
@@ -206,7 +200,7 @@ const getTimeDependantProperties = (data: RailContentModel, dimensions: Dimensio
         allowContinueWatching = false;
 
     let episodeId = '';
-    if (isValidValue(progressAvailableFromApi)) {
+    if (commonUtilities.isValidValue(progressAvailableFromApi)) {
         episodeId = progressAvailableFromApi.uid || '';
         progressFromData = progressAvailableFromApi.playbackProgress?.progress;
     }
@@ -237,8 +231,8 @@ const getTimeDependantProperties = (data: RailContentModel, dimensions: Dimensio
         context._railHandlingType === RailHandlingType.FULL_REPLAY_RAIL ||
         context._railHandlingType === RailHandlingType.HIGHLIGHTS_RAIL ||
         context._railHandlingType === RailHandlingType.EPISODES_RAIL
-            ? getProgressByProgress(progressFromData, durationFromData)
-            : getProgressByTime(eventStartTime, eventEndTime);
+            ? progressUtilities.getProgressByProgress(progressFromData, durationFromData)
+            : progressUtilities.getProgressByTime(eventStartTime, eventEndTime);
     const showProgressBar =
         progressPercent != 0 &&
         (((context._isLiveTV || context._railHandlingType === RailHandlingType.SCHEDULES_RAIL) && isLive) ||
@@ -280,7 +274,7 @@ const getTimeDependantProperties = (data: RailContentModel, dimensions: Dimensio
  * @author alwin-baby
  */
 const setRailTheme = (context: any) => {
-    const defaultPageHeaderTheme = getDefaultPageHeaderTheme();
+    const defaultPageHeaderTheme = configurationUtilities.getDefaultPageHeaderTheme();
     const headerPrimaryTextColor = (context._theme?.header?.text?.primary as Color)?.code ?? (defaultPageHeaderTheme?.text?.primary as Color)?.code;
     context._titleColor = headerPrimaryTextColor ?? context._titleColor;
 };

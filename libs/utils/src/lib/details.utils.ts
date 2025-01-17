@@ -20,9 +20,7 @@ import { configurationUtilities, timeUtilities, commonUtilities } from '.';
 const project = Project.VIDEOTRON;
 
 //utilities
-const { getCatalogConfig, getLabel } = configurationUtilities;
 const { has24HoursPassed, getCurrentStatus } = timeUtilities;
-const { isValidValue, cloneObject } = commonUtilities;
 
 /**
  * @name getTabsFromCatalogConfig
@@ -32,7 +30,7 @@ const { isValidValue, cloneObject } = commonUtilities;
  * @author alwin-baby
  */
 const getTabsFromCatalogConfig = () => {
-    const catalogConfig = getCatalogConfig();
+    const catalogConfig = configurationUtilities.getCatalogConfig();
     const tabs = catalogConfig?.tab || [];
 
     // Create a Map to track unique tabs by id
@@ -80,10 +78,10 @@ const getButtonGroupProperties = (tabItems: MenuItem[]): object => {
  * @author alwin-baby
  */
 const getTabItems = (data: PreviewComponentDataNew) => {
-    if (project === Project.RALLY_TV) return getTabItemsForRallyTv(data);
+    // if (project === Project.RALLY_TV) return getTabItemsForRallyTv(data);
 
     const tabs = getTabsFromCatalogConfig();
-    return cloneObject(tabs);
+    return commonUtilities.cloneObject(tabs);
 };
 
 /**
@@ -145,7 +143,7 @@ const getComponentAndRailHandlingType = (tabItem: string | undefined) => {
     let railHandlingType: RailHandlingType | null = null;
     let addToQueue = false;
 
-    if (project === Project.RALLY_TV) return getComponentAndRailHandlingTypeForRallyTv(tabItem);
+    // if (project === Project.RALLY_TV) return getComponentAndRailHandlingTypeForRallyTv(tabItem);
 
     const tabs = getTabsFromCatalogConfig();
     const menuItem = tabs.find((tab: MenuItem) => tab.title === tabItem) || ({} as MenuItem);
@@ -288,12 +286,12 @@ let placeholderCardDataCache = {} as RailContentModel;
  * @author alwin-baby
  */
 const getPlaceholderCardData = () => {
-    if (isValidValue(placeholderCardDataCache)) {
+    if (commonUtilities.isValidValue(placeholderCardDataCache)) {
         return placeholderCardDataCache;
     }
 
     const data = {
-        title: getLabel(LabelKey.LABEL_PLACEHOLDER_TITLE) as string,
+        title: configurationUtilities.getLabel(LabelKey.LABEL_PLACEHOLDER_TITLE) as string,
         images: [
             {
                 url: 'images/SchedulePlaceholeder.png',

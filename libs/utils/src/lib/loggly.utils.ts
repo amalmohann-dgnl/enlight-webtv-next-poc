@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { DeviceType, StorageKeys } from '@enlight-webtv/models';
-import { storageUtilities, userAgentUtilities } from '.';
 
 //import utilities
-const { setState } = storageUtilities;
-const { getUserAgentDetails } = userAgentUtilities;
+import { setState } from './storage.utils';
+import { getUserAgentDetails } from './user-agent.utils';
 
 /**
  * @name getDeviceData

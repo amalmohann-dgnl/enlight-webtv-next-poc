@@ -38,9 +38,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { getAllowAnimations } from './app.utils';
 import { getCardIdFromData } from './rail.utils';
 import { theme } from '@enlight-webtv/themes';
-import { storageUtilities } from '.';
-
-const { getState } = storageUtilities;
+import  { getState }  from './storage.utils';
 
 const subscriptionBaseConfig = {
     lock: {
@@ -95,7 +93,7 @@ const getActionButtonProperties = (data: RailContentModel): { label: string; sta
     let startIconSrc = '';
 
     const isSubscribed = getState(StorageKeys.IS_USER_SUBSCRIBED);
-    const isCalenderEvent = type === ContentType.CALENDAR || railType === ComponentStyleType.NEXT_RALLIES;
+    // const isCalenderEvent = type === ContentType.CALENDAR || railType === ComponentStyleType.NEXT_RALLIES;
     const currentStatus = getCurrentStatus(availableOn || startDate, availableTill || endDate);
     const allowAccess =
         isSubscribed || purchaseMode === PurchaseMode.FREE || purchaseMode === PurchaseMode.REGISTER || purchaseMode === PurchaseMode.RENTAL;
@@ -108,31 +106,31 @@ const getActionButtonProperties = (data: RailContentModel): { label: string; sta
                 : playNowLabel;
         startIconSrc = 'icons/play/play-light.png';
 
-        if (project === Project.RALLY_TV && isCalenderEvent) {
-            switch (currentStatus) {
-                case CurrentEventStatus.LIVE:
-                    label = playLiveLabel;
-                    break;
-                case CurrentEventStatus.COMPLETED:
-                    label = isRecentlyWatchedItem ? continueWatchingLabel : watchReplayLabel;
-                    break;
+        // if (project === Project.RALLY_TV && isCalenderEvent) {
+        //     switch (currentStatus) {
+        //         case CurrentEventStatus.LIVE:
+        //             label = playLiveLabel;
+        //             break;
+        //         case CurrentEventStatus.COMPLETED:
+        //             label = isRecentlyWatchedItem ? continueWatchingLabel : watchReplayLabel;
+        //             break;
 
-                default:
-                    break;
-            }
-        }
+        //         default:
+        //             break;
+        //     }
+        // }
     }
 
     if (currentStatus === CurrentEventStatus.UPCOMING) {
-        if (project === Project.RALLY_TV) {
-            if (isCalenderEvent && currentStatus === CurrentEventStatus.UPCOMING) {
-                label = '';
-                startIconSrc = 'icons/timer/timer-light.png';
-            }
-        } else {
+        // if (project === Project.RALLY_TV) {
+        //     if (isCalenderEvent && currentStatus === CurrentEventStatus.UPCOMING) {
+        //         label = '';
+        //         startIconSrc = 'icons/timer/timer-light.png';
+        //     }
+        // } else {
             label = '';
             startIconSrc = 'icons/timer/timer-light.png';
-        }
+        // }
     }
 
     return { label, startIconSrc };
@@ -553,19 +551,19 @@ const getDataForPreview = (cardData: RailContentModel | Content): PreviewCompone
     const statusLabelType = currentEventStatus === CurrentEventStatus.LIVE ? TopLabelType.important : TopLabelType.normal;
     const statusLabel = currentEventStatus || '';
 
-    let showTimer = false;
+    // let showTimer = false;
     if (currentEventStatus === CurrentEventStatus.UPCOMING) {
-        if (project === Project.RALLY_TV) {
-            if (type === ContentType.CALENDAR || railType === ComponentStyleType.NEXT_RALLIES) showTimer = true;
-        } else showTimer = true;
+        // if (project === Project.RALLY_TV) {
+        //     if (type === ContentType.CALENDAR || railType === ComponentStyleType.NEXT_RALLIES) showTimer = true;
+        // } else showTimer = true;
     }
     let timerString = '';
-    if (project === Project.RALLY_TV) {
-        timerString = eventStartTime ? convertEpochToDaysHrsMinsSecs(eventStartTime - Date.now()) : '';
-    } else {
+    // if (project === Project.RALLY_TV) {
+    //     timerString = eventStartTime ? convertEpochToDaysHrsMinsSecs(eventStartTime - Date.now()) : '';
+    // } else {
         const upComingLabel = getLabel(LabelKey.LABEL_DETAILS_UPCOMING_BUTTON) as string;
         timerString = `${upComingLabel} ${eventStartTime && formatDate(new Date(eventStartTime), 'dd MMM yyyy', ' ')}`;
-    }
+    // }
 
     const showTitle = true;
     const seriesTitle = (cardData as any)?.seriesTitle;
@@ -574,7 +572,7 @@ const getDataForPreview = (cardData: RailContentModel | Content): PreviewCompone
 
     const showContentInfo = type !== CuratedDataEntryType.PAGE;
 
-    const showTime = type !== CuratedDataEntryType.PAGE && project === Project.RALLY_TV;
+    const showTime = type !== CuratedDataEntryType.PAGE && false;
     const timeLabelText = getTimeLabel(eventStartTime, eventEndTime, currentEventStatus, type, railType, page);
 
     let localRallyTime = '';
@@ -602,7 +600,7 @@ const getDataForPreview = (cardData: RailContentModel | Content): PreviewCompone
     if ((type === ContentType.MOVIE || type === ContentType.PREVIEW) && includesMetadata(movieMetadata, AssetMetadata.DURATION)) {
         showDurationFromConfig = true;
     }
-    if (type === ContentType.EPISODE && project !== Project.RALLY_TV && includesMetadata(seriesMetadata, AssetMetadata.DURATION)) {
+    if (type === ContentType.EPISODE && true && includesMetadata(seriesMetadata, AssetMetadata.DURATION)) {
         showDurationFromConfig = true;
     }
     const [showDur = false, durLabel = ''] = getDurationData(cardData, project, showDurationFromConfig);
@@ -624,7 +622,7 @@ const getDataForPreview = (cardData: RailContentModel | Content): PreviewCompone
     if ((type === ContentType.MOVIE || type === ContentType.PREVIEW) && includesMetadata(movieMetadata, AssetMetadata.YEAR) && releaseYear) {
         showYear = true;
     }
-    if (type === ContentType.EPISODE && project !== Project.RALLY_TV && includesMetadata(seriesMetadata, AssetMetadata.YEAR) && releaseYear) {
+    if (type === ContentType.EPISODE && true && includesMetadata(seriesMetadata, AssetMetadata.YEAR) && releaseYear) {
         showYear = true;
     }
     const yearLabel = releaseYear?.toString?.();
@@ -646,7 +644,7 @@ const getDataForPreview = (cardData: RailContentModel | Content): PreviewCompone
     }
     if (
         type === ContentType.EPISODE &&
-        project !== Project.RALLY_TV &&
+        true &&
         (includesMetadata(seriesMetadata, AssetMetadata.PARENTAL_CONTROL) || includesMetadata(seriesMetadata, AssetMetadata.PARENTAL_RATING)) &&
         isValidValue(parentalControl?.[0])
     ) {
@@ -700,7 +698,7 @@ const getDataForPreview = (cardData: RailContentModel | Content): PreviewCompone
     }
 
     if (
-        project !== Project.RALLY_TV &&
+
         (cardData as Content)?.seasonNumber &&
         cardData?.episodeNumber &&
         (type === ContentType.EPISODE || type === ContentType.SERIES)
@@ -798,7 +796,7 @@ const getDataForPreview = (cardData: RailContentModel | Content): PreviewCompone
         showStatus,
         statusLabelType,
         statusLabel,
-        showTimer,
+        showTimer:false,
         timerString,
         showTitle,
         titleLabel,
@@ -916,7 +914,7 @@ const getDurationData = (cardData: RailContentModel | Content, project: Project,
  *
  * @author alwin-baby
  */
-const getSeparatedString = (list: string[], separator: string = ' ') => {
+const getSeparatedString = (list: string[], separator = ' ') => {
     let result = '';
     for (const item of list) {
         if (item && typeof item === 'string') {
@@ -1025,7 +1023,7 @@ const railTranslationOutAnimation = (
                     });
                     thumbnailAnimationOut.start();
 
-                    // Add and clear previewanimation on start and finish respectivily
+                    // Add and clear preview animation on start and finish respectivily
                     previousAnimations.push({ id: uniqueID, animation: thumbnailAnimationOut });
 
                     thumbnailAnimationOut.on('finish', () => {

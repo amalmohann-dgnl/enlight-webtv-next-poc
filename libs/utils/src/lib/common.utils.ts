@@ -5,8 +5,6 @@ import { isValidDate } from './time.utils';
 import jsSHA from 'jssha';
 import { storageUtilities } from '.';
 
-const { setState } = storageUtilities;
-
 /**
  * @name isValidValue
  * @type function/method
@@ -254,11 +252,11 @@ const generateSessionID = () => {
     const sessionID = `${randomString(8)}-${randomString(4)}-${timestamp}-${randomString(4)}-${randomString(12)}`;
 
     //store the sessionID in local storage
-    setState(StorageKeys.SESSIONID, sessionID);
+    storageUtilities.setState(StorageKeys.SESSIONID, sessionID);
 
     // Store session start time in storage and as a window property
     const sessionStartTime = Date.now();
-    setState(StorageKeys.SESSION_START_TIME, sessionStartTime);
+    storageUtilities.setState(StorageKeys.SESSION_START_TIME, sessionStartTime);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
     window.sessionStartTime = sessionStartTime;
@@ -523,7 +521,7 @@ const generateEngageClientID = (): string => {
 
     const clientID = s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
     //store the sessionID in local storage
-    setState(StorageKeys.ENGAGE_CLIENT_ID, clientID);
+    storageUtilities.setState(StorageKeys.ENGAGE_CLIENT_ID, clientID);
 
     return clientID;
 };

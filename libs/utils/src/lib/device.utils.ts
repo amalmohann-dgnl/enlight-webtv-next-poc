@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+'use client'
 import { v4 as uuidv4 } from 'uuid';
 import {
     Brand,
@@ -22,12 +23,9 @@ import {
 import { getUserAgentDetails } from './user-agent.utils';
 import { addNetworkStateChangeListener } from './network.utils';
 import { UAParser } from 'ua-parser-js';
-import { storageUtilities } from '.';
-
-const { setState, getState } = storageUtilities;
+import { setState, getState  } from './storage.utils';
 
 const parser = new UAParser(window.navigator.userAgent);
-
 const TVs: Devices = {
     webOS: {
         deviceMake: Device.LGTV,

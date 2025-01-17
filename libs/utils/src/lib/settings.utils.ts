@@ -1,13 +1,10 @@
-import { deviceUtilities, configurationUtilities, appUtilities, storageUtilities } from '.';
 import { MenuItem, PageComponent, ProfileListData, StorageKeys } from '@enlight-webtv/models';
 
 // import utilities
-const { getState } = storageUtilities;
-
-// import utilities
-const { getPlatformName } = deviceUtilities;
-const { getAppConfig } = configurationUtilities;
-const { getAppVersionWithPrefix, getAppMetaData } = appUtilities;
+import { getState } from './storage.utils';
+import { getPlatformName } from './device.utils';
+import { getAppConfig } from './configuration.utils';
+import { getAppVersionWithPrefix, getAppMetaData } from './app.utils';
 
 /**
  * @name getSettingsQRCodeURL

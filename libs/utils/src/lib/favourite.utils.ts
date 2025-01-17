@@ -1,8 +1,5 @@
 import { StorageKeys } from '@enlight-webtv/models';
-import { storageUtilities } from '.';
-
-// Utilities
-const { getState, setState } = storageUtilities;
+import {  getState, setState } from './storage.utils';
 
 /**
  * @name retrieveFavouritesObject

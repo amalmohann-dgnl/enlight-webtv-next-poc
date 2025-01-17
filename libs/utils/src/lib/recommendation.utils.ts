@@ -12,17 +12,14 @@ import {
     Project,
     ContentType,
 } from '@enlight-webtv/models';
-import { commonUtilities, configurationUtilities, networkUtilities, storageUtilities } from '.';
+import { isValidValue } from './common.utils';
+import { getFeatureByKey } from './configuration.utils';
+import { extractParams } from './network.utils';
+import { getState } from './storage.utils';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 const projectName: Project = Project.VIDEOTRON;
-
-//import utilities
-const { isValidValue } = commonUtilities;
-const { getFeatureByKey } = configurationUtilities;
-const { extractParams } = networkUtilities;
-const { getState } = storageUtilities;
 
 /**
  * @name getRecommendationUserID

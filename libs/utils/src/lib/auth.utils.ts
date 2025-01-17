@@ -1,10 +1,6 @@
 import { Project, StorageKeys, SubscriptionType, Token } from '@enlight-webtv/models';
 import { isValidValue } from './common.utils';
 import { storageUtilities } from '.';
-
-//import services
-const { getState } = storageUtilities;
-
 /**
  * @name encodeToBase64Token
  * @type function/method
@@ -30,7 +26,7 @@ const encodeToBase64Token = (param1: string, param2: string) => {
  */
 const getIsAuthenticated = (): Promise<boolean> => {
     return new Promise(resolve => {
-        const isAuthenticated = isValidValue(getState(Token.USER_CONSUMER_TOKEN)) && isValidValue(getState(Token.USER_PROFILE_TOKEN));
+        const isAuthenticated = isValidValue(storageUtilities.getState(Token.USER_CONSUMER_TOKEN)) && isValidValue(storageUtilities.getState(Token.USER_PROFILE_TOKEN));
         resolve(isAuthenticated);
     });
 };
@@ -50,7 +46,7 @@ const getSubscriptionType = async (): Promise<SubscriptionType> => {
     // return SubscriptionType.Subscribed;
     // fetch the status
     const isAuthenticated = await getIsAuthenticated();
-    const subscriptionStatus = await getState('isUserSubscribed');
+    const subscriptionStatus = await storageUtilities.getState('isUserSubscribed');
 
     //set the status
     const isRegistered = !!isAuthenticated;
@@ -60,7 +56,7 @@ const getSubscriptionType = async (): Promise<SubscriptionType> => {
     // @ts-ignore
     const project = Project.VIDEOTRON;
     if (project === Project.VIDEOTRON) {
-        return getState(StorageKeys.LOGIN_INFO)?.subscription?.subscriptionType?.toLowerCase() ?? SubscriptionType.Anonymous;
+        return storageUtilities.getState(StorageKeys.LOGIN_INFO)?.subscription?.subscriptionType?.toLowerCase() ?? SubscriptionType.Anonymous;
     }
 
     //check the status
@@ -82,7 +78,7 @@ const getSubscriptionType = async (): Promise<SubscriptionType> => {
  * @author amalmohann
  */
 const getSubscriptionDetails = () => {
-    return getState(StorageKeys.LOGIN_INFO)?.subscription;
+    return storageUtilities.getState(StorageKeys.LOGIN_INFO)?.subscription;
 };
 
 export { encodeToBase64Token, getIsAuthenticated, getSubscriptionType, getSubscriptionDetails };

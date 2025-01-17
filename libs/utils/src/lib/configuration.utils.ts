@@ -43,7 +43,6 @@ import { getLoginPageData } from './page.utils';
 const { getUserAgentDetails } = userAgentUtilities;
 const { uniqueIdGenerator } = mathUtilities;
 const { getAppMetaData } = appUtilities;
-const { getState, setState } = storageUtilities;
 /**
  * @name getAppConfig
  * @type function/method
@@ -57,7 +56,7 @@ const getAppConfig = () => {
     if (isValidValue(CONFIG_CACHE)) {
         return CONFIG_CACHE as MappedAppBaseConfiguration;
     }
-    const AppConfiguration = getState(StorageKeys.CONFIG);
+    const AppConfiguration = storageUtilities.getState(StorageKeys.CONFIG);
     CONFIG_CACHE = AppConfiguration;
     return AppConfiguration as MappedAppBaseConfiguration;
 };
@@ -136,7 +135,7 @@ const getLabel = (key: string) => {
             return LABEL_MAP_CACHE.get(key);
         }
     }
-    const LABELS: Label[] = getState('labels');
+    const LABELS: Label[] = storageUtilities.getState('labels');
     const LABEL_MAP = new Map((LABELS ?? []).filter(item => item?.value?.trim().length > 0).map(item => [item.key, item.value]));
     if (LABEL_MAP.has(key)) {
         return LABEL_MAP.get(key);
@@ -154,7 +153,7 @@ const getLabel = (key: string) => {
  * @author tonyaugustine
  */
 const shouldUpdateConfiguration = async (currentConfig: any = {}) => {
-    const previousConfigurationDependencies = getState(StorageKeys.CONFIGURATION_DEPENDENCIES) ?? {};
+    const previousConfigurationDependencies = storageUtilities.getState(StorageKeys.CONFIGURATION_DEPENDENCIES) ?? {};
     let currentConfigurationDependencies: any = (await getCurrentComputedConfigurationDependencies()) ?? {};
     currentConfigurationDependencies = { ...currentConfigurationDependencies, ...currentConfig };
     let shouldUpdateConfiguration = false;
@@ -199,11 +198,11 @@ const shouldUpdateConfiguration = async (currentConfig: any = {}) => {
  */
 const getCurrentComputedConfigurationDependencies = async () => {
     const userAgent: UserAgentDetails = getUserAgentDetails();
-    const checksum = getState(StorageKeys.CHECKSUM);
+    const checksum = storageUtilities.getState(StorageKeys.CHECKSUM);
     const appVersion = getAppMetaData()?.appVersion;
     const osName = userAgent.osName || '';
     const browserName = userAgent.browserName || '';
-    const countryCode = (getState(StorageKeys.COUNTRY_INFO) as CountryInfo)?.countryCode;
+    const countryCode = (storageUtilities.getState(StorageKeys.COUNTRY_INFO) as CountryInfo)?.countryCode;
     const subscriptionType = (await getSubscriptionType()) ?? SubscriptionType.Anonymous;
     // TODO: Add date to dependencies check
     // const date = new Date();
@@ -1183,7 +1182,7 @@ const getLanguageConfig = () => {
  * @author anandpatel
  */
 const getErrorByCode = (errorCode: string): ErrorConfiguration | undefined => {
-    const errorCodeMapString: string | undefined = getState('errorCode');
+    const errorCodeMapString: string | undefined = storageUtilities.getState('errorCode');
 
     if (!errorCodeMapString) {
         // Handle the case where the error code map string is not found in storage
@@ -1238,12 +1237,12 @@ const getClientIdForConfig = async () => {
     }
 
     //get from local storage
-    UUID = await getState(StorageKeys.CLIENT_ID);
+    UUID = await storageUtilities.getState(StorageKeys.CLIENT_ID);
 
     //check in local storage
     if (!UUID) {
         UUID = uniqueIdGenerator();
-        setState(StorageKeys.CLIENT_ID, UUID);
+        storageUtilities.setState(StorageKeys.CLIENT_ID, UUID);
     }
     return UUID;
 };

@@ -37,16 +37,12 @@ import {
 } from '@enlight-webtv/utilities';
 
 //import.meta having type config issue.
-const {
-    VITE_UNIVERSAL_ANALYTICS_URL: ANALYTICS_URL,
-    VITE_UNIVERSAL_ANALYTICS_GLOBAL_ID: GLOBAL_ID,
-    VITE_UNIVERSAL_ANALYTICS_LOCAL_ID: LOCAL_ID,
-    VITE_UNIVERSAL_ANALYTICS_VIDEO_GLOBAL_ID: VIDEO_GLOBAL_ID,
-    VITE_UNIVERSAL_ANALYTICS_VIDEO_LOCAL_ID: VIDEO_LOCAL_ID,
-    VITE_UNIVERSAL_ANALYTICS_VIDEO_VIDEO_ID: VIDEO_VIDEO_ID,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-ignore
-} = import.meta.env;
+const ANALYTICS_URL = '';
+const GLOBAL_ID = '';
+const LOCAL_ID = '';
+const VIDEO_GLOBAL_ID = '';
+const VIDEO_LOCAL_ID = '';
+const VIDEO_VIDEO_ID = '';
 
 //import utilities
 const {

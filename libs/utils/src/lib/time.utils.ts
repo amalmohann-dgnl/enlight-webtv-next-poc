@@ -101,15 +101,15 @@ const convertEpochToDaysHrsMinsSecs = (epoch: number, specifications: EpochToDay
     const remainingSeconds = seconds % 60;
 
     const daysLabel = getLabel(LabelKey.LABEL_SPORTS_HEADER_DURATION_DAYS) as string;
-    let hoursLabel = (getLabel(LabelKey.LABEL_RECENTLY_WATCHED_HR) as string) || 'hr';
-    let minutesLabel = (getLabel(LabelKey.LABEL_RECENTLY_WATCHED_MIN) as string) || 'min';
-    let secondsLabel = 'sec';
+    const hoursLabel = (getLabel(LabelKey.LABEL_RECENTLY_WATCHED_HR) as string) || 'hr';
+    const minutesLabel = (getLabel(LabelKey.LABEL_RECENTLY_WATCHED_MIN) as string) || 'min';
+    const secondsLabel = 'sec';
 
-    if (project === Project.RALLY_TV) {
-        hoursLabel = getLabel(LabelKey.LABEL_SPORTS_HEADER_DURATION_HRS) as string;
-        minutesLabel = getLabel(LabelKey.LABEL_SPORTS_HEADER_DURATION_MINS) as string;
-        secondsLabel = getLabel(LabelKey.LABEL_SPORTS_HEADER_DURATION_SEC) as string;
-    }
+    // if (project === Project.RALLY_TV) {
+    //     hoursLabel = getLabel(LabelKey.LABEL_SPORTS_HEADER_DURATION_HRS) as string;
+    //     minutesLabel = getLabel(LabelKey.LABEL_SPORTS_HEADER_DURATION_MINS) as string;
+    //     secondsLabel = getLabel(LabelKey.LABEL_SPORTS_HEADER_DURATION_SEC) as string;
+    // }
 
     let secondsString = '';
     const daysString = `${days.toString().padStart(1, '0')} ${daysLabel}`;
