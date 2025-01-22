@@ -108,8 +108,8 @@ class ProfilesController {
                 isSplashVideo && (splash as HTMLVideoElement).pause();
                 if (IS_ANDROID) {
                     const isTransparent = false;
-                    ANDROID.stopSplashAnimation();
-                    ANDROID.showDismissProgress(false, isTransparent);
+                    // ANDROID.stopSplashAnimation();
+                    // ANDROID.showDismissProgress(false, isTransparent);
                 }
             });
         }

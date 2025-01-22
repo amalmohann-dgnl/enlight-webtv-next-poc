@@ -118,9 +118,9 @@ class LoginController {
                         const splash = document.getElementById(LoaderId.SPLASH);
                         splash && (splash.style.opacity = '0');
                         setTimeout(() => {
-                            if (IS_ANDROID) {
-                                ANDROID.stopSplashAnimation();
-                            }
+                            // if (IS_ANDROID) {
+                            //     ANDROID.stopSplashAnimation();
+                            // }
                         }, 500);
                         // show login page load failed popup
                         const LoginPageLoadFailed = getErrorByCode(ErrorConfigurationType.LOGIN_PAGE_LOAD_FAILED);
@@ -200,7 +200,7 @@ class LoginController {
         splash && (splash.style.opacity = '0');
         setTimeout(() => {
             if (IS_ANDROID) {
-                ANDROID.stopSplashAnimation();
+                // ANDROID.stopSplashAnimation();
             }
             LeftSectionContent.stopSpinner?.();
         }, 500);

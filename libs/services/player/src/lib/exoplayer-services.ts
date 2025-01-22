@@ -67,7 +67,7 @@ s     *
      */
     androidExoPlayerReady = () => {
         // this._handleLoadedMetaDataEvent(null);
-        ANDROID.handlePlayPause?.();
+        // ANDROID.handlePlayPause?.();
         toggleThumbnailAndTitle(true);
         toggleControlsUI(true);
         // this._handleLoadedDataEvent(null);

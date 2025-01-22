@@ -67,7 +67,7 @@ class LogglyServices {
    */
   async sendLog(errorInfo: SendLogParameterType) {
     const appMetaData = getAppMetaData();
-    const appName = appMetaData.appName;
+    const appName = 'appMetaData.appName';
     const appVersion = appMetaData.appVersion;
     // constructs the default log attributes
     const stableAttributes = await this.initializeStableLogAttributes(

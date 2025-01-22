@@ -1,5 +1,4 @@
 'use client';
-import { initializeBooting } from '@enlight-webtv/controllers';
 import styles from './page.module.scss';
 import { SplashMediaType } from '@enlight-webtv/models';
 import { Splash } from '@enlight-webtv/pages';
@@ -13,6 +12,7 @@ export default function Index() {
   useEffect(() => {
     const bootApplication = async () => {
       try {
+        const { initializeBooting } = await import('@enlight-webtv/controllers');
         await initializeBooting();
         // Simulate authentication logic
         const authStatus = true; // Replace with real authentication logic

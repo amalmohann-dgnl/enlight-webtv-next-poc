@@ -236,11 +236,11 @@ export const checkIsOnline = async (route: Routes) => {
     setTimeout(() => {
       splash.style.opacity = '0';
       isSplashVideo && (splash as HTMLVideoElement).pause();
-      if (IS_ANDROID) {
-        const isTransparent = false;
-        ANDROID.stopSplashAnimation();
-        ANDROID.showDismissProgress(false, isTransparent);
-      }
+      // if (IS_ANDROID) {
+      //   const isTransparent = false;
+      //   ANDROID.stopSplashAnimation();
+      //   ANDROID.showDismissProgress(false, isTransparent);
+      // }
     });
   }
   const loader = document.getElementById(LoaderId.LOADER);

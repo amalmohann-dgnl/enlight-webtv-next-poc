@@ -83,9 +83,6 @@ class PlayerErrorServices {
                     await this.firePlayerException(ErrorConfigurationType.PLAYBACK_FORMAT, LogLevel.WARNING, errorInfo);
                     break;
                 case SMILExceptionResponse.CONCURRENCY_LIMIT_VOILATION:
-                    if (IS_ANDROID) {
-                        ANDROID.releaseExoPlayer();
-                    }
                     await this.firePlayerException(ErrorConfigurationType.PLAYBACK_CONCURRENCY, LogLevel.WARNING, errorInfo);
                     break;
                 case SMILExceptionResponse.LICENSE_NOT_GRANTED:

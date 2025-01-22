@@ -81,11 +81,6 @@ class DRMServices {
         }
 
         //remove sensitive data if prod
-        if (BUILD_TYPE === BuildType.Prod) {
-            playbackData.authorization = '';
-            playbackData.mpxAccount = '';
-            playbackData.licenseServerUrl = {} as LicenseServerUrl;
-        }
         // Register a listener for network responses
         if (playerRef?.getNetworkingEngine?.()?.registerResponseFilter) {
             playerRef.getNetworkingEngine().registerResponseFilter((_type: any, response: any) => {

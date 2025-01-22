@@ -1,3 +1,5 @@
+'use client'
+
 import axios, { InternalAxiosRequestConfig, AxiosResponse, AxiosError, AxiosInstance } from 'axios';
 // import axiosRetry from 'axios-retry';
 // import { LogglyServices } from '@enlight-webtv/analytics-services';

@@ -149,7 +149,7 @@ class PlayerControlsActionServices {
         const player = getPlayerInstance();
         //play or pause according to the player state
         if (IS_ANDROID) {
-            ANDROID.handlePlayPause();
+            // ANDROID.handlePlayPause();
         } else {
             player?.isPlaying?.() ? this.playerPause() : this.playerPlay();
         }
@@ -170,7 +170,7 @@ class PlayerControlsActionServices {
         const player = getPlayerInstance();
         // seek the player
         const seekPosition = contentType === PlaybackType.LIVE ? position + playerCurrentTimeOffset : position;
-        IS_ANDROID ? ANDROID.seekTo(seekPosition) : player?.seek(seekPosition);
+         player?.seek(seekPosition);
         //send Analytics event
         sendSeekEvent();
     };
@@ -204,7 +204,7 @@ class PlayerControlsActionServices {
         const nextEpisodePlaybackData = { ...getPlaybackVideoData() };
         playerContext?.PlayerControls?.resetPlayerControls?.();
 
-        IS_ANDROID ? await ANDROID.releaseExoPlayer() : await unloadPlayerVideo();
+        await unloadPlayerVideo();
         //check if next or previous episode
         const newEpisode = action === EpisodeActions.NEXT ? nextEpisodeData : ({} as Content);
 
@@ -358,9 +358,7 @@ class PlayerControlsActionServices {
         const selectedQualityKey = validID ? key : 'auto';
 
         //check if android or web player
-        if (IS_ANDROID) {
-            ANDROID.setVideoQuality(selectedQualityValue);
-        } else {
+        if (!IS_ANDROID) {
             validID ? player.setVideoQuality(selectedQualityValue, false) : player.setVideoQualityAuto();
         }
         //return the selected audio
@@ -417,17 +415,12 @@ class PlayerControlsActionServices {
             if (validID) {
                 return id;
             }
-            return IS_ANDROID ? JSON.parse(ANDROID.getCurrentAudioTrack()).id : player.getAudio().id;
+            return  player.getAudio().id;
         })();
 
-        //check if android or web player
-        if (IS_ANDROID) {
-            //set the player Audio with video Audio with id if passed for android
-            validID ? ANDROID.setAudio(selectedAudio) : null;
-        } else {
-            //set the player Audio with video Audio with id if passed for web player
-            validID ? player.setAudio(id) : null;
-        }
+
+        //set the player Audio with video Audio with id if passed for web player
+        validID ? player.setAudio(id) : null;
 
         //return the selected audio
         return selectedAudio;

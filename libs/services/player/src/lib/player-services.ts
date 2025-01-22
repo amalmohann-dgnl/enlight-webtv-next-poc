@@ -329,9 +329,7 @@ class PlayerServices {
             setPlayerStatusData({ ...getPlayerStatusData(), ...playerStatusData });
 
             //set player configuration
-            if (IS_ANDROID) {
-                ANDROID.setPlayerConfiguration(JSON.stringify(playerAdditionalConfig));
-            } else {
+
                 if (player) {
                     const defaultPlayerConfig = getDVPDefaultConfig();
                     //setting the drm protection + configuration update
@@ -400,7 +398,6 @@ class PlayerServices {
                     //ebvs check, playback data and mux update.
                     setEBVSCheckStartTime();
                 }
-            }
         } else {
             mapAndThrowSMILError(SMILExceptionResponse.DEFAULT);
         }
@@ -430,7 +427,7 @@ class PlayerServices {
 
         // check EBVS
         if (checkForEBVS) {
-            const ebvsPlayerState = IS_ANDROID ? ANDROID.getExoPlayerState().toUpperCase() : playerState;
+            const ebvsPlayerState = playerState;
             const ebvsStartTime = getEBVSCheckStartTime();
             checkUserInitiatedEBVS(ebvsStartTime, ebvsPlayerState);
         }

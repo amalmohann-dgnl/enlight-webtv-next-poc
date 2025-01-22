@@ -81,9 +81,9 @@ const constructAppParameters = (trackingId: string, values: Partial<AppParameter
     const appMetaData = getAppMetaData();
     const appParameters: Partial<AppParameters> = {
         ...defaultAppParameters,
-        an: appMetaData.appName,
+        an: 'appMetaData.appName',
         av: getAppVersionWithPrefix(appMetaData.appVersion),
-        aid: appMetaData.appIdentifier,
+        aid: 'appMetaData.appIdentifier',
         tid: trackingId,
         ...values,
     };
