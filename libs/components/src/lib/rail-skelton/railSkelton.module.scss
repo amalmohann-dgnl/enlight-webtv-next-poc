@@ -1,0 +1,51 @@
+.skeletonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.skeletonThumbnail {
+  position: relative;
+  border-radius: 7px;
+  overflow: hidden;
+  background-color: var(--background-color, #e0e0e0);
+}
+
+.skeletonTopStrip {
+  background: linear-gradient(
+    to right,
+    var(--gradient-bg-color, #f5f5f5),
+    rgba(255, 255, 255, 0)
+  );
+  opacity: 0.9;
+}
+
+.skeletonTypeIcon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border-radius: 7px;
+  background: linear-gradient(
+    to right,
+    var(--gradient-bg-color, #f5f5f5),
+    rgba(255, 255, 255, 0)
+  );
+  opacity: 0.9;
+}
+
+.skeletonTitle {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .line {
+    background: linear-gradient(
+      to right,
+      var(--gradient-bg-color, #f5f5f5),
+      rgba(255, 255, 255, 0)
+    );
+    opacity: 0.9;
+    border-radius: 3px;
+  }
+}

@@ -2,3 +2,6 @@
 export { default as Spinner } from './lib/spinner';
 export { default as CardSkelton } from './lib/card-skelton';
 export { default as Card } from './lib/card';
+export { default as Rail } from './lib/rail';
+export { default as TextBox } from './lib/text-box';
+export { default as RailSkeltonLoader } from './lib/rail-skelton';

@@ -1,0 +1,34 @@
+// @import '../../styles/variables';
+// @import '../../styles/mixins';
+
+.textBoxContainer {
+  position: relative;
+  overflow: hidden;
+  padding-left: var(--padding-left);
+  padding-right: var(--padding-right);
+  height: var(--line-height);
+  background-color: transparent;
+
+  &--highlight {
+    background-color: var(--highlight-color);
+  }
+}
+
+.textBox {
+  font-size: var(--font-size);
+  color: var(--font-color);
+  font-family: var(--font-face);
+  letter-spacing: var(--letter-spacing);
+  text-align: var(--text-align);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-height: var(--line-height);
+  display: -webkit-box;
+  -webkit-line-clamp: var(--max-lines);
+  -webkit-box-orient: vertical;
+
+  &--scrollable {
+    white-space: nowrap;
+  }
+}
