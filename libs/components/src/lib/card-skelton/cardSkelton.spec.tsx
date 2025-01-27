@@ -1,10 +1,10 @@
 import React from 'react';
+import CardSkelton from './../card-skelton';
 import { render } from '@testing-library/react';
-import Spinner from './../spinner';
 
-describe('Spinner', () => {
+describe('CardSkelton', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Spinner />);
+    const { baseElement } = render(<CardSkelton />);
     expect(baseElement).toBeTruthy();
   });
 });
