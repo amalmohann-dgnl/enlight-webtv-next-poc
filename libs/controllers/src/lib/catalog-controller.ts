@@ -19,32 +19,13 @@ const {
     getPageConfig,
 } = configurationUtilities;
 // //import services
-const { getChannelData, getComponentData, destroy: destroyContentService } = new ContentService();
-const { getFavourites, destroy: destroyProfileServices } = new ProfileServices();
+const { getChannelData, getComponentData } = new ContentService();
+const { getFavourites  } = new ProfileServices();
 const { getRecentlyWatched, setRecentlyWatchingContents } = new PlayerContinueWatchingServices();
 
-class CatalogPageController {
-    static instance: CatalogPageController | null;
-
-    constructor(create = false) {
-        if (create) this.destroy();
-        if (CatalogPageController.instance) {
-            return CatalogPageController.instance;
-        }
-        CatalogPageController.instance = this;
-    }
-
-    destroy() {
-        if (CatalogPageController.instance === this) {
-            CatalogPageController.instance = null;
-            destroyContentService();
-            destroyProfileServices();
-        }
-    }
 
     /**
      * @name CatalogPageDataProvider
-     * @param page - Instance of CatalogPage Page
      * @type function
      * @description This function will provide the data required to populate the CatalogPage page as well as the
      * contentful configurations.
@@ -52,7 +33,7 @@ class CatalogPageController {
      *
      * @author alwin-baby
      */
-    catalogPageDataProvider = async (page: any, route: Routes, catalogConfig?: Page) => {
+    export const catalogPageDataProvider = async ( route: Routes, catalogConfig?: Page) => {
         let config: Page | undefined;
         let data: any;
         let isFavourite = false;
@@ -90,11 +71,9 @@ class CatalogPageController {
         if (isFavourite) {
             const favouritesData = await retrieveFavourites();
             data = isValidValue(favouritesData) ? [favouritesData] : [];
-            page.pageConfig = config ?? {};
-            page._data = data;
-        } else if (page._data.length <= 0) {
+        } else {
             const fetchData: any[] = (config?.components as PageComponent[]).map((component: PageComponent) =>
-                this.getDataBasedOnRailType(
+                getDataBasedOnRailType(
                     component.type as unknown as ComponentStyleType,
                     component.cache,
                     component.contents?.[0] ?? ({} as ComponentData),
@@ -103,9 +82,7 @@ class CatalogPageController {
             data = await promiseAllSettled(fetchData);
         }
 
-        //setting the configuration directly to the page if data is empty
-        page._data.length === 0 && (page._data = data ?? []);
-        page.pageConfig = config ?? ({} as Page);
+        return [data ?? [], config ?? ({} as Page)]
     };
 
     /**
@@ -115,11 +92,11 @@ class CatalogPageController {
      *
      * @author amalmohann
      */
-    preFetchHomepageContents = () => {
+    export const preFetchHomepageContents = () => {
         const config: Page | undefined = getHomePageConfig();
         (config?.components as PageComponent[]).forEach((component: PageComponent) => {
             if (component.cache !== CacheValue.NEVER) {
-                this.getDataBasedOnRailType(
+                getDataBasedOnRailType(
                     component.type as unknown as ComponentStyleType,
                     component.cache,
                     component.contents?.[0] ?? ({} as ComponentData),
@@ -144,7 +121,7 @@ class CatalogPageController {
      *
      * @author amalmohann
      */
-    getDataBasedOnRailType = async (
+    export const getDataBasedOnRailType = async (
         railType: ComponentStyleType | PageComponentType,
         cache: CacheValue | string,
         componentData?: ComponentData,
@@ -198,6 +175,3 @@ class CatalogPageController {
         }
         return result;
     };
-}
-
-export default CatalogPageController;

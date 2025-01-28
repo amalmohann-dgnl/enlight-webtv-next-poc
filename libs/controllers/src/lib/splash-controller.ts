@@ -42,7 +42,6 @@ import {
   errorUtilities,
   htmlUtilities,
   projectUtilities,
-  splashUtilities,
   storageUtilities,
   timeUtilities,
 } from '@enlight-webtv/utilities';
@@ -51,7 +50,7 @@ import { setupBasicApplication, setup } from './application-setup-controller';
 import { AxiosResponse } from 'axios';
 import { redirect } from 'next/navigation';
 import { PlayerContinueWatchingServices } from '@enlight-webtv/player-services';
-import CatalogPageController from './catalog-controller';
+import { preFetchHomepageContents } from './catalog-controller';
 
 const { getAppMetaData } = appUtilities;
 const { has24HoursPassed } = timeUtilities;
@@ -86,8 +85,6 @@ const { refreshToken, getIsAuthenticated } = new AuthServices();
 const { getServerTime, fetchEntries } = new ConfigurationService();
 const { checkInternetConnection } = new NetworkConnectivityServices();
 const { setRecentlyWatchingContents } = new PlayerContinueWatchingServices();
-
-const { preFetchHomepageContents } = new CatalogPageController();
 
 /**
  * @name _prepareRoute
@@ -279,7 +276,7 @@ export const _getUserAccountData = async () => {
   const [isSubscribed] = await Promise.all([
     _isSubscribed(),
     setRecentlyWatchingContents(),
-    preFetchHomepageContents(),
+    // preFetchHomepageContents(),
   ]);
   //set the user subscribed data
   setState(StorageKeys.IS_USER_SUBSCRIBED, isSubscribed);
