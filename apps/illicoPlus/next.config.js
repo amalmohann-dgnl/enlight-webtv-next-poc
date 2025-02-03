@@ -1,5 +1,4 @@
 //@ts-check
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { composePlugins, withNx } = require('@nx/next');
 
@@ -16,7 +15,15 @@ const nextConfig = {
   },
   typescript: {
     ignoreBuildErrors: true,
-  }
+  },
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'core-js': require.resolve('core-js'),
+      'regenerator-runtime': require.resolve('regenerator-runtime'),
+    };
+    return config;
+  },
 };
 
 const plugins = [
