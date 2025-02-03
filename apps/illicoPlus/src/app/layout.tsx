@@ -7,6 +7,14 @@ export default function RootLayout({
   }) {
   return (
     <html lang="en">
+      <head>
+        <script type="text/javascript">
+            {`//dplayer special handling
+            if (global === undefined) {
+              var global = window;
+            }`}
+        </script>
+      </head>
       <body>{children}</body>
     </html>
   );
