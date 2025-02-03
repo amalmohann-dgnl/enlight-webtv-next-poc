@@ -76,13 +76,15 @@ const Rail = ({
   }, [theme]);
 
   useEffect(() => {
-    const parsedContent = data?.content?.map((item) =>
-      getTimeDependantProperties(item, cardDimensions, {
-        _railHandlingType: railHandlingType,
-        _progressData: progressData,
-      })
-    );
-    setParsedData(parsedContent || []);
+    // const parsedContent = data?.content?.map((item) =>
+    //   getTimeDependantProperties(item, cardDimensions, {
+    //     _railHandlingType: railHandlingType,
+    //     _progressData: progressData,
+    //   })
+    // );
+    console.log('#data', data);
+
+    setParsedData(data.content || []);
     setShowSkeletonLoader(false);
   }, [data, cardDimensions, railHandlingType, progressData]);
 
@@ -97,12 +99,18 @@ const Rail = ({
 
   const cellRenderer = ({ columnIndex, style, key }) => {
     const item = parsedData[columnIndex] || skeletonCards[columnIndex];
+    const thumbnail = item?.images?.[0]?.url;
+
+    console.log('#item', item?.images?.[0]);
+
     return (
       <div key={key} style={style} className="rail-card">
       <Card
         data={item}
         onClick={() => handleCardClick(item)}
         dimensions={cardDimensions}
+        thumbnailSrc={thumbnail}
+        title={item.title}
       />
     </div>
     );
