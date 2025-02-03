@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useMemo, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { List } from 'react-virtualized';
+import { Grid, List } from 'react-virtualized';
 import {
   CardType,
   ItemSize,
@@ -94,16 +94,17 @@ const Rail = ({
     handleEnterPressOnCards?.(item);
   };
 
-  const rowRenderer = ({ index, key, style }) => {
-    const item = parsedData[index] || skeletonCards[index];
+
+  const cellRenderer = ({ columnIndex, style, key }) => {
+    const item = parsedData[columnIndex] || skeletonCards[columnIndex];
     return (
       <div key={key} style={style} className="rail-card">
-        <Card
-          data={item}
-          onClick={() => handleCardClick(item)}
-          dimensions={cardDimensions}
-        />
-      </div>
+      <Card
+        data={item}
+        onClick={() => handleCardClick(item)}
+        dimensions={cardDimensions}
+      />
+    </div>
     );
   };
 
@@ -129,15 +130,16 @@ const Rail = ({
         />
       )}
       <div className="rail-list">
-        <List
-          ref={listRef}
-          width={window.innerWidth}
-          height={cardDimensions.height + 20} // Adjust as needed
-          rowCount={parsedData.length || skeletonCards.length}
-          rowHeight={cardDimensions.height + cardDimensions.marginRight}
-          rowRenderer={rowRenderer}
-          overscanRowCount={5}
-        />
+      <Grid
+      height={cardDimensions.height}
+      columnCount={parsedData.length || skeletonCards.length}
+      columnWidth={cardDimensions.width + 20}
+      rowCount={1}
+      rowHeight={cardDimensions.height + 20}
+      cellRenderer={cellRenderer}
+      width={window.innerWidth}
+    />
+
       </div>
     </div>
   );

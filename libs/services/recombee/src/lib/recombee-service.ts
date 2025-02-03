@@ -75,9 +75,9 @@ class RecombeeService {
                 //@ts-ignore
 
             // Throw error if recombee public token not found
-            if (typeof publicToken !== 'string' || !publicToken) {
-                throw new Error(`Invalid recombee token ${publicToken}`);
-            }
+            // if (typeof publicToken !== 'string' || !publicToken) {
+            //     throw new Error(`Invalid recombee token ${publicToken}`);
+            // }
 
             this.#publicToken = publicToken;
             this.#baseURL = baseURL;
@@ -297,7 +297,8 @@ class RecombeeService {
         // Send the constructed query to recombee
         const response = await this.#sendQuery(httpRequestMethod, finalBaseURL, requestPathSegment, requestParams);
 
-        const responseData: RecombeeRecommendationResponse = response?.data;
+      const responseData: RecombeeRecommendationResponse = response?.data;
+      return;
 
         if (!isValidValue(responseData)) throw new Error('Unable to retreive data');
 
@@ -514,12 +515,12 @@ class RecombeeService {
             // Construct the final url
             const finalRequstURL = baseURL + signedRequestPathSegment;
 
-            const data = await axios.post(
-                finalRequstURL,
-                { ...requestBody },
-                { headers: { Accept: 'application/json', 'Content-Type': 'application/json' } },
-            );
-            return data;
+            // const data = await axios.post(
+            //     finalRequstURL,
+            //     { ...requestBody },
+            //     { headers: { Accept: 'application/json', 'Content-Type': 'application/json' } },
+            // );
+            return {};
         } else {
             throw new Error('Recombee GET requests not yet handled');
         }
@@ -548,7 +549,7 @@ class RecombeeService {
             url += '&frontend_sign=' + HMAC_Signature;
             return url;
         } else {
-            throw new Error('Unable to sign URL');
+            // throw new Error('Unable to sign URL');
         }
     }
 
