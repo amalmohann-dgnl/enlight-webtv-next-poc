@@ -297,7 +297,7 @@ class RecombeeService {
         // Send the constructed query to recombee
         const response = await this.#sendQuery(httpRequestMethod, finalBaseURL, requestPathSegment, requestParams);
 
-      const responseData: RecombeeRecommendationResponse = response?.data;
+      const responseData: RecombeeRecommendationResponse = {} as RecombeeRecommendationResponse;
       return;
 
         if (!isValidValue(responseData)) throw new Error('Unable to retreive data');
@@ -535,7 +535,7 @@ class RecombeeService {
      * @throws {Error} - If Signature process fails
      * @author tonyaugustine
      */
-    #signURL(requestPath: string): string {
+    #signURL(requestPath: string): string | any {
         // Append database id to the request path
         let url = '/' + this.#databaseID + requestPath;
 

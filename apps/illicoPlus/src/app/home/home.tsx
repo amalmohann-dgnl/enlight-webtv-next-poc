@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { List } from 'react-virtualized';
 import { Rail, Spinner } from '@enlight-webtv/ui-components';
 import styles from './home.module.scss';
@@ -19,7 +19,7 @@ const { getCardDimension } = cardUtilities;
 export function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
-  const [config, setConfig] = useState({});
+  const [config, setConfig] = useState({} as any);
 
   useEffect(() => {
     async function fetchData() {
@@ -39,7 +39,7 @@ export function Home() {
    * This helper iterates over the page components configuration and
    * returns an array of Rail components based on the provided data.
    */
-  const appendRailsToCatalog = (data, pageComponents, startIndex, endIndex) => {
+  const appendRailsToCatalog = (data: any, pageComponents: any, startIndex:number, endIndex:number) => {
     if (startIndex <= pageComponents.length) {
       endIndex = endIndex >= pageComponents.length ? pageComponents.length : endIndex;
       const rails = [];
@@ -65,8 +65,7 @@ export function Home() {
                 railHandlingType={null}
                 useSkeletonLoader={false}
                 progressData={undefined}
-                handleEnterPressOnCards={undefined}
-              />
+                handleEnterPressOnCards={undefined} hoverTarget={undefined} recommendationID={undefined}              />
             );
           }
         }
@@ -85,7 +84,7 @@ export function Home() {
   }, [data, config]);
 
   // The rowRenderer function is used by the react-virtualized List to render each rail.
-  const rowRenderer = ({ index, key, style }) => {
+  const rowRenderer = ({ index, key, style }: any) => {
     const rail = rails[index];
     return (
       <div key={key} style={style}>
