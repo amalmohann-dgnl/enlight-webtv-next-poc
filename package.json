@@ -21,6 +21,7 @@
     "axios": "^1.7.9",
     "axios-retry": "^4.5.0",
     "babel-loader": "^9.2.1",
+    "core-js": "^3.40.0",
     "diagnal-web-player": "^1.1.4",
     "jssha": "^3.3.1",
     "next": "^15.1.4",
@@ -29,6 +30,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-virtualized": "^9.22.6",
+    "regenerator-runtime": "^0.14.1",
     "ua-parser-js": "^2.0.0",
     "uuid": "^11.0.5"
   },
