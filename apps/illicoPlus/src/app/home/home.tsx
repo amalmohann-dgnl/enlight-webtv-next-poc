@@ -135,15 +135,8 @@ export function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const [config, setConfig] = useState({} as any);
-  const { ref, focusKey, focusSelf, focused } = useFocusable({ focusKey: 'HOME', trackChildren: true, focusable: true,
-    saveLastFocusedChild: false,
-    autoRestoreFocus: true,
-    isFocusBoundary: false,
-  });
-  
-    useEffect(() => {
-      focusSelf();
-    }, [focusSelf]);
+  const { ref, focusKey, focusSelf, focused } = useFocusable({ focusKey: 'HOME', trackChildren: true, focusable: true});
+
 
     useEffect(() => {
       if (focused) {
@@ -188,10 +181,11 @@ export function Home() {
 
   const rails = useMemo(() => {
     if (isValidValue(data) && isValidValue(config)) {
+      focusSelf();
       return appendRailsToCatalog(data, config.components);
     }
     return [];
-  }, [data, config]);
+  }, [data, config, focusSelf]);
 
   if (isLoading) return <Spinner />;
 
