@@ -1,9 +1,6 @@
 import { ItemSize, CardDimensions, Project, LabelTag, TagData, RailContentModel } from '@enlight-webtv/models';
 import { theme } from '@enlight-webtv/themes';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-ignore
-const projectName: Project = Project.VIDEOTRON;
 
 const cardBaseConfig = {
     edgeRadius: 7,
@@ -669,77 +666,77 @@ const getCardDimension = (size: ItemSize, orientation: number): CardDimensions =
         switch (size) {
             case ItemSize.small:
                 //Add card size for small cards to export the correct dimensions.
-                return { ...cardBaseConfig.sizes.default.landscape.small, ...cardBaseConfig.sizes[projectName].landscape?.small };
+                return { ...cardBaseConfig.sizes.default.landscape.small, ...cardBaseConfig.sizes[Project.VIDEOTRON].landscape?.small };
             case ItemSize.medium:
-                return { ...cardBaseConfig.sizes.default.landscape.medium, ...cardBaseConfig.sizes[projectName].landscape.medium };
+                return { ...cardBaseConfig.sizes.default.landscape.medium, ...cardBaseConfig.sizes[Project.VIDEOTRON].landscape.medium };
             case ItemSize.large:
-                return { ...cardBaseConfig.sizes.default.landscape.extraLarge, ...cardBaseConfig.sizes[projectName].landscape.extraLarge };
+                return { ...cardBaseConfig.sizes.default.landscape.extraLarge, ...cardBaseConfig.sizes[Project.VIDEOTRON].landscape.extraLarge };
             case ItemSize.fill_width:
                 //Add card size for fill_width cards to export the correct dimensions.
-                return { ...cardBaseConfig.sizes.default.landscape.fillWidth, ...cardBaseConfig.sizes[projectName].landscape.fillWidth };
+                return { ...cardBaseConfig.sizes.default.landscape.fillWidth, ...cardBaseConfig.sizes[Project.VIDEOTRON].landscape.fillWidth };
             case ItemSize.fullscreen:
                 //Add card size for fullscreen cards to export the correct dimensions.
-                return { ...cardBaseConfig.sizes.default.landscape.large, ...cardBaseConfig.sizes[projectName].landscape.large };
+                return { ...cardBaseConfig.sizes.default.landscape.large, ...cardBaseConfig.sizes[Project.VIDEOTRON].landscape.large };
             default:
-                return { ...cardBaseConfig.sizes.default.landscape.medium, ...cardBaseConfig.sizes[projectName].landscape.medium };
+                return { ...cardBaseConfig.sizes.default.landscape.medium, ...cardBaseConfig.sizes[Project.VIDEOTRON].landscape.medium };
         }
     } else if (orientation > 2.2) {
         switch (size) {
             case ItemSize.small:
                 //Add card size for small cards to export the correct dimensions.
-                return { ...cardBaseConfig.sizes.default.landscape.small, ...cardBaseConfig.sizes[projectName].landscape?.small };
+                return { ...cardBaseConfig.sizes.default.landscape.small, ...cardBaseConfig.sizes[Project.VIDEOTRON].landscape?.small };
             case ItemSize.medium:
-                return { ...cardBaseConfig.sizes.default.landscape.medium, ...cardBaseConfig.sizes[projectName].landscape.medium };
+                return { ...cardBaseConfig.sizes.default.landscape.medium, ...cardBaseConfig.sizes[Project.VIDEOTRON].landscape.medium };
             case ItemSize.large:
-                return { ...cardBaseConfig.sizes.default.landscape.large, ...cardBaseConfig.sizes[projectName].landscape.large };
+                return { ...cardBaseConfig.sizes.default.landscape.large, ...cardBaseConfig.sizes[Project.VIDEOTRON].landscape.large };
             case ItemSize.fill_width:
                 //Add card size for fill_width cards to export the correct dimensions.
-                return { ...cardBaseConfig.sizes.default.landscape.fillWidth, ...cardBaseConfig.sizes[projectName].landscape.fillWidth };
+                return { ...cardBaseConfig.sizes.default.landscape.fillWidth, ...cardBaseConfig.sizes[Project.VIDEOTRON].landscape.fillWidth };
             case ItemSize.fullscreen:
                 //Add card size for fullscreen cards to export the correct dimensions.
-                return { ...cardBaseConfig.sizes.default.landscape.large, ...cardBaseConfig.sizes[projectName].landscape.large };
+                return { ...cardBaseConfig.sizes.default.landscape.large, ...cardBaseConfig.sizes[Project.VIDEOTRON].landscape.large };
             default:
-                return { ...cardBaseConfig.sizes.default.landscape.medium, ...cardBaseConfig.sizes[projectName].landscape.medium };
+                return { ...cardBaseConfig.sizes.default.landscape.medium, ...cardBaseConfig.sizes[Project.VIDEOTRON].landscape.medium };
         }
     }
     if (orientation > 1) {
         switch (size) {
             case ItemSize.small:
                 //Add card size for small cards to export the correct dimensions.
-                return { ...cardBaseConfig.sizes.default.landscape.small, ...cardBaseConfig.sizes[projectName].landscape?.small };
+                return { ...cardBaseConfig.sizes.default.landscape.small, ...cardBaseConfig.sizes[Project.VIDEOTRON].landscape?.small };
             case ItemSize.medium:
-                return { ...cardBaseConfig.sizes.default.landscape.medium, ...cardBaseConfig.sizes[projectName].landscape.medium };
+                return { ...cardBaseConfig.sizes.default.landscape.medium, ...cardBaseConfig.sizes[Project.VIDEOTRON].landscape.medium };
             case ItemSize.large:
-                return { ...cardBaseConfig.sizes.default.landscape.large, ...cardBaseConfig.sizes[projectName].landscape.large };
+                return { ...cardBaseConfig.sizes.default.landscape.large, ...cardBaseConfig.sizes[Project.VIDEOTRON].landscape.large };
             case ItemSize.fill_width:
                 //Add card size for fill_width cards to export the correct dimensions.
-                return { ...cardBaseConfig.sizes.default.landscape.fillWidth, ...cardBaseConfig.sizes[projectName].landscape.fillWidth };
+                return { ...cardBaseConfig.sizes.default.landscape.fillWidth, ...cardBaseConfig.sizes[Project.VIDEOTRON].landscape.fillWidth };
             case ItemSize.fullscreen:
                 //Add card size for fullscreen cards to export the correct dimensions.
-                return { ...cardBaseConfig.sizes.default.landscape.large, ...cardBaseConfig.sizes[projectName].landscape.large };
+                return { ...cardBaseConfig.sizes.default.landscape.large, ...cardBaseConfig.sizes[Project.VIDEOTRON].landscape.large };
             default:
-                return { ...cardBaseConfig.sizes.default.landscape.medium, ...cardBaseConfig.sizes[projectName].landscape.medium };
+                return { ...cardBaseConfig.sizes.default.landscape.medium, ...cardBaseConfig.sizes[Project.VIDEOTRON].landscape.medium };
         }
     } else if (orientation < 1) {
         switch (size) {
             case ItemSize.small:
                 //Add card size for small cards to export the correct dimensions.
-                return { ...cardBaseConfig.sizes.default.portrait.small, ...cardBaseConfig.sizes[projectName].portrait.small };
+                return { ...cardBaseConfig.sizes.default.portrait.small, ...cardBaseConfig.sizes[Project.VIDEOTRON].portrait.small };
             case ItemSize.medium:
-                return { ...cardBaseConfig.sizes.default.portrait.medium, ...cardBaseConfig.sizes[projectName].portrait.medium };
+                return { ...cardBaseConfig.sizes.default.portrait.medium, ...cardBaseConfig.sizes[Project.VIDEOTRON].portrait.medium };
             case ItemSize.large:
-                return { ...cardBaseConfig.sizes.default.portrait.large, ...cardBaseConfig.sizes[projectName].portrait.large };
+                return { ...cardBaseConfig.sizes.default.portrait.large, ...cardBaseConfig.sizes[Project.VIDEOTRON].portrait.large };
             case ItemSize.fill_width:
                 //Add card size for fill_width cards to export the correct dimensions.
-                return { ...cardBaseConfig.sizes.default.portrait.large, ...cardBaseConfig.sizes[projectName].portrait.large };
+                return { ...cardBaseConfig.sizes.default.portrait.large, ...cardBaseConfig.sizes[Project.VIDEOTRON].portrait.large };
             case ItemSize.fullscreen:
                 //Add card size for fullscreen cards to export the correct dimensions.
-                return { ...cardBaseConfig.sizes.default.portrait.large, ...cardBaseConfig.sizes[projectName].portrait.large };
+                return { ...cardBaseConfig.sizes.default.portrait.large, ...cardBaseConfig.sizes[Project.VIDEOTRON].portrait.large };
             default:
-                return { ...cardBaseConfig.sizes.default.portrait.medium, ...cardBaseConfig.sizes[projectName].portrait.medium };
+                return { ...cardBaseConfig.sizes.default.portrait.medium, ...cardBaseConfig.sizes[Project.VIDEOTRON].portrait.medium };
         }
     } else {
-        return { ...cardBaseConfig.sizes.default.square.medium, ...cardBaseConfig.sizes[projectName].square.medium };
+        return { ...cardBaseConfig.sizes.default.square.medium, ...cardBaseConfig.sizes[Project.VIDEOTRON].square.medium };
     }
 };
 /**

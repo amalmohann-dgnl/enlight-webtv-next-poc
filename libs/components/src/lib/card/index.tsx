@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './card.module.scss';
 import { CardDimensions, ItemSize } from '@enlight-webtv/models';
 import { cardUtilities } from '@enlight-webtv/utilities';
@@ -7,52 +7,43 @@ const { getCardDimension } = cardUtilities;
 
 /**
  * Card Component
- * @description Mimics the LightningJS Card and CardSkelton behavior using React 19.
+ * @description Mimics the LightningJS Card behavior using React 19.
  */
 const Card = ({
   orientation = 1.2,
   edgeRadius = 10,
   size = ItemSize.medium,
   fallbackColor = 'grey',
-  shadows = {},
-  onPress = () => {},
-  title = 'hello mr perera',
+  onClick = () => {},
+  title = '',
   showTitle = true,
   maxTitleLines = 1,
   thumbnailSrc = 'https://placehold.co/600x400',
   fallbackImageSrc = '',
-  topLabel = 'live',
-  showTopLabel = true,
-  topLabelType = 'important',
-  showTypeLogo = true,
+  topLabel = '',
+  showTopLabel = false,
+  topLabelType = 'default',
+  showTypeLogo = false,
   typeLogoSrc = '',
-  showCenterIcon = true,
+  showCenterIcon = false,
   centerIconUrl = '',
-  showProgressBar = true,
-  progress = 0.7,
+  showProgressBar = false,
+  progress = 0,
   isFocused = false,
   focusScale = 1.05,
+  dimensions = {},
+  style = {},
 }) => {
-  const [cardDimensions, setCardDimensions] = useState({} as CardDimensions);
-
-  const [titleStyles, setTitleStyles] = useState({
-    height: 40,
-    width: 300,
-    y: 0,
-  });
+  const [cardDimensions, setCardDimensions] = useState(dimensions);
 
   // Update card dimensions when size or orientation changes
   useEffect(() => {
-    const dimensions = getCardDimension(size, orientation);
-    setCardDimensions(dimensions);
-    setTitleStyles((prev) => ({
-      ...prev,
-      y: dimensions.height + 10,
-      width: dimensions.width - 10,
-    }));
-  }, [size, orientation]);
+    if (!dimensions.width || !dimensions.height) {
+      setCardDimensions(getCardDimension(size, orientation));
+    }
+  }, [size, orientation, dimensions]);
 
-  // Focused styles
+  // Styles when focused
   const focusedStyles = useMemo(() => {
     return isFocused
       ? {
@@ -66,23 +57,25 @@ const Card = ({
     <div
       className="card"
       style={{
-        ...cardDimensions,
         ...focusedStyles,
+        ...style,
         position: 'relative',
         backgroundColor: fallbackColor,
         borderRadius: `${cardDimensions.borderRadius}px`,
         overflow: 'hidden',
         cursor: 'pointer',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+        width: `${cardDimensions.width}px`,
+        height: `${cardDimensions.height}px`,
+        flex: '0 0 auto', // Prevent shrinking for horizontal alignment
       }}
-      onClick={onPress}
+      onClick={onClick}
     >
       {/* Thumbnail */}
       <div
-        className="card-thumbnail"
         style={{
           width: '100%',
-          height: '70%',
+          height: '100%',
           backgroundImage: `url(${thumbnailSrc || fallbackImageSrc})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
@@ -90,7 +83,7 @@ const Card = ({
       >
         {/* Top Label */}
         {showTopLabel && (
-          <div className="card-top-label" data-type={topLabelType}>
+          <div className={`card-top-label ${topLabelType}`}>
             {topLabel}
           </div>
         )}
@@ -131,18 +124,20 @@ const Card = ({
       </div>
 
       {/* Title */}
-      {showTitle && (
+      {showTitle && title && (
         <div
           className="card-title"
           style={{
             position: 'absolute',
-            top: `${titleStyles.y}px`,
-            width: `${titleStyles.width}px`,
+            bottom: '10px',
+            width: '100%',
+            padding: '5px 10px',
             whiteSpace: maxTitleLines > 1 ? 'normal' : 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             color: '#fff',
             fontSize: '16px',
+            background: 'rgba(0,0,0,0.6)',
           }}
         >
           {title}
@@ -155,11 +150,12 @@ const Card = ({
           className="card-progress-bar"
           style={{
             position: 'absolute',
-            bottom: '10px',
+            bottom: '5px',
             left: '10px',
-            width: `${cardDimensions.width - 20}px`,
+            width: `calc(100% - 20px)`,
             height: '5px',
             backgroundColor: '#555',
+            borderRadius: '3px',
           }}
         >
           <div
@@ -169,6 +165,7 @@ const Card = ({
               height: '100%',
               backgroundColor: '#ff5722',
               transition: 'width 0.3s ease',
+              borderRadius: '3px',
             }}
           />
         </div>
@@ -176,6 +173,5 @@ const Card = ({
     </div>
   );
 };
-
 
 export default Card;
