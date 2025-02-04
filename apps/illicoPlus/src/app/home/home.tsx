@@ -135,7 +135,7 @@ export function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const [config, setConfig] = useState({} as any);
-  const { ref, focusKey, focusSelf, focused, hasFocusedChild } = useFocusable({ focusKey: 'HOME', trackChildren: true, focusable: true,
+  const { ref, focusKey, focusSelf, focused } = useFocusable({ focusKey: 'HOME', trackChildren: true, focusable: true,
     saveLastFocusedChild: false,
     autoRestoreFocus: true,
     isFocusBoundary: false,

@@ -32,14 +32,6 @@ const Card = ({
 }) => {
   const [cardDimensions, setCardDimensions] = useState(dimensions);
   const { ref, focused } = useFocusable({ focusKey });
-
-  useEffect(() => {
-    if (focused) {
-      console.log(`Card Focus State -> ${focusKey}: ${focused ? 'FOCUSED' : 'NOT FOCUSED'}`);
-    }
-  }, [focused]);
-  
-  
   
 
   useEffect(() => {
