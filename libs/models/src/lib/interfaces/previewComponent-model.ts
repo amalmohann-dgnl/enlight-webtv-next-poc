@@ -129,4 +129,22 @@ export interface PreviewComponentDataNew {
     showSeasonCount?: boolean;
     fromRelatedrail?: boolean;
     previewImageUrl?: string;
+    seasonCountLabel?: string;
+    showActions?: boolean;
+    descriptionWordWrapWidth?: number;
+    mediaId?: string;
+    handlePreviewLeft?: () => void;
+    handlePreviewRight?: () => void;
+    handlePreviewDown?: () => void;
+    handlePreviewUp?: () => void;
+    showSeasonButton?: boolean;
+    seasonText?: string;
+    seasonIconSrc?: string;
+    seasonIconBackgroundColor?: string;
+    showSeasonIcon?: boolean;
+    showRelatedInfo?: boolean;
+    relatedInfoLabel?: string;
+    thumbnailType?: string;
+    thumbnailWidth?: number;
+    thumbnailHeight?: number;
 }
