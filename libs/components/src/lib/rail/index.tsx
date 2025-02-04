@@ -27,7 +27,13 @@ const Rail = ({
   const [parsedData, setParsedData] = useState([]);
   const [showSkeletonLoader, setShowSkeletonLoader] = useState(useSkeletonLoader);
 
-  const { ref, focusKey } = useFocusable({ focusKey: `RAIL-${title}`, autoFocus });
+  const { ref, focusKey, focused } = useFocusable({ focusKey: `RAIL-${title}`, trackChildren: true, });
+
+  useEffect(() => {
+    if (focused) {
+      console.log(`Rail Focus State -> ${focusKey}: ${focused ? 'FOCUSED' : 'NOT FOCUSED'}`);
+    }
+  }, [focused]);
 
   useEffect(() => {
     setRailTheme({ _theme: theme });

@@ -31,7 +31,16 @@ const Card = ({
   style = {},
 }) => {
   const [cardDimensions, setCardDimensions] = useState(dimensions);
-  const { ref, focused, onEnterPress } = useFocusable({ focusKey });
+  const { ref, focused } = useFocusable({ focusKey });
+
+  useEffect(() => {
+    if (focused) {
+      console.log(`Card Focus State -> ${focusKey}: ${focused ? 'FOCUSED' : 'NOT FOCUSED'}`);
+    }
+  }, [focused]);
+  
+  
+  
 
   useEffect(() => {
     if (!dimensions.width || !dimensions.height) {
@@ -65,7 +74,7 @@ const Card = ({
         height: `${cardDimensions.height}px`,
       }}
       onClick={onClick}
-      onKeyPress={(e) => e.key === 'Enter' && onEnterPress()}
+      onKeyDown={(e) =>  e.key === 'Enter' && onEnterPress()}
       tabIndex={0}
     >
       {/* Thumbnail */}

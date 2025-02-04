@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { useFocusable, FocusContext } from '@noriginmedia/norigin-spatial-navigation';
+import { useFocusable, FocusContext, init } from '@noriginmedia/norigin-spatial-navigation';
 import { Rail, Spinner } from '@enlight-webtv/ui-components';
 import styles from './home.module.scss';
 import { ComponentStyleType, ItemSize, Routes } from '@enlight-webtv/models';
@@ -9,12 +9,31 @@ import { commonUtilities } from '@enlight-webtv/utilities';
 
 const { isValidValue } = commonUtilities;
 
+init({
+  debug: false,
+  visualDebug: false
+});
+
 export function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const [config, setConfig] = useState({} as any);
-  const { ref, focusKey, focusSelf } = useFocusable({ focusKey: 'HOME', autoFocus: true });
+  const { ref, focusKey, focusSelf, focused, hasFocusedChild } = useFocusable({ focusKey: 'HOME', trackChildren: true, focusable: true,
+    saveLastFocusedChild: false,
+    autoRestoreFocus: true,
+    isFocusBoundary: false,
+  });
+  
+    useEffect(() => {
+      focusSelf();
+    }, [focusSelf]);
 
+    useEffect(() => {
+      if (focused) {
+        console.log(`Home Focus State -> ${focusKey}: ${focused ? 'FOCUSED' : 'NOT FOCUSED'}`);
+      }
+    }, [focused]);
+  
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
