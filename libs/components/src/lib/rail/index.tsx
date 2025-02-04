@@ -1,4 +1,6 @@
-import React, { useEffect, useState, useMemo } from 'react';
+
+import React, { useEffect, useState } from 'react';
+import { useFocusable, FocusContext } from '@noriginmedia/norigin-spatial-navigation';
 import './rail.module.scss';
 import { ItemSize, Typography } from '@enlight-webtv/models';
 import { cardUtilities, railUtilities } from '@enlight-webtv/utilities';
@@ -19,10 +21,13 @@ const Rail = ({
   data,
   useSkeletonLoader = false,
   handleEnterPressOnCards,
+  autoFocus,
 }) => {
   const [cardDimensions, setCardDimensions] = useState(getCardDimension(itemSize, itemOrientation));
   const [parsedData, setParsedData] = useState([]);
   const [showSkeletonLoader, setShowSkeletonLoader] = useState(useSkeletonLoader);
+
+  const { ref, focusKey } = useFocusable({ focusKey: `RAIL-${title}`, autoFocus });
 
   useEffect(() => {
     setRailTheme({ _theme: theme });
@@ -33,37 +38,28 @@ const Rail = ({
     setShowSkeletonLoader(false);
   }, [data]);
 
-  const skeletonCards = useMemo(() => {
-    return getSkeltonCards(itemSize, cardDimensions, RailSkeletonLoader);
-  }, [itemSize, cardDimensions]);
-
-  const handleCardClick = (item) => {
-    handleEnterPressOnCards?.(item);
-  };
-
   return (
-    <div className="rail">
-      {showComponentTitle && (
-        <TextBox
-          className="rail-title"
-          style={{ color: titleColor }}
-          text={title}
-          typography={Typography.bodyL}
-        />
-      )}
-      <div className="rail-items" style={{display:'flex', gap:10}}>
-        {(parsedData.length ? parsedData : skeletonCards).map((item, index) => (
-          <Card
-            key={index}
-            data={item}
-            onClick={() => handleCardClick(item)}
-            dimensions={cardDimensions}
-            thumbnailSrc={item?.images?.[0]?.url}
-            title={item.title}
-          />
-        ))}
+    <FocusContext.Provider value={focusKey}>
+      <div ref={ref} className={`rail ${showSkeletonLoader ? 'skeleton' : ''}`}>
+        {showComponentTitle && (
+          <TextBox className="rail-title" style={{ color: titleColor }} text={title} typography={Typography.bodyL} />
+        )}
+        <div className="rail-items" style={{ display: 'flex', gap: 10 }}>
+          {(parsedData.length ? parsedData : getSkeltonCards(itemSize, cardDimensions, RailSkeletonLoader)).map((item, index) => (
+            <Card
+              key={index}
+              data={item}
+              onClick={() => handleEnterPressOnCards?.(item)}
+              dimensions={cardDimensions}
+              thumbnailSrc={item?.images?.[0]?.url}
+              title={item.title}
+              focusKey={`CARD-${title}-${index}`}
+              autoFocus={index === 0}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </FocusContext.Provider>
   );
 };
 

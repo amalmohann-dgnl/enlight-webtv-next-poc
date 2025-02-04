@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
+import { useFocusable, FocusContext } from '@noriginmedia/norigin-spatial-navigation';
 import { Rail, Spinner } from '@enlight-webtv/ui-components';
 import styles from './home.module.scss';
 import { ComponentStyleType, ItemSize, Routes } from '@enlight-webtv/models';
@@ -12,6 +13,7 @@ export function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const [config, setConfig] = useState({} as any);
+  const { ref, focusKey, focusSelf } = useFocusable({ focusKey: 'HOME', autoFocus: true });
 
   useEffect(() => {
     async function fetchData() {
@@ -42,6 +44,7 @@ export function Home() {
           itemSize={componentStyle?.itemSize ?? ItemSize.medium}
           itemOrientation={componentStyle?.itemOrientation ?? 1.67}
           useSkeletonLoader={false}
+          autoFocus={index === 0}
         />
       );
     });
@@ -56,7 +59,13 @@ export function Home() {
 
   if (isLoading) return <Spinner />;
 
-  return <div className={styles.container} style={{display:'flex', flexDirection:'column', gap:10, marginLeft: 10, marginTop:10,}}>{rails}</div>;
+  return (
+    <FocusContext.Provider value={focusKey}>
+      <div ref={ref} className={styles.container} style={{ display: 'flex', flexDirection: 'column', gap: 10, marginLeft: 10, marginTop: 10 }}>
+        {rails}
+      </div>
+    </FocusContext.Provider>
+  );
 }
 
 export default Home;

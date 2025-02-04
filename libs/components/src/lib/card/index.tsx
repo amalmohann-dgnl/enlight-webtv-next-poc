@@ -1,14 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { useFocusable } from '@noriginmedia/norigin-spatial-navigation';
 import './card.module.scss';
 import { CardDimensions, ItemSize } from '@enlight-webtv/models';
 import { cardUtilities } from '@enlight-webtv/utilities';
 
 const { getCardDimension } = cardUtilities;
 
-/**
- * Card Component
- * @description Mimics the LightningJS Card behavior using React 19.
- */
 const Card = ({
   orientation = 1.2,
   edgeRadius = 10,
@@ -29,33 +26,32 @@ const Card = ({
   centerIconUrl = '',
   showProgressBar = false,
   progress = 0,
-  isFocused = false,
-  focusScale = 1.05,
+  focusKey,
   dimensions = {},
   style = {},
 }) => {
   const [cardDimensions, setCardDimensions] = useState(dimensions);
+  const { ref, focused, onEnterPress } = useFocusable({ focusKey });
 
-  // Update card dimensions when size or orientation changes
   useEffect(() => {
     if (!dimensions.width || !dimensions.height) {
       setCardDimensions(getCardDimension(size, orientation));
     }
   }, [size, orientation, dimensions]);
 
-  // Styles when focused
   const focusedStyles = useMemo(() => {
-    return isFocused
+    return focused
       ? {
-          transform: `scale(${focusScale})`,
+          transform: 'scale(1.05)',
           boxShadow: '0px 0px 15px rgba(0,0,0,0.3)',
         }
       : {};
-  }, [isFocused, focusScale]);
+  }, [focused]);
 
   return (
     <div
-      className="card"
+      ref={ref}
+      className={`card ${focused ? 'focused' : ''}`}
       style={{
         ...focusedStyles,
         ...style,
@@ -67,9 +63,10 @@ const Card = ({
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         width: `${cardDimensions.width}px`,
         height: `${cardDimensions.height}px`,
-        flex: '0 0 auto', // Prevent shrinking for horizontal alignment
       }}
       onClick={onClick}
+      onKeyPress={(e) => e.key === 'Enter' && onEnterPress()}
+      tabIndex={0}
     >
       {/* Thumbnail */}
       <div
@@ -83,9 +80,7 @@ const Card = ({
       >
         {/* Top Label */}
         {showTopLabel && (
-          <div className={`card-top-label ${topLabelType}`}>
-            {topLabel}
-          </div>
+          <div className={`card-top-label ${topLabelType}`}>{topLabel}</div>
         )}
 
         {/* Type Logo */}
@@ -94,13 +89,7 @@ const Card = ({
             src={typeLogoSrc}
             alt="Type Logo"
             className="card-type-logo"
-            style={{
-              position: 'absolute',
-              top: '10px',
-              right: '10px',
-              width: '40px',
-              height: '40px',
-            }}
+            style={{ position: 'absolute', top: '10px', right: '10px', width: '40px', height: '40px' }}
           />
         )}
 

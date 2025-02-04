@@ -17,6 +17,9 @@ importers:
       '@mux/mux-data-shakaplayer':
         specifier: ^5.14.0
         version: 5.14.0
+      '@noriginmedia/norigin-spatial-navigation':
+        specifier: ^2.2.3
+        version: 2.2.3(react@19.0.0)
       axios:
         specifier: ^1.7.9
         version: 1.7.9
@@ -1570,6 +1573,11 @@ packages:
   '@nolyfill/is-core-module@1.0.39':
     resolution: {integrity: sha512-nn5ozdjYQpUCZlWGuxcJY/KpxkWQs4DcbMCmKojjyrYDEAGy4Ce19NN4v5MduafTwJlbKc99UA8YhSVqq9yPZA==}
     engines: {node: '>=12.4.0'}
+
+  '@noriginmedia/norigin-spatial-navigation@2.2.3':
+    resolution: {integrity: sha512-xQz8kbnuAu7TeJLVRujJ2i6ixMtz8cZVOSvevMnIX8epl0KLhitdVObXGK4YfP6CtJ4IPuAEEdUnvLAMcHeXQQ==}
+    peerDependencies:
+      react: '>=16.8.0'
 
   '@nrwl/devkit@19.8.4':
     resolution: {integrity: sha512-OoIqDjj2mWzLs3aSF6w5OiC2xywYi/jBxHc7t7Lyi56Vc4dQq8vJMELa9WtG6qH0k05fF7N+jAoKlfvLgbbEFA==}
@@ -8516,6 +8524,11 @@ snapshots:
       fastq: 1.18.0
 
   '@nolyfill/is-core-module@1.0.39': {}
+
+  '@noriginmedia/norigin-spatial-navigation@2.2.3(react@19.0.0)':
+    dependencies:
+      lodash: 4.17.21
+      react: 19.0.0
 
   '@nrwl/devkit@19.8.4(nx@19.8.4(@swc-node/register@1.9.2(@swc/core@1.5.29(@swc/helpers@0.5.15))(@swc/types@0.1.17)(typescript@5.6.3))(@swc/core@1.5.29(@swc/helpers@0.5.15)))':
     dependencies:

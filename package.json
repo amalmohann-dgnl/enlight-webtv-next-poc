@@ -18,6 +18,7 @@
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-typescript": "^7.26.0",
     "@mux/mux-data-shakaplayer": "^5.14.0",
+    "@noriginmedia/norigin-spatial-navigation": "^2.2.3",
     "axios": "^1.7.9",
     "axios-retry": "^4.5.0",
     "babel-loader": "^9.2.1",
