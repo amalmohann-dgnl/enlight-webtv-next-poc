@@ -277,6 +277,7 @@ const ContentRowScrollingWrapper = styled.div`
   flex-shrink: 1;
   flex-grow: 1;
   padding-left: 60px;
+  width: fit-content;
 `;
 
 const ContentRowScrollingContent = styled.div`
