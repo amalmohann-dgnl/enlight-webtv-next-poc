@@ -236,7 +236,7 @@ function Asset({
   isShuffleSize,
   index
 }: AssetProps) {
-  const { ref } = useFocusable({
+  const { ref, focused } = useFocusable({
     onEnterPress,
     onFocus,
     extraProps: {
