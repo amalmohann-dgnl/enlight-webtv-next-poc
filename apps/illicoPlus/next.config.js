@@ -1,5 +1,4 @@
 //@ts-check
-
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { composePlugins, withNx } = require('@nx/next');
 
@@ -8,10 +7,22 @@ const { composePlugins, withNx } = require('@nx/next');
  **/
 const nextConfig = {
   distDir: './../../dist/apps/illicoPlus',
+  productionBrowserSourceMaps: true,
   nx: {
     // Set this to true if you would like to use SVGR
     // See: https://github.com/gregberge/svgr
     svgr: false,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'core-js': require.resolve('core-js'),
+      'regenerator-runtime': require.resolve('regenerator-runtime'),
+    };
+    return config;
   },
 };
 

@@ -1,0 +1,20 @@
+{
+  "name": "player-services",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/services/player/src",
+  "projectType": "library",
+  "tags": ["services"],
+  "// targets": "to see all targets run: nx show project player-services --web",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "options": {
+        "root": "libs/services/player",
+        "outputPath": "dist/libs/services/player",
+        "main": "libs/services/player/src/index.ts",
+        "tsConfig": "libs/services/player/tsconfig.lib.json",
+        "webpackConfig": "libs/services/player/webpack.config.js"
+      }
+    }
+  }
+}

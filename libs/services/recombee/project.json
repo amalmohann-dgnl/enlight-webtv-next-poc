@@ -1,0 +1,20 @@
+{
+  "name": "recombee-services",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/services/recombee/src",
+  "projectType": "library",
+  "tags": ["services"],
+  "// targets": "to see all targets run: nx show project recombee-services --web",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "options": {
+        "root": "libs/services/recombee",
+        "outputPath": "dist/libs/services/recombee",
+        "main": "libs/services/recombee/src/index.ts",
+        "tsConfig": "libs/services/recombee/tsconfig.lib.json",
+        "webpackConfig": "libs/services/recombee/webpack.config.js"
+      }
+    }
+  }
+}

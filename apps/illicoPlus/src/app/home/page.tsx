@@ -1,5 +1,9 @@
-import Home from "./home";
+"use client";
 
-const Index = () => <Home />
+import dynamic from 'next/dynamic';
 
-export default Index;
+const HomePage = dynamic(() => import('./home'), { ssr: false });
+
+export default function Home() {
+  return <HomePage />;
+}

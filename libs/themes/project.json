@@ -1,0 +1,20 @@
+{
+  "name": "themes",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/themes/src",
+  "projectType": "library",
+  "tags": ["themes"],
+  "// targets": "to see all targets run: nx show project themes --web",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "options": {
+        "root": "libs/themes",
+        "outputPath": "dist/libs/themes",
+        "main": "libs/themes/src/index.ts",
+        "tsConfig": "libs/themes/tsconfig.lib.json",
+        "webpackConfig": "libs/themes/webpack.config.js"
+      }
+    }
+  }
+}

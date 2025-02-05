@@ -1,0 +1,73 @@
+.card {
+  position: relative;
+  display: block;
+  background-color: #000;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-left: 20px;
+
+  .card-thumbnail {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .card-top-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 24px;
+  }
+
+  .card-type-logo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .card-center-icon {
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .card-progress-bar {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: #555;
+
+    .card-progress-fill {
+      background-color: #ff5722;
+      height: 100%;
+    }
+  }
+
+  .card-title {
+    color: #fff;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.rail-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #1a1a1a;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "network-requestor",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/network/src",
+  "projectType": "library",
+  "tags": ["interceptor"],
+  "// targets": "to see all targets run: nx show project network-requestor --web",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "options": {
+        "root": "libs/network",
+        "outputPath": "dist/libs/network",
+        "main": "libs/network/src/index.ts",
+        "tsConfig": "libs/network/tsconfig.lib.json",
+        "webpackConfig": "libs/network/webpack.config.js"
+      }
+    }
+  }
+}

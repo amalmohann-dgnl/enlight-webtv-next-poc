@@ -1,0 +1,20 @@
+{
+  "name": "analytics-services",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/services/analytics/src",
+  "projectType": "library",
+  "tags": ["services"],
+  "// targets": "to see all targets run: nx show project analytics-services --web",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "options": {
+        "root": "libs/services/analytics",
+        "outputPath": "dist/libs/services/analytics",
+        "main": "libs/services/analytics/src/index.ts",
+        "tsConfig": "libs/services/analytics/tsconfig.lib.json",
+        "webpackConfig": "libs/services/analytics/webpack.config.js"
+      }
+    }
+  }
+}
