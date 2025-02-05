@@ -345,7 +345,7 @@ function ContentRow({
               />
             ))
               : railData?.map((data, index)=>
-                <Card key={index} focusKey={onAssetFocus} updatePreview={onAssetPress}
+                <Card key={index} onFocus={onAssetFocus} focusKey={onAssetFocus} updatePreview={onAssetFocus}
               data={data}
               onClick={() =>{}}
               dimensions={getCardDimension(config?.componentStyle?.[0]?.itemSize ?? ItemSize.medium, config?.componentStyle?.[0]?.itemSize ?? ItemSize.medium)}

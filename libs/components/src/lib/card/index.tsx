@@ -67,6 +67,7 @@ const Card = ({
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
         width: `${cardDimensions.width}px`,
         height: `${cardDimensions.height}px`,
+        marginRight:20,
       }}
       onClick={onClick}
       onKeyDown={(e) =>  e.key === 'Enter' && onEnterPress()}
