@@ -285,7 +285,7 @@ const ContentRowScrollingContent = styled.div`
 `;
 
 interface ContentRowProps {
-  isShuffleSize: boolean;
+  isShuffleSize?: boolean;
   title: string;
   onAssetPress: (props: object, details: KeyPressDetails) => void;
   onFocus: (
@@ -314,9 +314,6 @@ function ContentRow({
   const scrollingRef = useRef(null);
   const railData: any[] = data?.status === 'fulfilled' ? data?.value?.content ?? [] : [];
 
-  console.log('railData', railData, isLoading);
-
-
   const onAssetFocus = useCallback(
     ({ x }: { x: number }) => {
       scrollingRef.current.scrollTo({
@@ -341,17 +338,19 @@ function ContentRow({
                 color={color}
                 onEnterPress={onAssetPress}
                 onFocus={onAssetFocus}
-                isShuffleSize={isShuffleSize}
+                isShuffleSize={!!isShuffleSize}
               />
             ))
-              : railData?.map((data, index)=>
-                <Card key={index} onFocus={onAssetFocus} focusKey={onAssetFocus} updatePreview={onAssetFocus}
-              data={data}
-              onClick={() =>{}}
-              dimensions={getCardDimension(config?.componentStyle?.[0]?.itemSize ?? ItemSize.medium, config?.componentStyle?.[0]?.itemSize ?? ItemSize.medium)}
-              thumbnailSrc={data?.images?.[0]?.url}
-              title={data.title}
-                />
+              : railData?.map((data, index) => {
+
+                return (<Card key={index} onFocus={onAssetFocus} focusKey={onAssetFocus} updatePreview={onAssetFocus}
+                  data={data}
+                  onClick={() => { }}
+                  dimensions={getCardDimension(config?.componentStyle?.[0]?.itemSize ?? ItemSize.medium, config?.componentStyle?.[0]?.itemOrientation ?? 1.67)}
+                  thumbnailSrc={data?.images?.[0]?.url}
+                  title={data.title}
+                />)
+              }
               )
           }
           </ContentRowScrollingContent>
@@ -480,7 +479,7 @@ function Content() {
                 title={component?.title}
                 onAssetPress={updatePreview}
                 onFocus={onRowFocus}
-                isShuffleSize={Math.random() < 0.5} // Rows will have children assets of different sizes, randomly setting it to true or false.
+                // isShuffleSize={Math.random() < 0.5} // Rows will have children assets of different sizes, randomly setting it to true or false.
                   isLoading={false}
                   config={component}
                   data={data[index]}

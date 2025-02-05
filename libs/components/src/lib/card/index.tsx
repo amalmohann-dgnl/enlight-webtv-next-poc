@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useFocusable } from '@noriginmedia/norigin-spatial-navigation';
 import './card.module.scss';
-import { CardDimensions, ItemSize } from '@enlight-webtv/models';
+import { CardDimensions, Dimensions, ItemSize } from '@enlight-webtv/models';
 import { cardUtilities } from '@enlight-webtv/utilities';
 
 const { getCardDimension } = cardUtilities;
@@ -28,7 +28,7 @@ const Card = ({
   showProgressBar = false,
   progress = 0,
   focusKey,
-  dimensions = {},
+  dimensions = {} as Dimensions,
   style = {},
   updatePreview,
 }) => {
