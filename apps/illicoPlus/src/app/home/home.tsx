@@ -3,17 +3,18 @@
  * Disabling ESLint rules for these dependencies since we know it is only for development purposes
  */
 
-import { PreviewComponent, Rail, SideBar } from '@enlight-webtv/ui-components';
+import { Card, PreviewComponent, Rail, SideBar } from '@enlight-webtv/ui-components';
 import { FocusableComponentLayout, FocusContext, FocusDetails, init, KeyPressDetails, useFocusable } from '@noriginmedia/norigin-spatial-navigation';
 import React, { useCallback, useEffect, useState, useRef } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled, { createGlobalStyle } from 'styled-components';
 
-import { commonUtilities, previewComponentUtilities } from '@enlight-webtv/utilities';
+import { cardUtilities, commonUtilities, previewComponentUtilities } from '@enlight-webtv/utilities';
 import { AssetTypeIcon, ContinueWatchingData, Image, ItemSize, PreviewComponentDataNew, PurchaseMode, RailContentModel, Routes, SubscriptionBadge, TopLabelType } from '@enlight-webtv/models';
 
 const { getDataForPreview } = previewComponentUtilities;
 const { isValidValue, getOptimizedImage } = commonUtilities;
+const { getCardDimension } = cardUtilities
 
 init({
   debug: false,
@@ -293,7 +294,8 @@ interface ContentRowProps {
     details: FocusDetails
   ) => void;
   isLoading: boolean;
-
+  data?:any;
+  config?: any;
 }
 
 function ContentRow({
@@ -302,12 +304,15 @@ function ContentRow({
   onFocus,
   isShuffleSize,
   isLoading = true,
+  data ={},
+  config ={},
 }: ContentRowProps) {
   const { ref, focusKey } = useFocusable({
     onFocus
   });
 
   const scrollingRef = useRef(null);
+  const railData:any[] = data?.status === 'fulfilled' ? data?.value?.content ?? [] : [];
 
   const onAssetFocus = useCallback(
     ({ x }: { x: number }) => {
@@ -325,7 +330,7 @@ function ContentRow({
         <ContentRowTitle>{rowTitle}</ContentRowTitle>
         <ContentRowScrollingWrapper ref={scrollingRef}>
           <ContentRowScrollingContent>
-            {isLoading && assets.map(({ title, color }, index) => (
+            {isLoading ? assets.map(({ title, color }, index) => (
               <Asset
                 index={index}
                 title={title}
@@ -335,7 +340,17 @@ function ContentRow({
                 onFocus={onAssetFocus}
                 isShuffleSize={isShuffleSize}
               />
-            ))}
+            ))
+              : railData?.map((data, index)=>
+                <Card key={index} focusKey={onAssetFocus} updatePreview={onAssetPress}
+              data={data}
+              onClick={() =>{}}
+              dimensions={getCardDimension(config?.componentStyle?.[0]?.itemSize ?? ItemSize.medium, config?.componentStyle?.[0]?.itemOrientation ?? 1.67)}
+              thumbnailSrc={data?.images?.[0]?.url}
+              title={data.title}
+                />
+              )
+          }
           </ContentRowScrollingContent>
         </ContentRowScrollingWrapper>
       </ContentRowWrapper>
@@ -391,31 +406,31 @@ function Content() {
 
   }
 
-  const appendRailsToCatalog = (data:any, pageComponents:any) => {
-    return pageComponents.map((component:any, index:number) => {
-      if (!isValidValue(component)) return null;
+  // const appendRailsToCatalog = (data:any, pageComponents:any) => {
+  //   return pageComponents.map((component:any, index:number) => {
+  //     if (!isValidValue(component)) return null;
 
-      const componentStyle = component?.componentStyle?.[0];
-      const railData = data?.[index]?.status === 'fulfilled' ? data[index].value : undefined;
-      const railConfig = config.components?.[index];
-      const showComponentTitle = railConfig.componentStyle?.[0]?.showComponentTitle;
+  //     const componentStyle = component?.componentStyle?.[0];
+  //     const railData = data?.[index]?.status === 'fulfilled' ? data[index].value : undefined;
+  //     const railConfig = config.components?.[index];
+  //     const showComponentTitle = railConfig.componentStyle?.[0]?.showComponentTitle;
 
-      return (
-        <Rail
-          key={`${index}-${component?.title}`}
-          title={component?.title}
-          showComponentTitle={showComponentTitle}
-          titleColor={componentStyle?.titleColor || '#FFFFFF'}
-          data={railData}
-          theme={component?.theme?.[0]}
-          itemSize={componentStyle?.itemSize ?? ItemSize.medium}
-          itemOrientation={componentStyle?.itemOrientation ?? 1.67}
-          useSkeletonLoader={false}
-          autoFocus={index === 0}
-          updatePreview={updatePreview} handleEnterPressOnCards={undefined}        />
-      );
-    });
-  };
+  //     return (
+  //       <Rail
+  //         key={`${index}-${component?.title}`}
+  //         title={component?.title}
+  //         showComponentTitle={showComponentTitle}
+  //         titleColor={componentStyle?.titleColor || '#FFFFFF'}
+  //         data={railData}
+  //         theme={component?.theme?.[0]}
+  //         itemSize={componentStyle?.itemSize ?? ItemSize.medium}
+  //         itemOrientation={componentStyle?.itemOrientation ?? 1.67}
+  //         useSkeletonLoader={false}
+  //         autoFocus={index === 0}
+  //         updatePreview={updatePreview} handleEnterPressOnCards={undefined}        />
+  //     );
+  //   });
+  // };
 
   const onRowFocus = useCallback(
     ({ y }: { y: number }) => {
@@ -445,15 +460,30 @@ function Content() {
       <PreviewComponent {...previewData} />
         <ScrollingRows ref={ref}>
           <div>
-            {rows.map(({ title }) => (
+            {isLoading ?
+              rows.map(({ title }) => (
               <ContentRow
-                key={title}
-                title={title}
+              key={title}
+              title={''}
+                  onAssetPress={() => { }}
+              onFocus={() => { }}
+              isShuffleSize={Math.random() < 0.5} // Rows will have children assets of different sizes, randomly setting it to true or false.
+              isLoading={true} />
+              ))
+              :
+              [...(config.components)].map((component, index) => (
+              <ContentRow
+                key={`${index}-${component?.title}`}
+                title={component?.title}
                 onAssetPress={updatePreview}
                 onFocus={onRowFocus}
                 isShuffleSize={Math.random() < 0.5} // Rows will have children assets of different sizes, randomly setting it to true or false.
-              />
-            ))}
+                  isLoading={true}
+                  config={component}
+                  data={data[index]}
+                />
+            ))
+            }
           </div>
         </ScrollingRows>
       </ContentWrapper>
