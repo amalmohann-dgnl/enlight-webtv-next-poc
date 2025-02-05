@@ -143,7 +143,7 @@ export function Home() {
         console.log(`Home Focus State -> ${focusKey}: ${focused ? 'FOCUSED' : 'NOT FOCUSED'}`);
       }
     }, [focused]);
-  
+
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
@@ -191,12 +191,12 @@ export function Home() {
 
   return (
     <FocusContext.Provider value={focusKey}>
-      <div ref={ref} className={styles.container} style={{ display: 'flex', flexDirection: 'column', gap: 10, marginLeft: 10, marginTop: 10 }}>
+      <div ref={ref} className={styles.container} style={{ display: 'flex', flexDirection: 'column', gap: 40, marginLeft: 10, marginTop: 10 }}>
         {rails}
       </div>
     </FocusContext.Provider>
     // <div className={styles['container']}>
-    //   <PreviewComponent 
+    //   <PreviewComponent
     //     {...previewData}
     //   />
     // </div>

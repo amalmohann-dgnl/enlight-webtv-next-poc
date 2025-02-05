@@ -32,7 +32,7 @@ const Card = ({
 }) => {
   const [cardDimensions, setCardDimensions] = useState(dimensions);
   const { ref, focused } = useFocusable({ focusKey });
-  
+
 
   useEffect(() => {
     if (!dimensions.width || !dimensions.height) {
@@ -44,7 +44,7 @@ const Card = ({
     return focused
       ? {
           transform: 'scale(1.05)',
-          boxShadow: '0px 0px 15px rgba(0,0,0,0.3)',
+          boxShadow: '0px 0px 15px rgba(255, 255, 255, 0.88)',
         }
       : {};
   }, [focused]);

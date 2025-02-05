@@ -44,7 +44,7 @@ const Rail = ({
         {showComponentTitle && (
           <TextBox className="rail-title" style={{ color: titleColor }} text={title} typography={Typography.bodyL} />
         )}
-        <div className="rail-items" style={{ display: 'flex', gap: 10 }}>
+        <div className="rail-items" style={{ display: 'flex', gap: 20 }}>
           {(parsedData.length ? parsedData : getSkeltonCards(itemSize, cardDimensions, RailSkeletonLoader)).map((item, index) => (
             <Card
               key={index}
