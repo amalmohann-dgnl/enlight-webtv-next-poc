@@ -236,7 +236,7 @@ function Asset({
   isShuffleSize,
   index
 }: AssetProps) {
-  const { ref, focused } = useFocusable({
+  const { ref } = useFocusable({
     onEnterPress,
     onFocus,
     extraProps: {
@@ -305,14 +305,17 @@ function ContentRow({
   isShuffleSize,
   isLoading = false,
   data ={},
-  config ={},
+  config = {},
+  updatePreview,
 }: ContentRowProps) {
-  const { ref, focusKey } = useFocusable({
+  const { ref, focusKey, focused } = useFocusable({
     onFocus
   });
 
   const scrollingRef = useRef(null);
   const railData: any[] = data?.status === 'fulfilled' ? data?.value?.content ?? [] : [];
+
+
 
   const onAssetFocus = useCallback(
     ({ x }: { x: number }) => {
@@ -343,7 +346,7 @@ function ContentRow({
             ))
               : railData?.map((data, index) => {
 
-                return (<Card key={index} onFocus={onAssetFocus} focusKey={onAssetFocus} updatePreview={onAssetFocus}
+                return (<Card key={index} onFocus={onAssetFocus} focusKey={`card-${data.title}-${index}`}  updatePreview={updatePreview}
                   data={data}
                   onClick={() => { }}
                   dimensions={getCardDimension(config?.componentStyle?.[0]?.itemSize ?? ItemSize.medium, config?.componentStyle?.[0]?.itemOrientation ?? 1.67)}
@@ -375,11 +378,12 @@ const ScrollingRows = styled.div`
 `;
 
 function Content() {
-  const { ref, focusKey } = useFocusable();
+  const { ref, focusKey, focused } = useFocusable({focusKey: "CONTENT"});
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const [config, setConfig] = useState({} as any);
   const [previewData, setPreviewData] = useState(previewDummyData);
+
 
   const updatePreview = (cardData: any) => {
     const data = getDataForPreview(cardData);
@@ -478,7 +482,8 @@ function Content() {
                 key={`${index}-${component?.title}`}
                 title={component?.title}
                 onAssetPress={updatePreview}
-                onFocus={onRowFocus}
+                  onFocus={onRowFocus}
+                  updatePreview={updatePreview}
                 // isShuffleSize={Math.random() < 0.5} // Rows will have children assets of different sizes, randomly setting it to true or false.
                   isLoading={false}
                   config={component}
