@@ -10,8 +10,9 @@ interface MenuWrapperProps {
 
 const MenuWrapper = styled.div<MenuWrapperProps>`
   flex: 1;
-  height:100vh;
-  max-width:  400px;
+  height: 100vh;
+  max-width: ${({ hasFocusedChild }) =>
+    hasFocusedChild ? '400px' : '120px'};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,6 +21,7 @@ const MenuWrapper = styled.div<MenuWrapperProps>`
     hasFocusedChild ? '#1f1f1f' : '#1f1f1e'};
   padding-top: 37px;
   justify-content: center;
+  transition: max-width 0.4s ease-in-out;
 `;
 
 interface SidebarProps {
@@ -61,11 +63,11 @@ function Sidebar({ focusKey: focusKeyParam }: SidebarProps) {
   return (
     <FocusContext.Provider value={focusKey}>
       <MenuWrapper ref={ref} hasFocusedChild={hasFocusedChild}>
-        <MenuItem text="Home" />
-        <MenuItem text="Series" />
-        <MenuItem text="Search" />
-        <MenuItem text="Settings" />
-        <MenuItem text="logout" />
+        <MenuItem text={hasFocusedChild ? "Home": "H"} />
+        <MenuItem text={hasFocusedChild ? "Series": "S"} />
+        <MenuItem text={hasFocusedChild ? "Search": "S"} />
+        <MenuItem text={hasFocusedChild ? "Settings": "S"} />
+        <MenuItem text={hasFocusedChild ? "Logout": "L"} />
       </MenuWrapper>
     </FocusContext.Provider>
   );
