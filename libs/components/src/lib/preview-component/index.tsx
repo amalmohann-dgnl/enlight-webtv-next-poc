@@ -68,11 +68,11 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
   thumbnailHeight,
   previewImageUrl,
 }) => {
-
-
   return (
     <div
       style={{
+        height: '480px',
+        width: '100vw',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -117,19 +117,7 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
               style={{ borderRadius: '50%' }}
             />
           )}
-  
-        {/* Season Count */}
-        {showSeasonCount && (
-          <p
-            style={{
-              fontSize: '14px',
-              color: '#bbbbbb',
-              margin: 0,
-            }}
-          >
-            {seasonCountLabel}
-          </p>
-        )}
+
   
         {/* Flag */}
         {showFlag && (
@@ -170,7 +158,11 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
           
         {/* Content Info */}
         {showContentInfo && (
-          <div style={{ display: 'flex', gap: '12px', fontSize: '18px', color: '#bbbbbb' }}>
+            <div style={{ display: 'flex', gap: '12px', fontSize: '18px', color: '#bbbbbb' }}>
+                      {/* Season Count */}
+        {showSeasonCount && seasonCountLabel && seasonCountLabel.length > 0 && (
+          <p>{seasonCountLabel}</p>
+        )}
             {showTime && <p>{timeLabelText}</p>}
             {showAdditionalTimeInfo && <p>{additionalTimeInfoLabel}</p>}
             {showDuration && <p>{durationLabel}</p>}
@@ -179,12 +171,12 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
         )}
   
         {/* Parental Rating */}
-        {showParentalRating && (
+        {showParentalRating && parentalRating.length > 0 && (
           <Badge
             badgeLabel={parentalRating}
             borderRadius={0}
             stroke={2}
-            strokeColor={badgeTextColor || '#ffcc00'}
+            strokeColor={badgeTextColor || '#bbbbbb'}
             paddingLeft={4}
             paddingRight={4}
             labelColor="#ffffff"
@@ -193,12 +185,12 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
           )}
           
           {/* Badges */}
-          {showBadges && (
+          {showBadges && badgeTextLabel.length > 0 && (
             <Badge
               badgeLabel={badgeTextLabel}
               borderRadius={0}
               stroke={2}
-              strokeColor={badgeTextColor || '#ffcc00'}
+              strokeColor={badgeTextColor || '#bbbbbb'}
               paddingLeft={4}
               paddingRight={4}
               labelColor="#ffffff"
@@ -307,16 +299,17 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
       >
         {thumbnailType && (
           <img
-            src={previewImageUrl}
-            width={thumbnailWidth}
-            height={thumbnailHeight}
-            alt="Preview Thumbnail"
-            style={{
-              objectFit: 'cover',
-              borderRadius: '12px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.5)',
-            }}
-          />
+          src={previewImageUrl}
+          width={thumbnailWidth}
+          height={thumbnailHeight}
+          alt="Preview Thumbnail"
+          style={{
+            objectFit: 'cover', // Ensures the image fills the given dimensions
+            borderRadius: '12px',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.5)',
+            display: 'block', // Removes extra bottom space caused by inline images
+          }}
+        />
         )}
       </div>
     </div>

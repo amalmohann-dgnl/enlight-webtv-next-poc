@@ -22,6 +22,7 @@ const Rail = ({
   useSkeletonLoader = false,
   handleEnterPressOnCards,
   autoFocus,
+  updatePreview,
 }) => {
   const [cardDimensions, setCardDimensions] = useState(getCardDimension(itemSize, itemOrientation));
   const [parsedData, setParsedData] = useState([]);
@@ -41,10 +42,20 @@ const Rail = ({
   return (
     <FocusContext.Provider value={focusKey}>
       <div ref={ref} className={`rail ${showSkeletonLoader ? 'skeleton' : ''}`}>
-        {showComponentTitle && (
-          <TextBox className="rail-title" style={{ color: titleColor }} text={title} typography={Typography.bodyL} />
-        )}
-        <div className="rail-items" style={{ display: 'flex', gap: 20 }}>
+      {showComponentTitle && (
+  <TextBox
+    className="rail-title"
+    labelText={title} 
+    fontSize={26}
+    fontColor={titleColor}
+    maxLines={2} 
+    lineHeight={24} 
+    highlight={true} 
+    style={{ marginTop: 20 }}
+  />
+)}
+
+        <div className="rail-items" style={{ display: 'flex', gap: 20, marginTop: 10 }}>
           {(parsedData.length ? parsedData : getSkeltonCards(itemSize, cardDimensions, RailSkeletonLoader)).map((item, index) => (
             <Card
               key={index}
@@ -55,6 +66,7 @@ const Rail = ({
               title={item.title}
               focusKey={`CARD-${title}-${index}`}
               autoFocus={index === 0}
+              updatePreview={updatePreview}
             />
           ))}
         </div>

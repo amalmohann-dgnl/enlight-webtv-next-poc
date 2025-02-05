@@ -3,10 +3,10 @@ import styles from './TextBox.module.scss';
 
 const TextBox = ({
   labelText = '',
-  fontSize,
+  fontSize = 26, 
   fontColor = '#FFFFFF',
   maxLines = 1,
-  lineHeight,
+  lineHeight = 24, 
   highlight = false,
 }) => {
   const [text, setText] = useState(labelText);
@@ -22,20 +22,22 @@ const TextBox = ({
         highlight ? styles['textBoxContainer--highlight'] : ''
       }`}
       style={{
-        '--padding-left': '10px',
-        '--padding-right': '10px',
-        '--line-height': `${lineHeight}px`,
-        '--highlight-color': highlight ? '#FF0000' : 'transparent',
+        paddingLeft: '10px',
+        paddingRight: '10px',
+        lineHeight: `${lineHeight}px`,
+        backgroundColor: highlight ? '#FF0000' : 'transparent',
       }}
     >
       <div
         ref={textRef}
         className={styles.textBox}
         style={{
-          '--font-size': `${fontSize}px`,
-          '--font-color': fontColor,
-          '--max-lines': maxLines,
-          '--line-height': `${lineHeight}px`,
+          fontSize: `${fontSize}px`,
+          color: fontColor,
+          display: '-webkit-box',
+          WebkitLineClamp: maxLines,
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden',
         }}
       >
         {text}

@@ -9,6 +9,7 @@ const { getCardDimension } = cardUtilities;
 const Card = ({
   orientation = 1.2,
   edgeRadius = 10,
+  data = {},
   size = ItemSize.medium,
   fallbackColor = 'grey',
   onClick = () => {},
@@ -29,6 +30,7 @@ const Card = ({
   focusKey,
   dimensions = {},
   style = {},
+  updatePreview,
 }) => {
   const [cardDimensions, setCardDimensions] = useState(dimensions);
   const { ref, focused } = useFocusable({ focusKey });
@@ -41,6 +43,7 @@ const Card = ({
   }, [size, orientation, dimensions]);
 
   const focusedStyles = useMemo(() => {
+    if (focused) updatePreview({...data, width: cardDimensions.width, height: cardDimensions.height, orientation: orientation});
     return focused
       ? {
           transform: 'scale(1.05)',
