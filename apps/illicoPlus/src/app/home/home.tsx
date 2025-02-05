@@ -1,34 +1,26 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
-'use client';
+/**
+ * Since this file is for development purposes only, some of the dependencies are in devDependencies
+ * Disabling ESLint rules for these dependencies since we know it is only for development purposes
+ */
 
-import React, { useEffect, useMemo, useState } from 'react';
-import { useFocusable, FocusContext, init } from '@noriginmedia/norigin-spatial-navigation';
-import styles from './home.module.scss';
-import { Rail, Spinner, PreviewComponent } from '@enlight-webtv/ui-components';
-import {
-  AssetTypeIcon,
-  CacheValue,
-  ComponentStyleType,
-  ContinueWatchingData,
-  Image,
-  ItemSize,
-  PageComponent,
-  PreviewComponentDataNew,
-  PurchaseMode,
-  RailContentModel,
-  Routes,
-  SubscriptionBadge,
-  TopLabelType,
-} from '@enlight-webtv/models';
+import { PreviewComponent, Rail, SideBar } from '@enlight-webtv/ui-components';
+import { FocusableComponentLayout, FocusContext, FocusDetails, init, KeyPressDetails, useFocusable } from '@noriginmedia/norigin-spatial-navigation';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import styled, { createGlobalStyle } from 'styled-components';
+
 import { commonUtilities, previewComponentUtilities } from '@enlight-webtv/utilities';
+import { AssetTypeIcon, ContinueWatchingData, Image, ItemSize, PreviewComponentDataNew, PurchaseMode, RailContentModel, Routes, SubscriptionBadge, TopLabelType } from '@enlight-webtv/models';
 
-const { isValidValue, getOptimizedImage } = commonUtilities;
 const { getDataForPreview } = previewComponentUtilities;
+const { isValidValue, getOptimizedImage } = commonUtilities;
 
 init({
   debug: false,
-  visualDebug: false
+  visualDebug: false,
+  distanceCalculationMethod: 'center'
 });
+
 
 const previewDummyData: PreviewComponentDataNew = {
   showVideoPreview: false,
@@ -116,10 +108,10 @@ const previewDummyData: PreviewComponentDataNew = {
   showActions: false,
   descriptionWordWrapWidth: 717,
   mediaId: "",
-  handlePreviewLeft: () => {},
-  handlePreviewRight: () => {},
-  handlePreviewDown: () => {},
-  handlePreviewUp: () => {},
+  handlePreviewLeft: () => {/** */},
+  handlePreviewRight: () => {/** */},
+  handlePreviewDown: () => {/** */},
+  handlePreviewUp: () => {/** */},
   showSeasonButton: false,
   seasonText: "",
   seasonIconSrc: "",
@@ -132,16 +124,246 @@ const previewDummyData: PreviewComponentDataNew = {
   thumbnailHeight: 480,
 };
 
+const rows = [
+  {
+    title: 'Recommended'
+  },
+  {
+    title: 'Movies'
+  },
+  {
+    title: 'Series'
+  },
+  {
+    title: 'TV Channels'
+  },
+  {
+    title: 'Sport'
+  }
+];
 
+const assets = [
+  {
+    title: 'Asset 1',
+    color: '#343434'
+  },
+  {
+    title: 'Asset 2',
+    color: '#3e3e3e'
+  },
+  {
+    title: 'Asset 3',
+    color: '#373737'
+  },
+  {
+    title: 'Asset 4',
+    color: '#363636'
+  },
+  {
+    title: 'Asset 5',
+    color: '#3a3a3a'
+  },
+  {
+    title: 'Asset 6',
+    color: '#353535'
+  },
+  {
+    title: 'Asset 7',
+    color: '#393939'
+  },
+  {
+    title: 'Asset 8',
+    color: '#3f3f3f'
+  },
+  {
+    title: 'Asset 9',
+    color: '#3d3d3d'
+  }
+];
 
-export function Home() {
+const AssetWrapper = styled.div`
+  margin-right: 22px;
+  display: flex;
+  flex-direction: column;
+`;
+
+interface AssetBoxProps {
+  index: number;
+  isShuffleSize: boolean;
+  focused: boolean;
+  color: string;
+}
+
+const AssetBox = styled.div<AssetBoxProps>`
+  width: ${({ isShuffleSize, index }) =>
+    isShuffleSize ? `${80 + index * 30}px` : '225px'};
+  height: 127px;
+  background-color: ${({ color }) => color};
+  border-color: white;
+  border-style: solid;
+  border-width: ${({ focused }) => (focused ? '6px' : 0)};
+  box-sizing: border-box;
+  border-radius: 7px;
+`;
+
+const AssetTitle = styled.div`
+  color: white;
+  margin-top: 10px;
+  font-family: 'Segoe UI';
+  font-size: 24px;
+  font-weight: 400;
+`;
+
+interface AssetProps {
+  index: number;
+  isShuffleSize: boolean;
+  title: string;
+  color: string;
+  onEnterPress: (props: object, details: KeyPressDetails) => void;
+  onFocus: (
+    layout: FocusableComponentLayout,
+    props: object,
+    details: FocusDetails
+  ) => void;
+}
+
+function Asset({
+  title,
+  color,
+  onEnterPress,
+  onFocus,
+  isShuffleSize,
+  index
+}: AssetProps) {
+  const { ref, focused } = useFocusable({
+    onEnterPress,
+    onFocus,
+    extraProps: {
+      title,
+      color
+    }
+  });
+
+  return (
+    <AssetWrapper ref={ref}>
+      <AssetBox
+        index={index}
+        color={color}
+        focused={focused}
+        isShuffleSize={isShuffleSize}
+      />
+      <AssetTitle/>
+    </AssetWrapper>
+  );
+}
+
+const ContentRowWrapper = styled.div`
+  margin-bottom: 37px;
+`;
+
+const ContentRowTitle = styled.div`
+  color: white;
+  margin-bottom: 22px;
+  font-size: 27px;
+  font-weight: 700;
+  font-family: 'Segoe UI';
+  padding-left: 60px;
+`;
+
+const ContentRowScrollingWrapper = styled.div`
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-shrink: 1;
+  flex-grow: 1;
+  padding-left: 60px;
+`;
+
+const ContentRowScrollingContent = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+interface ContentRowProps {
+  isShuffleSize: boolean;
+  title: string;
+  onAssetPress: (props: object, details: KeyPressDetails) => void;
+  onFocus: (
+    layout: FocusableComponentLayout,
+    props: object,
+    details: FocusDetails
+  ) => void;
+  isLoading: boolean;
+
+}
+
+function ContentRow({
+  title: rowTitle,
+  onAssetPress,
+  onFocus,
+  isShuffleSize,
+  isLoading = true,
+}: ContentRowProps) {
+  const { ref, focusKey } = useFocusable({
+    onFocus
+  });
+
+  const scrollingRef = useRef(null);
+
+  const onAssetFocus = useCallback(
+    ({ x }: { x: number }) => {
+      scrollingRef.current.scrollTo({
+        left: x,
+        behavior: 'smooth'
+      });
+    },
+    [scrollingRef]
+  );
+
+  return (
+    <FocusContext.Provider value={focusKey}>
+      <ContentRowWrapper ref={ref}>
+        <ContentRowTitle>{rowTitle}</ContentRowTitle>
+        <ContentRowScrollingWrapper ref={scrollingRef}>
+          <ContentRowScrollingContent>
+            {isLoading && assets.map(({ title, color }, index) => (
+              <Asset
+                index={index}
+                title={title}
+                key={title}
+                color={color}
+                onEnterPress={onAssetPress}
+                onFocus={onAssetFocus}
+                isShuffleSize={isShuffleSize}
+              />
+            ))}
+          </ContentRowScrollingContent>
+        </ContentRowScrollingWrapper>
+      </ContentRowWrapper>
+    </FocusContext.Provider>
+  );
+}
+
+const ContentWrapper = styled.div`
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ScrollingRows = styled.div`
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-shrink: 1;
+  flex-grow: 1;
+`;
+
+function Content() {
+  const { ref, focusKey } = useFocusable();
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState([]);
   const [config, setConfig] = useState({} as any);
   const [previewData, setPreviewData] = useState(previewDummyData);
-  const { ref, focusKey, focusSelf } = useFocusable({ focusKey: 'HOME', trackChildren: true, focusable: true});
 
-  // Update preview
   const updatePreview = (cardData: any) => {
     const data = getDataForPreview(cardData);
 
@@ -161,35 +383,23 @@ export function Home() {
       (thumbnailImage as AssetTypeIcon)?.url ?? (thumbnailImage as Image)?.imageUrl ?? (thumbnailImage as Image)?.media?.file?.url;
     const previewImageUrl =
       (previewImage as AssetTypeIcon)?.url ?? (previewImage as Image)?.imageUrl ?? (previewImage as Image)?.media?.file?.url;
-    
+
     // update captionSrc
     data.captionsIconSrc = '/icons/captions/stc.png'
-    
-    setPreviewData({ ...previewDummyData, ...data, previewImageUrl: previewImageUrl || thumbnailUrl, seasonCountLabel: `Seasons ${data.seasonCount}` });
-    
-  }
-  
-  useEffect(() => {
-    async function fetchData() {
-      setIsLoading(true);
-      const [dataFetched, configFetched] = await import('@enlight-webtv/controllers')
-        .then(({ catalogPageDataProvider }) => catalogPageDataProvider(Routes.HOMEPAGE));
-      setData(dataFetched);
-      setConfig(configFetched);
-      setIsLoading(false);
-    }
-    fetchData();
-  }, []);
 
-  const appendRailsToCatalog = (data, pageComponents) => {
-    return pageComponents.map((component, index) => {
+    setPreviewData({ ...previewDummyData, ...data, previewImageUrl: previewImageUrl || thumbnailUrl, seasonCountLabel: `Seasons ${data.seasonCount}` });
+
+  }
+
+  const appendRailsToCatalog = (data:any, pageComponents:any) => {
+    return pageComponents.map((component:any, index:number) => {
       if (!isValidValue(component)) return null;
 
       const componentStyle = component?.componentStyle?.[0];
       const railData = data?.[index]?.status === 'fulfilled' ? data[index].value : undefined;
       const railConfig = config.components?.[index];
       const showComponentTitle = railConfig.componentStyle?.[0]?.showComponentTitle;
-      
+
       return (
         <Rail
           key={`${index}-${component?.title}`}
@@ -202,48 +412,66 @@ export function Home() {
           itemOrientation={componentStyle?.itemOrientation ?? 1.67}
           useSkeletonLoader={false}
           autoFocus={index === 0}
-          updatePreview={updatePreview}
-        />
+          updatePreview={updatePreview} handleEnterPressOnCards={undefined}        />
       );
     });
   };
 
-  const rails = useMemo(() => {
-    if (isValidValue(data) && isValidValue(config)) {
-      focusSelf();
-      return appendRailsToCatalog(data, config.components);
-    }
-    return [];
-  }, [data, config, focusSelf]);
+  const onRowFocus = useCallback(
+    ({ y }: { y: number }) => {
+      ref.current.scrollTo({
+        top: y,
+        behavior: 'smooth'
+      });
+    },
+    [ref]
+  );
 
-  if (isLoading) return <Spinner />;
+  useEffect(() => {
+    async function fetchData() {
+      setIsLoading(true);
+      const [dataFetched, configFetched] = await import('@enlight-webtv/controllers')
+        .then(({ catalogPageDataProvider }) => catalogPageDataProvider(Routes.HOMEPAGE));
+      setData(dataFetched);
+      setConfig(configFetched);
+      setIsLoading(false);
+    }
+    fetchData();
+  }, []);
 
   return (
-    <>
-      <div
-        className={styles['container']}
-        style={{ height: 550, display: 'flex', alignItems: 'center' }}
-      >
-        <PreviewComponent {...previewData} />
-      </div>
-      <FocusContext.Provider value={focusKey}>
-        <div
-          ref={ref}
-          className={styles.container}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 10,
-            marginLeft: 10,
-          }}
-        >
-          {rails}
-        </div>
-      </FocusContext.Provider>
-    </>
+    <FocusContext.Provider value={focusKey}>
+      <ContentWrapper>
+      <PreviewComponent {...previewData} />
+        <ScrollingRows ref={ref}>
+          <div>
+            {rows.map(({ title }) => (
+              <ContentRow
+                key={title}
+                title={title}
+                onAssetPress={updatePreview}
+                onFocus={onRowFocus}
+                isShuffleSize={Math.random() < 0.5} // Rows will have children assets of different sizes, randomly setting it to true or false.
+              />
+            ))}
+          </div>
+        </ScrollingRows>
+      </ContentWrapper>
+    </FocusContext.Provider>
   );
-  
-  
+}
+
+
+const GlobalStyle = createGlobalStyle`
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+function Home() {
+  return (
+        <><GlobalStyle /><SideBar focusKey="MENU" /><Content /></>
+  );
 }
 
 export default Home;

@@ -76,7 +76,7 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        background: 'linear-gradient(to bottom, #000000, #333333)',
+        // background: 'linear-gradient(to bottom, #000000, #333333)',
         padding: '40px',
         color: '#ffffff',
         borderRadius: '10px',
@@ -104,9 +104,9 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
             {titleLabel}
           </h1>
         )}
-  
+
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          
+
           {/* Type Logo */}
           {showTypeLogo && (
             <img
@@ -118,7 +118,7 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
             />
           )}
 
-  
+
         {/* Flag */}
         {showFlag && (
           <img
@@ -129,7 +129,7 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
             style={{ marginRight: '8px' }}
           />
         )}
-  
+
         {/* Status */}
         {showStatus && (
           <p
@@ -141,7 +141,7 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
             {statusLabel}
           </p>
         )}
-  
+
         {/* Timer */}
         {showTimer && (
           <p
@@ -155,7 +155,7 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
           </p>
           )}
 
-          
+
         {/* Content Info */}
         {showContentInfo && (
             <div style={{ display: 'flex', gap: '12px', fontSize: '18px', color: '#bbbbbb' }}>
@@ -169,7 +169,7 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
             {showYear && <p>{yearLabel}</p>}
           </div>
         )}
-  
+
         {/* Parental Rating */}
         {showParentalRating && parentalRating.length > 0 && (
           <Badge
@@ -183,7 +183,7 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
             backgroundColor="transparent"
           />
           )}
-          
+
           {/* Badges */}
           {showBadges && badgeTextLabel.length > 0 && (
             <Badge
@@ -197,7 +197,7 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
               backgroundColor="transparent"
             />
           )}
-  
+
         {/* Quality */}
         {showQuality && (
           <p
@@ -210,7 +210,7 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
             {qualityRating}
           </p>
         )}
-  
+
         {/* Captions */}
         {showCaptions && (
           <img
@@ -220,9 +220,9 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
             alt="Captions Icon"
           />
         )}
-          
+
         </div>
-  
+
         {/* Description */}
         {showDescription && (
           <p
@@ -235,8 +235,8 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
             {descriptionText}
           </p>
         )}
-  
-  
+
+
         {/* Progress */}
         {showProgress && (
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -245,7 +245,7 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
             <span>{progressEndText}</span>
           </div>
         )}
-  
+
         {/* Season Button */}
         {showActions && showSeasonButton && (
           <button
@@ -274,7 +274,7 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
             {seasonText}
           </button>
         )}
-  
+
         {/* Related Info */}
         {showRelatedInfo && (
           <p
@@ -287,7 +287,7 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
           </p>
         )}
       </div>
-  
+
       {/* Thumbnail Section */}
       <div
         style={{
@@ -314,7 +314,7 @@ const PreviewComponent : React.FC<PreviewComponentDataNew> = ({
       </div>
     </div>
   );
-  
+
 };
 
 

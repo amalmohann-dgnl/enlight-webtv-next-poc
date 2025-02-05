@@ -45,12 +45,12 @@ const Rail = ({
       {showComponentTitle && (
   <TextBox
     className="rail-title"
-    labelText={title} 
+    labelText={title}
     fontSize={26}
     fontColor={titleColor}
-    maxLines={2} 
-    lineHeight={24} 
-    highlight={true} 
+    maxLines={2}
+    lineHeight={24}
+    highlight={true}
     style={{ marginTop: 20 }}
   />
 )}

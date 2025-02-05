@@ -5,5 +5,7 @@ export { default as Card } from './lib/card';
 export { default as Rail } from './lib/rail';
 export { default as TextBox } from './lib/text-box';
 export { default as RailSkeltonLoader } from './lib/rail-skelton';
+export { default as MenuItem } from './lib/menu-item';
+export { default as SideBar } from './lib/sidebar';
 export { default as PreviewComponent } from './lib/preview-component';
 // export { default as Icon } from './lib/icon';
