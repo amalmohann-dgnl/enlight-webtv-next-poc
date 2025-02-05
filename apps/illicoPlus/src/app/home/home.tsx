@@ -303,7 +303,7 @@ function ContentRow({
   onAssetPress,
   onFocus,
   isShuffleSize,
-  isLoading = true,
+  isLoading = false,
   data ={},
   config ={},
 }: ContentRowProps) {
@@ -312,7 +312,10 @@ function ContentRow({
   });
 
   const scrollingRef = useRef(null);
-  const railData:any[] = data?.status === 'fulfilled' ? data?.value?.content ?? [] : [];
+  const railData: any[] = data?.status === 'fulfilled' ? data?.value?.content ?? [] : [];
+
+  console.log('railData', railData, isLoading);
+
 
   const onAssetFocus = useCallback(
     ({ x }: { x: number }) => {
@@ -345,7 +348,7 @@ function ContentRow({
                 <Card key={index} focusKey={onAssetFocus} updatePreview={onAssetPress}
               data={data}
               onClick={() =>{}}
-              dimensions={getCardDimension(config?.componentStyle?.[0]?.itemSize ?? ItemSize.medium, config?.componentStyle?.[0]?.itemOrientation ?? 1.67)}
+              dimensions={getCardDimension(config?.componentStyle?.[0]?.itemSize ?? ItemSize.medium, config?.componentStyle?.[0]?.itemSize ?? ItemSize.medium)}
               thumbnailSrc={data?.images?.[0]?.url}
               title={data.title}
                 />
@@ -478,7 +481,7 @@ function Content() {
                 onAssetPress={updatePreview}
                 onFocus={onRowFocus}
                 isShuffleSize={Math.random() < 0.5} // Rows will have children assets of different sizes, randomly setting it to true or false.
-                  isLoading={true}
+                  isLoading={false}
                   config={component}
                   data={data[index]}
                 />
