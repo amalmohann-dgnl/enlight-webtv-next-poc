@@ -17,6 +17,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
   }) {
+
+
+    if (typeof window !== "undefined") {
+      window.PerformanceObserver = class {
+          observe() {}
+          disconnect() {}
+      };
+  }
+
+
   return (
     <html lang="en">
       <head>

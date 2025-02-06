@@ -16,6 +16,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  disablePerformanceMetrics: true, // Stops performance tracking
   transpilePackages: ['uuid'],
   webpack: (config) => {
     config.resolve.alias = {
