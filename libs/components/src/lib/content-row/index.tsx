@@ -5,7 +5,7 @@ import { cardUtilities, commonUtilities } from "@enlight-webtv/utilities";
 import styled from "styled-components";
 import { useCallback, useRef } from "react";
 import { ItemSize } from "@enlight-webtv/models";
-
+import { v4 as uuidv4 } from 'uuid';
 const { isValidValue } = commonUtilities;
 const { getCardDimension } = cardUtilities;
 
@@ -141,8 +141,7 @@ function ContentRow({
               />
             ))
               : railData?.map((data, index) => {
-
-                return (<Card key={index} onFocus={onAssetFocus} focusKey={`card-${data.title}-${index}`}  updatePreview={updatePreview}
+                return (<Card key={index} onFocus={onAssetFocus} focusKey={`card-${data.title}-${uuidv4()}`}  updatePreview={updatePreview}
                   data={data}
                   onClick={() => {/** */ }}
                   dimensions={getCardDimension(config?.componentStyle?.[0]?.itemSize ?? ItemSize.medium, config?.componentStyle?.[0]?.itemOrientation ?? 1.67)}
