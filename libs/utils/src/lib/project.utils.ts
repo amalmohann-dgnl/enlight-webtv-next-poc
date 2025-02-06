@@ -78,8 +78,8 @@ const getTopLabelProjectConfig = () => getProjectConfig()[projectName]?.topLabel
  * @author tonyaugustine
  */
 const getProjectFallbackConfig = async () => {
-    const fallbackConfigResponse = await axios.get('configs/fallback-config.json');
-    const fallbackConfig = await fallbackConfigResponse?.data;
+    // const fallbackConfigResponse = await axios.get('configs/fallback-config.json');
+    const fallbackConfig = {};
     return fallbackConfig as Partial<BaseConfiguration>;
 };
 
