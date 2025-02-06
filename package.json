@@ -11,6 +11,7 @@
     "@enlight-webtv/analytics-services": false,
     "@enlight-webtv/network-services": false,
     "@enlight-webtv/recombee-services": false,
+    "@enlight-webtv/ui-components": false,
     "@enlight-webtv/player-services": false
   },
   "private": true,

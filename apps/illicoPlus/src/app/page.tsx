@@ -1,13 +1,14 @@
 'use client';
-import styles from './page.module.scss';
 import { SplashMediaType } from '@enlight-webtv/models';
-import { Splash } from '@enlight-webtv/pages';
-import { redirect } from 'next/navigation';
-import { Suspense, useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
 
 export default function Index() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading,setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(true);
+
+  const Splash = dynamic(() => import('@enlight-webtv/pages').then(({Splash})=>Splash), { ssr: false });
+
 
   useEffect(() => {
     const bootApplication = async () => {

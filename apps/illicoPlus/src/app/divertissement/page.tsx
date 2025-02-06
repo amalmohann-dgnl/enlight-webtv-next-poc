@@ -1,17 +1,17 @@
 "use client";
 
 import { Routes } from '@enlight-webtv/models';
-import { Spinner } from '@enlight-webtv/ui-components';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 
-const Catalog = dynamic(() => import('@enlight-webtv/pages').then(({Catalog})=>Catalog), { ssr: false });
 
 export default function Series() {
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState([]);
   const [config, setConfig] = useState({} as any);
 
+  const Catalog = dynamic(() => import('@enlight-webtv/pages').then(({Catalog})=>Catalog), { ssr: false });
+  const Spinner = dynamic(() => import('@enlight-webtv/ui-components').then(({Spinner})=>Spinner), { ssr: false });
 
   useEffect(() => {
     async function fetchData() {
