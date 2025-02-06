@@ -8,4 +8,6 @@ export { default as RailSkeltonLoader } from './lib/rail-skelton';
 export { default as MenuItem } from './lib/menu-item';
 export { default as SideBar } from './lib/sidebar';
 export { default as PreviewComponent } from './lib/preview-component';
+export { default as Asset } from './lib/asset';
+export { default as ContentRow } from './lib/content-row';
 // export { default as Icon } from './lib/icon';

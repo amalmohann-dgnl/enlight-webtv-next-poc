@@ -1,7 +1,7 @@
 "use client";
 
 import { Routes } from '@enlight-webtv/models';
-import { ContentRow, Spinner } from '@enlight-webtv/ui-components';
+import {  Spinner } from '@enlight-webtv/ui-components';
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 
@@ -17,7 +17,7 @@ export default function Series() {
     async function fetchData() {
       setIsLoading(true);
       const [dataFetched, configFetched] = await import('@enlight-webtv/controllers')
-        .then(({ catalogPageDataProvider }) => catalogPageDataProvider(Routes.HOMEPAGE));
+        .then(({ catalogPageDataProvider }) => catalogPageDataProvider(Routes.SHOWS));
       setData(dataFetched);
       setConfig(configFetched);
       setIsLoading(false);
