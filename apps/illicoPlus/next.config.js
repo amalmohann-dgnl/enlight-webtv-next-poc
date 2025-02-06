@@ -16,6 +16,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  transpilePackages: ['uuid'],
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
