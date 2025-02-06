@@ -2,6 +2,7 @@ import { FocusContext, useFocusable } from "@noriginmedia/norigin-spatial-naviga
 import styled from 'styled-components';
 import MenuItem from "../menu-item";
 import { useEffect } from "react";
+import { Routes } from "@enlight-webtv/models";
 
 
 interface MenuWrapperProps {
@@ -63,11 +64,10 @@ function Sidebar({ focusKey: focusKeyParam }: SidebarProps) {
   return (
     <FocusContext.Provider value={focusKey}>
       <MenuWrapper ref={ref} hasFocusedChild={hasFocusedChild}>
-        <MenuItem text={hasFocusedChild ? "Home": "H"} />
-        <MenuItem text={hasFocusedChild ? "Series": "S"} />
-        <MenuItem text={hasFocusedChild ? "Search": "S"} />
-        <MenuItem text={hasFocusedChild ? "Settings": "S"} />
-        <MenuItem text={hasFocusedChild ? "Logout": "L"} />
+        <MenuItem text={hasFocusedChild ? "Home": "H"} route={Routes.HOMEPAGE} />
+        <MenuItem text={hasFocusedChild ? "Series": "S"} route={Routes.SHOWS} />
+        <MenuItem text={hasFocusedChild ? "Films": "F"} route={Routes.MOVIE} />
+        <MenuItem text={hasFocusedChild ? "Divertissement": "D"} route={Routes.DIVERTISSEMENT} />
       </MenuWrapper>
     </FocusContext.Provider>
   );
