@@ -31,9 +31,10 @@ const Card = ({
   dimensions = {} as Dimensions,
   style = {},
   updatePreview,
+  onFocus,
 }) => {
   const [cardDimensions, setCardDimensions] = useState(dimensions);
-  const { ref, focused } = useFocusable({ focusKey });
+  const { ref, focused } = useFocusable({ focusKey, onFocus });
 
 
   useEffect(() => {

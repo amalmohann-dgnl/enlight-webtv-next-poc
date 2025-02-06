@@ -274,15 +274,17 @@ const ContentRowTitle = styled.div`
 const ContentRowScrollingWrapper = styled.div`
   overflow-x: auto;
   overflow-y: hidden;
+  white-space: nowrap;
   flex-shrink: 1;
   flex-grow: 1;
   padding-left: 60px;
-  width: fit-content;
+  width: 100%;
 `;
 
 const ContentRowScrollingContent = styled.div`
   display: flex;
   flex-direction: row;
+  width: fit-content;
 `;
 
 interface ContentRowProps {
@@ -478,7 +480,7 @@ function Content() {
               isLoading={true} />
               ))
               :
-              [...(config.components)].map((component, index) => (
+              [...(config.components)].map((component, index) => (                
               <ContentRow
                 key={`${index}-${component?.title}`}
                 title={component?.title}
