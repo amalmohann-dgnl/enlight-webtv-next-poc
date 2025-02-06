@@ -3,18 +3,17 @@
  * Disabling ESLint rules for these dependencies since we know it is only for development purposes
  */
 
-import { Card, ContentRow, PreviewComponent, Rail, SideBar } from '@enlight-webtv/ui-components';
-import { FocusableComponentLayout, FocusContext, FocusDetails, init, KeyPressDetails, useFocusable } from '@noriginmedia/norigin-spatial-navigation';
-import React, { useCallback, useEffect, useState, useRef } from 'react';
+import {  ContentRow, PreviewComponent,  SideBar } from '@enlight-webtv/ui-components';
+import {  FocusContext,  init, useFocusable } from '@noriginmedia/norigin-spatial-navigation';
+import React, { useCallback,  useState,  } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import styled, { createGlobalStyle } from 'styled-components';
 
-import { cardUtilities, commonUtilities, previewComponentUtilities } from '@enlight-webtv/utilities';
-import { AssetTypeIcon, ContinueWatchingData, Image, ItemSize, PreviewComponentDataNew, PurchaseMode, RailContentModel, Routes, SubscriptionBadge, TopLabelType } from '@enlight-webtv/models';
+import {  commonUtilities, previewComponentUtilities } from '@enlight-webtv/utilities';
+import { AssetTypeIcon, ContinueWatchingData, Image, PreviewComponentDataNew, PurchaseMode, RailContentModel, Routes, SubscriptionBadge, TopLabelType } from '@enlight-webtv/models';
 
 const { getDataForPreview } = previewComponentUtilities;
-const { isValidValue, getOptimizedImage } = commonUtilities;
-const { getCardDimension } = cardUtilities
+const {  getOptimizedImage } = commonUtilities;
 
 init({
   debug: false,

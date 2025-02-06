@@ -91,6 +91,7 @@ interface ContentRowProps {
   isLoading: boolean;
   data?:any;
   config?: any;
+  updatePreview?: any
 }
 
 function ContentRow({
