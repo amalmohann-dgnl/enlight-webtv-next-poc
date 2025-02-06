@@ -17,7 +17,7 @@ export default function Series() {
     async function fetchData() {
       setIsLoading(true);
       const [dataFetched, configFetched] = await import('@enlight-webtv/controllers')
-        .then(({ catalogPageDataProvider }) => catalogPageDataProvider(Routes.HOMEPAGE));
+        .then(({ catalogPageDataProvider }) => catalogPageDataProvider(Routes.MOVIE));
       setData(dataFetched);
       setConfig(configFetched);
       setIsLoading(false);
