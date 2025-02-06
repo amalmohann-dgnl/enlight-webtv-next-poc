@@ -1,12 +1,14 @@
+import { Routes } from "@enlight-webtv/models";
 import { useFocusable } from "@noriginmedia/norigin-spatial-navigation";
+import { redirect } from "next/navigation";
 import styled from "styled-components";
 
 interface MenuItemBoxProps {
   focused: boolean;
 }
 
-function MenuItem({text}:{text:string}) {
-  const { ref, focused } = useFocusable();
+function MenuItem({text, route}:{text:string, route: Routes}) {
+  const { ref, focused } = useFocusable({onEnterPress: ()=> redirect(route)});
 
 
   const MenuItemBox = styled.div<MenuItemBoxProps>`
